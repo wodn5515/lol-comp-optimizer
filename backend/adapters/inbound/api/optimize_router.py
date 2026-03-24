@@ -569,13 +569,21 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
         a.champion_name: a for a in all_attrs
     }
 
+    # Get Data Dragon tags for fallback attribute generation
+    dd_champions = await ddragon.get_all_champions()
+    champion_id_to_tags: dict[int, list[str]] = {}
+    for key_str, info in dd_champions.items():
+        cid = int(key_str)
+        champion_id_to_tags[cid] = info.get("tags", [])
+
     # For any champion in player pools not in the map, add auto-generated attrs
     for player in players:
         for cs in player.top_champions:
             if cs.champion_name not in champion_attrs_map:
+                tags = champion_id_to_tags.get(cs.champion_id, ["Fighter"])
                 auto_attrs = champion_data_service.get_attributes_with_fallback(
                     champion_name=cs.champion_name,
-                    ddragon_tags=["Fighter"],
+                    ddragon_tags=tags,
                     champion_id=cs.champion_id,
                 )
                 champion_attrs_map[cs.champion_name] = auto_attrs

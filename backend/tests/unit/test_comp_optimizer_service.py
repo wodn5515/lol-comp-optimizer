@@ -388,8 +388,8 @@ class TestPrimaryLanesFiltering:
         assert len(compositions) >= 1
         assert compositions[0].assignments[0].champion_name == "Jinx"
 
-    def test_skip_lane_assignment_if_no_champion_fits(self, comp_optimizer: CompOptimizerService) -> None:
-        """If no champions fit the assigned lane, skip that lane assignment entirely."""
+    def test_fallback_to_lane_unfit_when_no_fit(self, comp_optimizer: CompOptimizerService) -> None:
+        """If no champions fit the assigned lane, fall back to lane-unfit champions."""
         from domain.models.player import Player, ChampionStats
         from domain.models.composition import LaneAssignment, Assignment
 
@@ -403,7 +403,7 @@ class TestPrimaryLanesFiltering:
         )
 
         champion_attrs_map = {
-            # Aatrox only plays TOP, but player is assigned MID → no fit
+            # Aatrox only plays TOP, but player is assigned MID → no lane_fit, but fallback to lane_unfit
             "Aatrox": make_champ("Aatrox", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=266),
         }
 
@@ -425,5 +425,6 @@ class TestPrimaryLanesFiltering:
             top_n=5,
         )
 
-        # No champions fit MID → this lane assignment is skipped → 0 results
-        assert len(compositions) == 0
+        # No lane_fit champions for MID, but Aatrox is used as fallback
+        assert len(compositions) >= 1
+        assert compositions[0].assignments[0].champion_name == "Aatrox"

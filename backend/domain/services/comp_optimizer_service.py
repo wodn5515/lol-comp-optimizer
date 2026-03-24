@@ -470,13 +470,14 @@ class CompOptimizerService:
                     else:
                         lane_fit.append(champ)
 
-                # primary_lanes에 맞는 챔피언만 사용 (뽀삐 원딜 방지)
-                # 맞는 챔피언이 0개면 이 라인 배정 자체를 건너뜀
+                # primary_lanes에 맞는 챔피언 우선, 없으면 전체 풀 사용 (빈 결과 방지)
                 if lane_fit:
                     champion_pools.append(lane_fit[:5])
+                elif lane_unfit:
+                    # 라인에 맞는 챔피언이 없지만 다른 챔피언은 있음 → fallback
+                    champion_pools.append(lane_unfit[:3])
                 else:
-                    # 이 플레이어에게 해당 라인에 맞는 챔피언이 없음
-                    # → 이 라인 배정 조합 전체를 스킵
+                    # 챔피언이 아예 없음 → 이 라인 배정 스킵
                     champion_pools = None
                     break
 

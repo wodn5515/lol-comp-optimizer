@@ -7,17 +7,17 @@ import { useAnalyzeStore, useBanPickStore } from '../../../features/analyze-comp
 
 export function ResultPage() {
   const navigate = useNavigate();
-  const result = useAnalyzeStore((s) => s.result);
   const clearResult = useAnalyzeStore((s) => s.clearResult);
   const analyzedPlayers = useBanPickStore((s) => s.analyzedPlayers);
+  const recommendations = useBanPickStore((s) => s.recommendations);
 
   useEffect(() => {
-    if (!result) {
+    if (!analyzedPlayers || analyzedPlayers.length === 0) {
       navigate('/');
     }
-  }, [result, navigate]);
+  }, [analyzedPlayers, navigate]);
 
-  if (!result) return null;
+  if (!analyzedPlayers || analyzedPlayers.length === 0) return null;
 
   const handleGoBack = () => {
     clearResult();

@@ -37,7 +37,7 @@ export function useBanPickActions() {
 
       if (result?.recommendations) {
         setRecommendations(
-          result.recommendations.sort((a, b) => a.rank - b.rank)
+          [...result.recommendations].sort((a, b) => a.rank - b.rank)
         );
       }
     } catch (err) {

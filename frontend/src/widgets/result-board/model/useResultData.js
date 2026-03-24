@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
-import { useAnalyzeStore } from '../../../features/analyze-comp';
+import { useBanPickStore } from '../../../features/analyze-comp';
 
 export function useResultData() {
-  const result = useAnalyzeStore((s) => s.result);
+  const storeRecommendations = useBanPickStore((s) => s.recommendations);
 
   const recommendations = useMemo(() => {
-    if (!result?.recommendations) return [];
-    return result.recommendations.sort((a, b) => a.rank - b.rank);
-  }, [result]);
+    if (!storeRecommendations || storeRecommendations.length === 0) return [];
+    return [...storeRecommendations].sort((a, b) => a.rank - b.rank);
+  }, [storeRecommendations]);
 
   const hasResults = recommendations.length > 0;
 

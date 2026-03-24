@@ -94,6 +94,24 @@
       "SUP"
     ]
   },
+  "Ambessa": {
+    "champion_id": 799,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 4,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
   "Amumu": {
     "champion_id": 32,
     "damage_type": "AP",
@@ -205,6 +223,26 @@
       "MID"
     ]
   },
+  "Aurora": {
+    "champion_id": 893,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 3,
+    "peel": 2,
+    "poke": 3,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "MID",
+      "TOP"
+    ]
+  },
   "Azir": {
     "champion_id": 268,
     "damage_type": "AP",
@@ -240,6 +278,25 @@
     "burst": 2,
     "primary_lanes": [
       "SUP"
+    ]
+  },
+  "BelVeth": {
+    "champion_id": 200,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 4,
+    "splitpush": 5,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
     ]
   },
   "Blitzcrank": {
@@ -299,6 +356,25 @@
       "SUP"
     ]
   },
+  "Briar": {
+    "champion_id": 233,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 4,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
   "Caitlyn": {
     "champion_id": 51,
     "damage_type": "AD",
@@ -350,6 +426,43 @@
     "poke": 2,
     "pick": 2,
     "burst": 3,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "ChoGath": {
+    "champion_id": 31,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 3,
+    "peel": 2,
+    "poke": 2,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP",
+      "MID"
+    ]
+  },
+  "Corki": {
+    "champion_id": 42,
+    "damage_type": "HYBRID",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 4,
+    "pick": 2,
+    "burst": 4,
     "primary_lanes": [
       "MID"
     ]
@@ -502,6 +615,24 @@
     "burst": 3,
     "primary_lanes": [
       "ADC"
+    ]
+  },
+  "Fiddlesticks": {
+    "champion_id": 9,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 4,
+    "peel": 2,
+    "poke": 2,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
     ]
   },
   "Fiora": {
@@ -694,6 +825,63 @@
       "JG"
     ]
   },
+  "Heimerdinger": {
+    "champion_id": 74,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 5,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 2,
+    "poke": 4,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "MID",
+      "TOP",
+      "SUP"
+    ]
+  },
+  "Hwei": {
+    "champion_id": 910,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 3,
+    "poke": 5,
+    "pick": 3,
+    "burst": 3,
+    "primary_lanes": [
+      "MID",
+      "SUP"
+    ]
+  },
+  "Illaoi": {
+    "champion_id": 420,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 5,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
   "Irelia": {
     "champion_id": 39,
     "damage_type": "AD",
@@ -712,6 +900,24 @@
     "primary_lanes": [
       "TOP",
       "MID"
+    ]
+  },
+  "Ivern": {
+    "champion_id": 427,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 5,
+    "poke": 1,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "JG"
     ]
   },
   "Janna": {
@@ -827,6 +1033,25 @@
       "ADC"
     ]
   },
+  "KSante": {
+    "champion_id": 897,
+    "damage_type": "AD",
+    "role_tags": [
+      "TANK",
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 2,
+    "poke": 1,
+    "pick": 3,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
   "Kaisa": {
     "champion_id": 145,
     "damage_type": "HYBRID",
@@ -841,6 +1066,24 @@
     "poke": 2,
     "pick": 3,
     "burst": 4,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Kalista": {
+    "champion_id": 429,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 2,
+    "pick": 2,
+    "burst": 2,
     "primary_lanes": [
       "ADC"
     ]
@@ -1279,6 +1522,42 @@
       "JG"
     ]
   },
+  "Mel": {
+    "champion_id": 942,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 3,
+    "poke": 4,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Milio": {
+    "champion_id": 902,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 5,
+    "poke": 2,
+    "pick": 1,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
   "MissFortune": {
     "champion_id": 21,
     "damage_type": "AD",
@@ -1333,6 +1612,24 @@
     "burst": 2,
     "primary_lanes": [
       "SUP",
+      "MID"
+    ]
+  },
+  "Naafiri": {
+    "champion_id": 950,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 2,
+    "engage": 3,
+    "peel": 1,
+    "poke": 2,
+    "pick": 5,
+    "burst": 5,
+    "primary_lanes": [
       "MID"
     ]
   },
@@ -1393,6 +1690,25 @@
       "SUP"
     ]
   },
+  "Neeko": {
+    "champion_id": 518,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 2,
+    "poke": 3,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "MID",
+      "SUP"
+    ]
+  },
   "Nidalee": {
     "champion_id": 76,
     "damage_type": "AP",
@@ -1412,6 +1728,25 @@
       "JG"
     ]
   },
+  "Nilah": {
+    "champion_id": 895,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
   "Nocturne": {
     "champion_id": 56,
     "damage_type": "AD",
@@ -1426,6 +1761,24 @@
     "poke": 1,
     "pick": 5,
     "burst": 4,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Nunu": {
+    "champion_id": 20,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 4,
+    "peel": 2,
+    "poke": 1,
+    "pick": 3,
+    "burst": 3,
     "primary_lanes": [
       "JG"
     ]
@@ -1566,6 +1919,25 @@
       "JG"
     ]
   },
+  "Quinn": {
+    "champion_id": 133,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 5,
+    "teamfight": 2,
+    "engage": 2,
+    "peel": 1,
+    "poke": 3,
+    "pick": 4,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
   "Rakan": {
     "champion_id": 497,
     "damage_type": "AP",
@@ -1619,6 +1991,43 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
+    ]
+  },
+  "Rell": {
+    "champion_id": 526,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "SUPPORT"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 5,
+    "engage": 5,
+    "peel": 3,
+    "poke": 1,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Renata": {
+    "champion_id": 888,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 4,
+    "poke": 2,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "SUP"
     ]
   },
   "Renekton": {
@@ -1813,6 +2222,24 @@
       "SUP"
     ]
   },
+  "Shaco": {
+    "champion_id": 35,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 2,
+    "splitpush": 4,
+    "teamfight": 2,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 5,
+    "burst": 5,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
   "Shen": {
     "champion_id": 98,
     "damage_type": "AD",
@@ -1922,6 +2349,26 @@
     "burst": 1,
     "primary_lanes": [
       "JG"
+    ]
+  },
+  "Smolder": {
+    "champion_id": 901,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN",
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 4,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC",
+      "MID"
     ]
   },
   "Sona": {
@@ -2326,6 +2773,25 @@
       "MID"
     ]
   },
+  "VelKoz": {
+    "champion_id": 161,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 2,
+    "poke": 5,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "MID",
+      "SUP"
+    ]
+  },
   "Velkoz": {
     "champion_id": 161,
     "damage_type": "AP",
@@ -2342,6 +2808,24 @@
     "burst": 4,
     "primary_lanes": [
       "SUP",
+      "MID"
+    ]
+  },
+  "Vex": {
+    "champion_id": 711,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 2,
+    "poke": 3,
+    "pick": 3,
+    "burst": 5,
+    "primary_lanes": [
       "MID"
     ]
   },
