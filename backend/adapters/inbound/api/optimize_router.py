@@ -229,7 +229,7 @@ async def _fetch_players_from_riot(
             tier = ""
             rank = ""
             lp = 0
-            league_entries = await riot_api.get_league_entries(summoner_id, api_key)
+            league_entries = await riot_api.get_league_entries(summoner_id, api_key) if summoner_id else []
             for entry in league_entries:
                 if entry.get("queueType") == "RANKED_SOLO_5x5":
                     tier = entry.get("tier", "")
