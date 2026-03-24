@@ -457,11 +457,10 @@ class CompOptimizerService:
     ) -> list[Composition]:
         """Find optimal champion compositions for the given lane assignments.
 
-        For each lane assignment:
-        1. Get each player's top 5 champions
-        2. Generate all combinations (max 5^5 = 3125)
-        3. Score each combination (including off-lane penalty)
-        4. Return top_n overall compositions
+        Uses the best lane assignment first. Only falls back to lower-ranked
+        assignments if the best one produces fewer than top_n compositions.
+        This prevents wrong-lane compositions from outscoring correct ones
+        due to team comp analysis.
         """
         player_map: dict[str, Player] = {}
         for p in players:
@@ -471,6 +470,9 @@ class CompOptimizerService:
         all_compositions: list[Composition] = []
 
         for lane_assignment in lane_assignments:
+            # If the best lane assignment already produced enough results, stop
+            if all_compositions and len(all_compositions) >= top_n:
+                break
             # Build champion pools for each assignment slot
             champion_pools: list[list[ChampionStats]] = []
 
@@ -498,14 +500,11 @@ class CompOptimizerService:
                     else:
                         lane_fit.append(champ)
 
-                # primary_lanes에 맞는 챔피언 우선, 없으면 전체 풀 사용 (빈 결과 방지)
+                # primary_lanes에 맞는 챔피언만 사용
                 if lane_fit:
                     champion_pools.append(lane_fit[:5])
-                elif lane_unfit:
-                    # 라인에 맞는 챔피언이 없지만 다른 챔피언은 있음 → fallback
-                    champion_pools.append(lane_unfit[:3])
                 else:
-                    # 챔피언이 아예 없음 → 이 라인 배정 스킵
+                    # 이 라인에 맞는 챔피언이 없음 → 이 라인 배정 스킵, 다음 배정 시도
                     champion_pools = None
                     break
 

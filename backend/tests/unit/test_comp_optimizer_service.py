@@ -388,8 +388,8 @@ class TestPrimaryLanesFiltering:
         assert len(compositions) >= 1
         assert compositions[0].assignments[0].champion_name == "Jinx"
 
-    def test_fallback_to_lane_unfit_when_no_fit(self, comp_optimizer: CompOptimizerService) -> None:
-        """If no champions fit the assigned lane, fall back to lane-unfit champions."""
+    def test_skip_lane_assignment_if_no_champion_fits(self, comp_optimizer: CompOptimizerService) -> None:
+        """If no champions fit the assigned lane, skip and try next lane assignment."""
         from domain.models.player import Player, ChampionStats
         from domain.models.composition import LaneAssignment, Assignment
 
@@ -403,28 +403,31 @@ class TestPrimaryLanesFiltering:
         )
 
         champion_attrs_map = {
-            # Aatrox only plays TOP, but player is assigned MID → no lane_fit, but fallback to lane_unfit
+            # Aatrox only plays TOP, but player is assigned MID → no fit, skip this assignment
             "Aatrox": make_champ("Aatrox", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=266),
         }
 
-        lane_assignment = LaneAssignment(
-            assignments=[
-                Assignment(
-                    player_game_name="TestPlayer",
-                    player_tag_line="KR1",
-                    lane="MID",
-                ),
-            ],
-            score=1.0,
-        )
+        lane_assignments = [
+            # Assignment 1: MID → no fit → skip
+            LaneAssignment(
+                assignments=[Assignment(player_game_name="TestPlayer", player_tag_line="KR1", lane="MID")],
+                score=1.0,
+            ),
+            # Assignment 2: TOP → fits → use
+            LaneAssignment(
+                assignments=[Assignment(player_game_name="TestPlayer", player_tag_line="KR1", lane="TOP")],
+                score=0.8,
+            ),
+        ]
 
         compositions = comp_optimizer.optimize(
             players=[player],
-            lane_assignments=[lane_assignment],
+            lane_assignments=lane_assignments,
             champion_attrs_map=champion_attrs_map,
             top_n=5,
         )
 
-        # No lane_fit champions for MID, but Aatrox is used as fallback
+        # Skipped MID (no fit), fell back to TOP assignment
         assert len(compositions) >= 1
+        assert compositions[0].assignments[0].lane == "TOP"
         assert compositions[0].assignments[0].champion_name == "Aatrox"
