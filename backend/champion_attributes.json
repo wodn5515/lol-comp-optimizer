@@ -1,0 +1,2743 @@
+{
+  "Aatrox": {
+    "champion_id": 266,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 3,
+    "peel": 1,
+    "poke": 2,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Ahri": {
+    "champion_id": 103,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "ASSASSIN"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 1,
+    "poke": 3,
+    "pick": 4,
+    "burst": 4,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Akali": {
+    "champion_id": 84,
+    "damage_type": "AP",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 5,
+    "primary_lanes": [
+      "MID",
+      "TOP"
+    ]
+  },
+  "Akshan": {
+    "champion_id": 166,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 3,
+    "burst": 3,
+    "primary_lanes": [
+      "MID",
+      "TOP"
+    ]
+  },
+  "Alistar": {
+    "champion_id": 12,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "SUPPORT"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 5,
+    "peel": 4,
+    "poke": 1,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Amumu": {
+    "champion_id": 32,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 1,
+    "teamfight": 5,
+    "engage": 5,
+    "peel": 2,
+    "poke": 1,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "JG",
+      "SUP"
+    ]
+  },
+  "Anivia": {
+    "champion_id": 34,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 5,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 3,
+    "poke": 3,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Annie": {
+    "champion_id": 1,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 5,
+    "primary_lanes": [
+      "MID",
+      "SUP"
+    ]
+  },
+  "Aphelios": {
+    "champion_id": 523,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Ashe": {
+    "champion_id": 22,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 3,
+    "peel": 2,
+    "poke": 3,
+    "pick": 3,
+    "burst": 1,
+    "primary_lanes": [
+      "ADC",
+      "SUP"
+    ]
+  },
+  "AurelionSol": {
+    "champion_id": 136,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 5,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 3,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Azir": {
+    "champion_id": 268,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 3,
+    "peel": 2,
+    "poke": 4,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Bard": {
+    "champion_id": 432,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 3,
+    "poke": 2,
+    "pick": 4,
+    "burst": 2,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Blitzcrank": {
+    "champion_id": 53,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "SUPPORT"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 5,
+    "peel": 2,
+    "poke": 1,
+    "pick": 5,
+    "burst": 2,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Brand": {
+    "champion_id": 63,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 1,
+    "teamfight": 5,
+    "engage": 1,
+    "peel": 1,
+    "poke": 3,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "SUP",
+      "MID"
+    ]
+  },
+  "Braum": {
+    "champion_id": 201,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "SUPPORT"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 3,
+    "peel": 5,
+    "poke": 1,
+    "pick": 1,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Caitlyn": {
+    "champion_id": 51,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 4,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Camille": {
+    "champion_id": 164,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 5,
+    "teamfight": 3,
+    "engage": 4,
+    "peel": 1,
+    "poke": 1,
+    "pick": 5,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Cassiopeia": {
+    "champion_id": 69,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 2,
+    "poke": 2,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Darius": {
+    "champion_id": 122,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Diana": {
+    "champion_id": 131,
+    "damage_type": "AP",
+    "role_tags": [
+      "ASSASSIN",
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 5,
+    "engage": 4,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "JG",
+      "MID"
+    ]
+  },
+  "DrMundo": {
+    "champion_id": 36,
+    "damage_type": "AD",
+    "role_tags": [
+      "TANK",
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 1,
+    "primary_lanes": [
+      "TOP",
+      "JG"
+    ]
+  },
+  "Draven": {
+    "champion_id": 119,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 1,
+    "burst": 4,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Ekko": {
+    "champion_id": 245,
+    "damage_type": "AP",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 5,
+    "primary_lanes": [
+      "MID",
+      "JG"
+    ]
+  },
+  "Elise": {
+    "champion_id": 60,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 2,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Evelynn": {
+    "champion_id": 28,
+    "damage_type": "AP",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 2,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 5,
+    "burst": 5,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Ezreal": {
+    "champion_id": 81,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 5,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Fiora": {
+    "champion_id": 114,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 5,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Fizz": {
+    "champion_id": 105,
+    "damage_type": "AP",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 5,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Galio": {
+    "champion_id": 3,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 4,
+    "peel": 2,
+    "poke": 1,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "MID",
+      "SUP"
+    ]
+  },
+  "Gangplank": {
+    "champion_id": 41,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 4,
+    "pick": 1,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP",
+      "MID"
+    ]
+  },
+  "Garen": {
+    "champion_id": 86,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Gnar": {
+    "champion_id": 150,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 1,
+    "poke": 3,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Gragas": {
+    "champion_id": 79,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 3,
+    "poke": 3,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP",
+      "JG",
+      "MID"
+    ]
+  },
+  "Graves": {
+    "champion_id": 104,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Gwen": {
+    "champion_id": 887,
+    "damage_type": "AP",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Hecarim": {
+    "champion_id": 120,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 5,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 3,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Irelia": {
+    "champion_id": 39,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 4,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP",
+      "MID"
+    ]
+  },
+  "Janna": {
+    "champion_id": 40,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "ENCHANTER"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 5,
+    "poke": 2,
+    "pick": 1,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "JarvanIV": {
+    "champion_id": 59,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 5,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 3,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Jax": {
+    "champion_id": 24,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 5,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP",
+      "JG"
+    ]
+  },
+  "Jayce": {
+    "champion_id": 126,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "MARKSMAN"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 5,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP",
+      "MID"
+    ]
+  },
+  "Jhin": {
+    "champion_id": 202,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 1,
+    "poke": 3,
+    "pick": 3,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Jinx": {
+    "champion_id": 222,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Kaisa": {
+    "champion_id": 145,
+    "damage_type": "HYBRID",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Karma": {
+    "champion_id": 43,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "ENCHANTER",
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 3,
+    "poke": 4,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "SUP",
+      "MID"
+    ]
+  },
+  "Karthus": {
+    "champion_id": 30,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 5,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 1,
+    "peel": 1,
+    "poke": 3,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "JG",
+      "MID"
+    ]
+  },
+  "Kassadin": {
+    "champion_id": 38,
+    "damage_type": "AP",
+    "role_tags": [
+      "ASSASSIN",
+      "MAGE"
+    ],
+    "waveclear": 2,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 5,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Katarina": {
+    "champion_id": 55,
+    "damage_type": "AP",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 1,
+    "poke": 2,
+    "pick": 3,
+    "burst": 5,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Kayle": {
+    "champion_id": 10,
+    "damage_type": "AP",
+    "role_tags": [
+      "MARKSMAN",
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 4,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Kayn": {
+    "champion_id": 141,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN",
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Kennen": {
+    "champion_id": 85,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 5,
+    "engage": 4,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Khazix": {
+    "champion_id": 121,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 5,
+    "burst": 5,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Kindred": {
+    "champion_id": 203,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Kled": {
+    "champion_id": 240,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 5,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "KogMaw": {
+    "champion_id": 96,
+    "damage_type": "HYBRID",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 3,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "LeBlanc": {
+    "champion_id": 7,
+    "damage_type": "AP",
+    "role_tags": [
+      "ASSASSIN",
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 3,
+    "pick": 5,
+    "burst": 5,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "LeeSin": {
+    "champion_id": 64,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 4,
+    "peel": 2,
+    "poke": 1,
+    "pick": 4,
+    "burst": 3,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Leona": {
+    "champion_id": 89,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "SUPPORT"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 5,
+    "engage": 5,
+    "peel": 3,
+    "poke": 1,
+    "pick": 3,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Lillia": {
+    "champion_id": 876,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 3,
+    "peel": 1,
+    "poke": 3,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "JG",
+      "TOP"
+    ]
+  },
+  "Lissandra": {
+    "champion_id": 127,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 2,
+    "poke": 2,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Lucian": {
+    "champion_id": 236,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "ADC",
+      "MID"
+    ]
+  },
+  "Lulu": {
+    "champion_id": 117,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "ENCHANTER"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 5,
+    "poke": 3,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Lux": {
+    "champion_id": 99,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "SUPPORT"
+    ],
+    "waveclear": 4,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 2,
+    "poke": 5,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "SUP",
+      "MID"
+    ]
+  },
+  "Malphite": {
+    "champion_id": 54,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 5,
+    "peel": 1,
+    "poke": 2,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP",
+      "SUP"
+    ]
+  },
+  "Malzahar": {
+    "champion_id": 90,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 5,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 2,
+    "poke": 2,
+    "pick": 4,
+    "burst": 3,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Maokai": {
+    "champion_id": 57,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "SUPPORT"
+    ],
+    "waveclear": 3,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 3,
+    "poke": 1,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP",
+      "TOP",
+      "JG"
+    ]
+  },
+  "MasterYi": {
+    "champion_id": 11,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 4,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "MissFortune": {
+    "champion_id": 21,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 1,
+    "peel": 1,
+    "poke": 3,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Mordekaiser": {
+    "champion_id": 82,
+    "damage_type": "AP",
+    "role_tags": [
+      "BRUISER",
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Morgana": {
+    "champion_id": 25,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "SUPPORT"
+    ],
+    "waveclear": 4,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 4,
+    "poke": 2,
+    "pick": 4,
+    "burst": 2,
+    "primary_lanes": [
+      "SUP",
+      "MID"
+    ]
+  },
+  "Nami": {
+    "champion_id": 267,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "ENCHANTER"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 4,
+    "poke": 3,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Nasus": {
+    "champion_id": 75,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 5,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Nautilus": {
+    "champion_id": 111,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "SUPPORT"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 5,
+    "peel": 3,
+    "poke": 1,
+    "pick": 4,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Nidalee": {
+    "champion_id": 76,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 5,
+    "pick": 4,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Nocturne": {
+    "champion_id": 56,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 2,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 5,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Olaf": {
+    "champion_id": 2,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP",
+      "JG"
+    ]
+  },
+  "Orianna": {
+    "champion_id": 61,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 3,
+    "peel": 3,
+    "poke": 4,
+    "pick": 1,
+    "burst": 4,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Ornn": {
+    "champion_id": 516,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 5,
+    "peel": 2,
+    "poke": 1,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Pantheon": {
+    "champion_id": 80,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 4,
+    "peel": 1,
+    "poke": 2,
+    "pick": 4,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP",
+      "MID",
+      "SUP"
+    ]
+  },
+  "Poppy": {
+    "champion_id": 78,
+    "damage_type": "AD",
+    "role_tags": [
+      "TANK",
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 4,
+    "poke": 1,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP",
+      "JG",
+      "SUP"
+    ]
+  },
+  "Pyke": {
+    "champion_id": 555,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN",
+      "SUPPORT"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 2,
+    "engage": 4,
+    "peel": 1,
+    "poke": 1,
+    "pick": 5,
+    "burst": 4,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Qiyana": {
+    "champion_id": 246,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 5,
+    "primary_lanes": [
+      "MID",
+      "JG"
+    ]
+  },
+  "Rakan": {
+    "champion_id": 497,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "ENCHANTER"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 5,
+    "peel": 3,
+    "poke": 1,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Rammus": {
+    "champion_id": 33,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 2,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 4,
+    "peel": 2,
+    "poke": 1,
+    "pick": 3,
+    "burst": 1,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "RekSai": {
+    "champion_id": 421,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 4,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 3,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Renekton": {
+    "champion_id": 58,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Rengar": {
+    "champion_id": 107,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 2,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 5,
+    "burst": 5,
+    "primary_lanes": [
+      "JG",
+      "TOP"
+    ]
+  },
+  "Riven": {
+    "champion_id": 92,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Rumble": {
+    "champion_id": 68,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 2,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP",
+      "MID"
+    ]
+  },
+  "Ryze": {
+    "champion_id": 13,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "MID",
+      "TOP"
+    ]
+  },
+  "Samira": {
+    "champion_id": 360,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Sejuani": {
+    "champion_id": 113,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 1,
+    "teamfight": 5,
+    "engage": 5,
+    "peel": 2,
+    "poke": 1,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Senna": {
+    "champion_id": 235,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN",
+      "SUPPORT"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 2,
+    "poke": 4,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "SUP",
+      "ADC"
+    ]
+  },
+  "Seraphine": {
+    "champion_id": 147,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "SUPPORT"
+    ],
+    "waveclear": 3,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 3,
+    "poke": 3,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "SUP",
+      "MID"
+    ]
+  },
+  "Sett": {
+    "champion_id": 875,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 2,
+    "poke": 1,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP",
+      "SUP"
+    ]
+  },
+  "Shen": {
+    "champion_id": 98,
+    "damage_type": "AD",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 2,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 4,
+    "poke": 1,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "TOP",
+      "SUP"
+    ]
+  },
+  "Shyvana": {
+    "champion_id": 102,
+    "damage_type": "HYBRID",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Singed": {
+    "champion_id": 27,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Sion": {
+    "champion_id": 14,
+    "damage_type": "AD",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 2,
+    "poke": 1,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Sivir": {
+    "champion_id": 15,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 5,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 3,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Skarner": {
+    "champion_id": 72,
+    "damage_type": "AD",
+    "role_tags": [
+      "TANK",
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 5,
+    "peel": 2,
+    "poke": 1,
+    "pick": 5,
+    "burst": 1,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Sona": {
+    "champion_id": 37,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "ENCHANTER"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 3,
+    "poke": 3,
+    "pick": 1,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Soraka": {
+    "champion_id": 16,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "ENCHANTER"
+    ],
+    "waveclear": 2,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 4,
+    "poke": 2,
+    "pick": 1,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Swain": {
+    "champion_id": 50,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 1,
+    "poke": 2,
+    "pick": 3,
+    "burst": 3,
+    "primary_lanes": [
+      "SUP",
+      "MID",
+      "ADC"
+    ]
+  },
+  "Sylas": {
+    "champion_id": 517,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Syndra": {
+    "champion_id": 134,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 2,
+    "poke": 3,
+    "pick": 3,
+    "burst": 5,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "TahmKench": {
+    "champion_id": 223,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "SUPPORT"
+    ],
+    "waveclear": 2,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 4,
+    "poke": 2,
+    "pick": 3,
+    "burst": 1,
+    "primary_lanes": [
+      "TOP",
+      "SUP"
+    ]
+  },
+  "Taliyah": {
+    "champion_id": 163,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 2,
+    "poke": 3,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "MID",
+      "JG"
+    ]
+  },
+  "Talon": {
+    "champion_id": 91,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 2,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 5,
+    "burst": 5,
+    "primary_lanes": [
+      "MID",
+      "JG"
+    ]
+  },
+  "Taric": {
+    "champion_id": 44,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "SUPPORT",
+      "ENCHANTER"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 4,
+    "poke": 1,
+    "pick": 1,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Teemo": {
+    "champion_id": 17,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "MARKSMAN"
+    ],
+    "waveclear": 2,
+    "splitpush": 3,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 4,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Thresh": {
+    "champion_id": 412,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "TANK"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 4,
+    "peel": 4,
+    "poke": 1,
+    "pick": 5,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Tristana": {
+    "champion_id": 18,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "ADC",
+      "MID"
+    ]
+  },
+  "Trundle": {
+    "champion_id": 48,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP",
+      "JG"
+    ]
+  },
+  "Tryndamere": {
+    "champion_id": 23,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 5,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "TwistedFate": {
+    "champion_id": 4,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 2,
+    "pick": 4,
+    "burst": 3,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Twitch": {
+    "champion_id": 29,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN",
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Udyr": {
+    "champion_id": 77,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 4,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "JG",
+      "TOP"
+    ]
+  },
+  "Urgot": {
+    "champion_id": 6,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 4,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 2,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Varus": {
+    "champion_id": 110,
+    "damage_type": "HYBRID",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 1,
+    "poke": 5,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Vayne": {
+    "champion_id": 67,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN",
+      "ASSASSIN"
+    ],
+    "waveclear": 2,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "ADC",
+      "TOP"
+    ]
+  },
+  "Veigar": {
+    "champion_id": 45,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 2,
+    "poke": 2,
+    "pick": 3,
+    "burst": 5,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Velkoz": {
+    "champion_id": 161,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 4,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 2,
+    "poke": 5,
+    "pick": 1,
+    "burst": 4,
+    "primary_lanes": [
+      "SUP",
+      "MID"
+    ]
+  },
+  "Vi": {
+    "champion_id": 254,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 5,
+    "peel": 1,
+    "poke": 1,
+    "pick": 5,
+    "burst": 4,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Viego": {
+    "champion_id": 234,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN",
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 2,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 3,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Viktor": {
+    "champion_id": 112,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 5,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 4,
+    "pick": 1,
+    "burst": 4,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Vladimir": {
+    "champion_id": 8,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 4,
+    "primary_lanes": [
+      "MID",
+      "TOP"
+    ]
+  },
+  "Volibear": {
+    "champion_id": 106,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK",
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP",
+      "JG"
+    ]
+  },
+  "Warwick": {
+    "champion_id": 19,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 2,
+    "primary_lanes": [
+      "JG",
+      "TOP"
+    ]
+  },
+  "Wukong": {
+    "champion_id": 62,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 5,
+    "engage": 4,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "TOP",
+      "JG"
+    ]
+  },
+  "Xayah": {
+    "champion_id": 498,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 4,
+    "splitpush": 2,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Xerath": {
+    "champion_id": 101,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 5,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 5,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "SUP",
+      "MID"
+    ]
+  },
+  "XinZhao": {
+    "champion_id": 5,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 4,
+    "peel": 1,
+    "poke": 1,
+    "pick": 4,
+    "burst": 3,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Yasuo": {
+    "champion_id": 157,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 4,
+    "splitpush": 4,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 2,
+    "burst": 4,
+    "primary_lanes": [
+      "MID",
+      "TOP",
+      "ADC"
+    ]
+  },
+  "Yone": {
+    "champion_id": 777,
+    "damage_type": "HYBRID",
+    "role_tags": [
+      "BRUISER",
+      "ASSASSIN"
+    ],
+    "waveclear": 4,
+    "splitpush": 4,
+    "teamfight": 4,
+    "engage": 3,
+    "peel": 1,
+    "poke": 1,
+    "pick": 3,
+    "burst": 4,
+    "primary_lanes": [
+      "MID",
+      "TOP"
+    ]
+  },
+  "Yorick": {
+    "champion_id": 83,
+    "damage_type": "AD",
+    "role_tags": [
+      "BRUISER"
+    ],
+    "waveclear": 4,
+    "splitpush": 5,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 1,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "TOP"
+    ]
+  },
+  "Yuumi": {
+    "champion_id": 350,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "ENCHANTER"
+    ],
+    "waveclear": 1,
+    "splitpush": 1,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 3,
+    "poke": 2,
+    "pick": 1,
+    "burst": 1,
+    "primary_lanes": [
+      "SUP"
+    ]
+  },
+  "Zac": {
+    "champion_id": 154,
+    "damage_type": "AP",
+    "role_tags": [
+      "TANK"
+    ],
+    "waveclear": 3,
+    "splitpush": 1,
+    "teamfight": 5,
+    "engage": 5,
+    "peel": 2,
+    "poke": 1,
+    "pick": 2,
+    "burst": 1,
+    "primary_lanes": [
+      "JG"
+    ]
+  },
+  "Zed": {
+    "champion_id": 238,
+    "damage_type": "AD",
+    "role_tags": [
+      "ASSASSIN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 2,
+    "engage": 1,
+    "peel": 1,
+    "poke": 2,
+    "pick": 5,
+    "burst": 5,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Zeri": {
+    "champion_id": 221,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 3,
+    "pick": 1,
+    "burst": 2,
+    "primary_lanes": [
+      "ADC"
+    ]
+  },
+  "Ziggs": {
+    "champion_id": 115,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 5,
+    "splitpush": 4,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 5,
+    "pick": 1,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC",
+      "MID"
+    ]
+  },
+  "Zilean": {
+    "champion_id": 26,
+    "damage_type": "AP",
+    "role_tags": [
+      "SUPPORT",
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 1,
+    "peel": 3,
+    "poke": 2,
+    "pick": 2,
+    "burst": 2,
+    "primary_lanes": [
+      "SUP",
+      "MID"
+    ]
+  },
+  "Zoe": {
+    "champion_id": 142,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE"
+    ],
+    "waveclear": 3,
+    "splitpush": 2,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 5,
+    "pick": 4,
+    "burst": 5,
+    "primary_lanes": [
+      "MID"
+    ]
+  },
+  "Zyra": {
+    "champion_id": 143,
+    "damage_type": "AP",
+    "role_tags": [
+      "MAGE",
+      "SUPPORT"
+    ],
+    "waveclear": 4,
+    "splitpush": 1,
+    "teamfight": 4,
+    "engage": 2,
+    "peel": 2,
+    "poke": 3,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "SUP"
+    ]
+  }
+}
