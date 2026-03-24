@@ -59,8 +59,8 @@ export function TeamAnalysisChart({ teamAnalysis }) {
   const sc = stat_contributions || {};
   const statsData = [
     { name: '한타', value: teamfight_score || 0, contributions: sc.teamfight || [] },
-    { name: '진입', value: engage_score || 0, contributions: sc.engage || [] },
-    { name: '견제', value: poke_score || 0, contributions: sc.poke || [] },
+    { name: '이니시', value: engage_score || 0, contributions: sc.engage || [] },
+    { name: '포킹', value: poke_score || 0, contributions: sc.poke || [] },
     { name: '킬캐치', value: pick_score || 0, contributions: sc.pick || [] },
     { name: '순간폭딜', value: burst_score || 0, contributions: sc.burst || [] },
     { name: '라인정리', value: waveclear_score || 0, contributions: sc.waveclear || [] },
