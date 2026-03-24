@@ -24,6 +24,7 @@ class RiotApiPort(ABC):
     async def get_match_ids(
         self, puuid: str, count: int, queue: int | None, api_key: str,
         match_type: str | None = None,
+        start_time: int | None = None,
     ) -> list[str]:
         ...
 

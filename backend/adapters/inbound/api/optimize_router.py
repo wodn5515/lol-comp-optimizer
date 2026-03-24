@@ -1,8 +1,12 @@
 import logging
+import time
 import traceback
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
+
+# 최근 3개월 이내 매치만 조회 (초 단위)
+MATCH_MAX_AGE_SECONDS = 90 * 24 * 60 * 60  # 90일
 
 from domain.models.player import Player, LaneStats, ChampionStats
 
@@ -240,11 +244,14 @@ async def _fetch_players_from_riot(
             for m in masteries:
                 mastery_map[m["championId"]] = m.get("championPoints", 0)
 
-            # Get match IDs from each SR queue (솔랭420, 자랭440, 일반430, 드래프트400)
+            # Get match IDs from each SR queue (최근 3개월 이내만)
+            start_time = int(time.time()) - MATCH_MAX_AGE_SECONDS
             all_match_ids: list[str] = []
             seen: set[str] = set()
             for q in (420, 440, 400, 430):
-                ids = await riot_api.get_match_ids(puuid, match_count, q, api_key)
+                ids = await riot_api.get_match_ids(
+                    puuid, match_count, q, api_key, start_time=start_time
+                )
                 for mid in ids:
                     if mid not in seen:
                         seen.add(mid)

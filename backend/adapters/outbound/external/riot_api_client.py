@@ -142,12 +142,15 @@ class RiotApiClient(RiotApiPort):
     async def get_match_ids(
         self, puuid: str, count: int, queue: int | None, api_key: str,
         match_type: str | None = None,
+        start_time: int | None = None,
     ) -> list[str]:
         params = f"count={count}"
         if match_type:
             params += f"&type={match_type}"
         elif queue:
             params += f"&queue={queue}"
+        if start_time:
+            params += f"&startTime={start_time}"
         resp = await self._request(
             ASIA_BASE,
             f"/lol/match/v5/matches/by-puuid/{puuid}/ids?{params}",

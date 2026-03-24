@@ -61,6 +61,7 @@ class MockRiotApi(RiotApiPort):
     async def get_match_ids(
         self, puuid: str, count: int, queue: int | None, api_key: str,
         match_type: str | None = None,
+        start_time: int | None = None,
     ) -> list[str]:
         return [f"KR_match_{puuid}_{i}" for i in range(min(count, 3))]
 
