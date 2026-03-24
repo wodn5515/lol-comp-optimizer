@@ -39,11 +39,21 @@ class LaneOptimizerService:
             return 0.0 * self._game_count_weight(0)  # 0.0 * 0.1 = 0.0
         return lane_stats.win_rate * self._game_count_weight(lane_stats.games)
 
-    def optimize(self, players: list[Player], top_n: int = 5) -> list[LaneAssignment]:
+    def optimize(
+        self,
+        players: list[Player],
+        top_n: int = 5,
+        lane_constraints: dict[str, list[str]] | None = None,
+    ) -> list[LaneAssignment]:
         """Find the best lane assignments for the given players.
 
         For N players, generates permutations of N lanes from 5 (nPr).
         Returns top_n results sorted by score descending.
+
+        Args:
+            lane_constraints: Optional dict mapping "gameName#tagLine" to list of
+                allowed lanes. If set, only those lanes are valid for that player.
+                Example: {"Faker#KR1": ["MID", "TOP"]} means Faker can only go MID or TOP.
         """
         n = len(players)
         if n == 0:
@@ -52,15 +62,27 @@ class LaneOptimizerService:
             n = 5
             players = players[:5]
 
+        constraints = lane_constraints or {}
+
         all_assignments: list[LaneAssignment] = []
 
         # Generate all permutations of n lanes from 5 available lanes
         for lane_perm in permutations(LANES, n):
             total_score = 0.0
             assignments: list[Assignment] = []
+            valid = True
 
             for i, player in enumerate(players):
                 lane = lane_perm[i]
+                player_key = f"{player.game_name}#{player.tag_line}"
+
+                # Check lane constraint
+                if player_key in constraints:
+                    allowed_lanes = constraints[player_key]
+                    if lane not in allowed_lanes:
+                        valid = False
+                        break
+
                 score = self._lane_score(player, lane)
                 total_score += score
                 assignments.append(
@@ -70,6 +92,9 @@ class LaneOptimizerService:
                         lane=lane,
                     )
                 )
+
+            if not valid:
+                continue
 
             all_assignments.append(
                 LaneAssignment(assignments=assignments, score=total_score)

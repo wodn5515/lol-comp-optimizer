@@ -573,8 +573,21 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
                 )
                 champion_attrs_map[cs.champion_name] = auto_attrs
 
-    # Run lane optimizer
-    lane_assignments = lane_optimizer_service.optimize(players, top_n=3)
+    # Build lane constraints from locked picks' primary_lanes
+    lane_constraints: dict[str, list[str]] = {}
+    for player_key, champion_name in request.locked_picks.items():
+        attrs = champion_attrs_map.get(champion_name)
+        if attrs and attrs.primary_lanes:
+            lane_constraints[player_key] = attrs.primary_lanes
+            logger.info(
+                "  라인 제약: %s → %s (%s)",
+                player_key, champion_name, attrs.primary_lanes
+            )
+
+    # Run lane optimizer (with lane constraints for locked picks)
+    lane_assignments = lane_optimizer_service.optimize(
+        players, top_n=3, lane_constraints=lane_constraints
+    )
 
     # Run comp optimizer
     compositions = comp_optimizer_service.optimize(
