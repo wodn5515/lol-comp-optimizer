@@ -230,6 +230,11 @@ class CompOptimizerService:
         - Splitpush: 10%
         """
         personal = self._personal_mastery_score(assignments)
+
+        # 4명 이하: 팀 조합 평가 불가 → 개인 숙련도 위주
+        if len(assignments) < 4:
+            return personal
+
         ad_ap = self._ad_ap_balance_score(champion_attrs_list)
         frontline = self._frontline_score(champion_attrs_list)
         deal = self._deal_composition_score(champion_attrs_list)
@@ -260,6 +265,8 @@ class CompOptimizerService:
             return TeamAnalysis()
 
         total = len(champion_attrs_list)
+        is_partial = total < 4  # 2~3명: 팀 조합 평가 불가
+
         ad_count = sum(1 for a in champion_attrs_list if a.damage_type == "AD")
         ap_count = sum(1 for a in champion_attrs_list if a.damage_type == "AP")
         hybrid_count = sum(1 for a in champion_attrs_list if a.damage_type == "HYBRID")
@@ -279,7 +286,8 @@ class CompOptimizerService:
         splitpush_total = sum(a.splitpush for a in champion_attrs_list)
         teamfight_total = sum(a.teamfight for a in champion_attrs_list)
 
-        penalties = self._calculate_penalties(champion_attrs_list)
+        # 2~3명일 때는 페널티 없음
+        penalties = {} if is_partial else self._calculate_penalties(champion_attrs_list)
 
         # Determine strengths and weaknesses
         strengths: list[str] = []
@@ -328,9 +336,31 @@ class CompOptimizerService:
         if poke_total < 6:
             weaknesses.append("포킹 능력 부족")
 
-        # Detect composition archetype(s)
+        # Detect composition archetype(s) — 4명 이하면 조합 유형 판별 스킵
         comp_types: list[str] = []
         strategy_parts: list[str] = []
+
+        if is_partial:
+            comp_type = ""
+            strategy_guide = "인원이 부족하여 조합 유형 판별이 불가합니다. 개인 숙련도 기준으로 추천합니다."
+            return TeamAnalysis(
+                ad_ratio=round(ad_ratio, 2),
+                ap_ratio=round(ap_ratio, 2),
+                has_frontline=has_frontline,
+                waveclear_score=waveclear_total,
+                splitpush_score=splitpush_total,
+                teamfight_score=teamfight_total,
+                engage_score=engage_total,
+                peel_score=peel_total,
+                poke_score=poke_total,
+                pick_score=pick_total,
+                burst_score=burst_total,
+                comp_type=comp_type,
+                strategy_guide=strategy_guide,
+                strengths=strengths,
+                weaknesses=weaknesses,
+                penalties=penalties,
+            )
 
         strategy_map = {
             "이니시": "이니시에이터가 싸움을 걸어 한타를 유도하세요. 오브젝트(드래곤/바론) 타이밍에 적극적으로 싸움을 걸고, 이니시 타이밍을 팀원과 맞추는 것이 핵심입니다.",
