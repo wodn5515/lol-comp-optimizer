@@ -608,10 +608,24 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
             player_key, champion_name, lane_constraints[player_key]
         )
 
+    # Log player lane stats for debugging
+    for player in players:
+        key = f"{player.game_name}#{player.tag_line}"
+        stats_str = ", ".join(
+            f"{lane}: {s.games}판 {s.win_rate:.0%}"
+            for lane, s in sorted(player.lane_stats.items(), key=lambda x: x[1].games, reverse=True)
+        )
+        logger.info("  플레이어 라인 통계: %s → %s", key, stats_str or "(없음)")
+
     # Run lane optimizer (with lane constraints for locked picks)
     lane_assignments = lane_optimizer_service.optimize(
         players, top_n=3, lane_constraints=lane_constraints
     )
+
+    # Log lane assignment results
+    for i, la in enumerate(lane_assignments[:3]):
+        assign_str = ", ".join(f"{a.player_game_name}→{a.lane}" for a in la.assignments)
+        logger.info("  라인배정 #%d (점수 %.3f): %s", i + 1, la.score, assign_str)
 
     # Run comp optimizer
     compositions = comp_optimizer_service.optimize(

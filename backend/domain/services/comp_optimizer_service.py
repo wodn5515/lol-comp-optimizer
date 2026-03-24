@@ -22,6 +22,7 @@ PENALTY_FULL_AD: int = -30
 PENALTY_FULL_AP: int = -30
 PENALTY_NO_FRONTLINE: int = -25
 PENALTY_LOW_WAVECLEAR: int = -10
+PENALTY_OFF_LANE_PER_CHAMPION: int = -15  # 챔피언이 primary_lanes 밖 라인에 배정될 때
 
 # Max values for normalization
 MAX_WAVECLEAR: int = 25  # 5 champions * 5 max each
@@ -420,6 +421,19 @@ class CompOptimizerService:
             penalties=penalties,
         )
 
+    def _count_off_lane_champions(
+        self,
+        assignments: list[Assignment],
+        champion_attrs_map: dict[str, ChampionAttributes],
+    ) -> int:
+        """Count how many champions are playing outside their primary_lanes."""
+        count = 0
+        for a in assignments:
+            attrs = champion_attrs_map.get(a.champion_name)
+            if attrs and attrs.primary_lanes and a.lane not in attrs.primary_lanes:
+                count += 1
+        return count
+
     def optimize(
         self,
         players: list[Player],
@@ -432,7 +446,7 @@ class CompOptimizerService:
         For each lane assignment:
         1. Get each player's top 5 champions
         2. Generate all combinations (max 5^5 = 3125)
-        3. Score each combination
+        3. Score each combination (including off-lane penalty)
         4. Return top_n overall compositions
         """
         player_map: dict[str, Player] = {}
@@ -520,6 +534,22 @@ class CompOptimizerService:
                     continue  # Skip compositions with duplicate champions
 
                 score = self.calculate_score(assignments, attrs_list)
+
+                # Off-lane penalty: 챔피언이 primary_lanes 밖에서 플레이 시 감점
+                off_lane_count = self._count_off_lane_champions(
+                    assignments, champion_attrs_map
+                )
+                score += off_lane_count * PENALTY_OFF_LANE_PER_CHAMPION
+
+                # Lane assignment quality bonus: 라인 배정 적합도 반영 (0~10점)
+                # lane_assignment.score = sum of (win_rate * game_count_weight) per player
+                # Normalize: max possible ~ 1.0 per player * 5 players = 5.0
+                max_lane_score = len(assignments) * 1.0
+                if max_lane_score > 0:
+                    lane_quality = (lane_assignment.score / max_lane_score) * 10.0
+                    score += lane_quality
+
+                score = max(score, 0.0)
                 analysis = self.analyze(assignments, attrs_list)
 
                 all_compositions.append(
