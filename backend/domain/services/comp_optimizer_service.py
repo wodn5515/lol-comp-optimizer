@@ -22,7 +22,7 @@ PENALTY_FULL_AD: int = -30
 PENALTY_FULL_AP: int = -30
 PENALTY_NO_FRONTLINE: int = -25
 PENALTY_LOW_WAVECLEAR: int = -10
-PENALTY_OFF_LANE_PER_CHAMPION: int = -15  # 챔피언이 primary_lanes 밖 라인에 배정될 때
+PENALTY_OFF_LANE_PER_CHAMPION: int = -25  # 챔피언이 primary_lanes 밖 라인에 배정될 때
 
 # Max values for normalization
 MAX_WAVECLEAR: int = 25  # 5 champions * 5 max each
@@ -555,12 +555,12 @@ class CompOptimizerService:
                 )
                 score += off_lane_count * PENALTY_OFF_LANE_PER_CHAMPION
 
-                # Lane assignment quality bonus: 라인 배정 적합도 반영 (0~10점)
+                # Lane assignment quality bonus: 라인 배정 적합도 반영 (0~20점)
                 # lane_assignment.score = sum of (win_rate * game_count_weight) per player
                 # Normalize: max possible ~ 1.0 per player * 5 players = 5.0
                 max_lane_score = len(assignments) * 1.0
                 if max_lane_score > 0:
-                    lane_quality = (lane_assignment.score / max_lane_score) * 10.0
+                    lane_quality = (lane_assignment.score / max_lane_score) * 20.0
                     score += lane_quality
 
                 score = max(score, 0.0)

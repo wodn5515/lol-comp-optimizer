@@ -110,7 +110,7 @@ export function TeamAnalysisChart({ teamAnalysis }) {
             height={220}
             barColor="#0397ab"
             layout="vertical"
-            customTooltip={<StatTooltip statContributions={stat_contributions} />}
+            customTooltip={(props) => <StatTooltip {...props} statContributions={stat_contributions} />}
           />
         </div>
       </div>
