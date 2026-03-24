@@ -1,5 +1,6 @@
 from itertools import permutations
 from domain.models.player import Player
+from domain.models.champion import ChampionAttributes
 from domain.models.composition import Assignment, LaneAssignment
 
 
@@ -29,21 +30,69 @@ class LaneOptimizerService:
         else:
             return 0.1
 
-    def _lane_score(self, player: Player, lane: str) -> float:
+    def _infer_lane_preference(
+        self,
+        player: Player,
+        champion_attrs_map: dict[str, ChampionAttributes],
+    ) -> dict[str, float]:
+        """Infer lane preference from champion pool when lane_stats are sparse.
+
+        For each champion the player plays, weight the champion's primary_lanes
+        by the champion's game count and win rate. Returns a score per lane.
+        """
+        lane_scores: dict[str, float] = {}
+
+        for champ in player.top_champions:
+            attrs = champion_attrs_map.get(champ.champion_name)
+            if not attrs or not attrs.primary_lanes:
+                continue
+
+            # Weight by games and win rate
+            weight = max(champ.games, 1) * max(champ.win_rate, 0.3)
+            for lane in attrs.primary_lanes:
+                lane_scores[lane] = lane_scores.get(lane, 0.0) + weight
+
+        # Normalize to 0~1 range
+        max_score = max(lane_scores.values()) if lane_scores else 1.0
+        if max_score > 0:
+            for lane in lane_scores:
+                lane_scores[lane] /= max_score
+
+        return lane_scores
+
+    def _lane_score(
+        self,
+        player: Player,
+        lane: str,
+        champion_attrs_map: dict[str, ChampionAttributes] | None = None,
+    ) -> float:
         """Calculate score for a player in a given lane.
 
-        score = win_rate * game_count_weight
+        Uses lane_stats (match history) as primary signal.
+        Falls back to champion pool inference when lane_stats are sparse.
         """
         lane_stats = player.lane_stats.get(lane)
-        if lane_stats is None or lane_stats.games == 0:
-            return 0.0 * self._game_count_weight(0)  # 0.0 * 0.1 = 0.0
-        return lane_stats.win_rate * self._game_count_weight(lane_stats.games)
+
+        # Primary: match history based score
+        if lane_stats is not None and lane_stats.games > 0:
+            return lane_stats.win_rate * self._game_count_weight(lane_stats.games)
+
+        # Fallback: infer from champion pool
+        if champion_attrs_map:
+            inferred = self._infer_lane_preference(player, champion_attrs_map)
+            if inferred:
+                # Champion pool inference: lower confidence than actual stats
+                # Max score = 0.3 (vs stats-based max ~1.0)
+                return inferred.get(lane, 0.0) * 0.3
+
+        return 0.0
 
     def optimize(
         self,
         players: list[Player],
         top_n: int = 5,
         lane_constraints: dict[str, list[str]] | None = None,
+        champion_attrs_map: dict[str, ChampionAttributes] | None = None,
     ) -> list[LaneAssignment]:
         """Find the best lane assignments for the given players.
 
@@ -53,7 +102,8 @@ class LaneOptimizerService:
         Args:
             lane_constraints: Optional dict mapping "gameName#tagLine" to list of
                 allowed lanes. If set, only those lanes are valid for that player.
-                Example: {"Faker#KR1": ["MID", "TOP"]} means Faker can only go MID or TOP.
+            champion_attrs_map: Optional champion attributes for lane inference
+                when lane_stats are sparse.
         """
         n = len(players)
         if n == 0:
@@ -83,7 +133,7 @@ class LaneOptimizerService:
                         valid = False
                         break
 
-                score = self._lane_score(player, lane)
+                score = self._lane_score(player, lane, champion_attrs_map)
                 total_score += score
                 assignments.append(
                     Assignment(

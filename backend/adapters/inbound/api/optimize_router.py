@@ -417,10 +417,7 @@ async def _run_optimization(players: list[Player]) -> list:
         cid = int(key_str)
         champion_id_to_tags[cid] = info.get("tags", [])
 
-    # Run lane optimizer
-    lane_assignments = lane_optimizer_service.optimize(players, top_n=3)
-
-    # Build champion attributes map
+    # Build champion attributes map (needed for lane inference)
     all_attrs = await champion_data_service.get_all()
     champion_attrs_map: dict[str, ChampionAttributes] = {
         a.champion_name: a for a in all_attrs
@@ -443,6 +440,11 @@ async def _run_optimization(players: list[Player]) -> list:
                     champion_id=cs.champion_id,
                 )
                 champion_attrs_map[cs.champion_name] = auto_attrs
+
+    # Run lane optimizer (with champion pool inference for sparse lane_stats)
+    lane_assignments = lane_optimizer_service.optimize(
+        players, top_n=3, champion_attrs_map=champion_attrs_map,
+    )
 
     # Run comp optimizer
     compositions = comp_optimizer_service.optimize(
@@ -619,7 +621,8 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
 
     # Run lane optimizer (with lane constraints for locked picks)
     lane_assignments = lane_optimizer_service.optimize(
-        players, top_n=3, lane_constraints=lane_constraints
+        players, top_n=3, lane_constraints=lane_constraints,
+        champion_attrs_map=champion_attrs_map,
     )
 
     # Log lane assignment results
