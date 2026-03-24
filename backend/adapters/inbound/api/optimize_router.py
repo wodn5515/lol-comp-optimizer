@@ -573,16 +573,25 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
                 )
                 champion_attrs_map[cs.champion_name] = auto_attrs
 
-    # Build lane constraints from locked picks' primary_lanes
+    # Build lane constraints from locked picks
+    # 허용 라인 = 챔피언의 primary_lanes + 플레이어가 실제 플레이한 라인
     lane_constraints: dict[str, list[str]] = {}
     for player_key, champion_name in request.locked_picks.items():
         attrs = champion_attrs_map.get(champion_name)
-        if attrs and attrs.primary_lanes:
-            lane_constraints[player_key] = attrs.primary_lanes
-            logger.info(
-                "  라인 제약: %s → %s (%s)",
-                player_key, champion_name, attrs.primary_lanes
-            )
+        allowed = set(attrs.primary_lanes) if attrs and attrs.primary_lanes else set(LANES)
+        # 플레이어가 실제 플레이한 라인도 추가 (판테온 정글 등)
+        for player in players:
+            key = f"{player.game_name}#{player.tag_line}"
+            if key == player_key:
+                for lane in player.lane_stats:
+                    if player.lane_stats[lane].games >= 1:
+                        allowed.add(lane)
+                break
+        lane_constraints[player_key] = list(allowed)
+        logger.info(
+            "  라인 제약: %s → %s (허용: %s)",
+            player_key, champion_name, lane_constraints[player_key]
+        )
 
     # Run lane optimizer (with lane constraints for locked picks)
     lane_assignments = lane_optimizer_service.optimize(
