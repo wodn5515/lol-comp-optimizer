@@ -1,6 +1,48 @@
 import { PieChartWidget, BarChartWidget } from '../../../shared/ui';
 import { cn } from '../../../shared/lib/cn';
 
+const STAT_KEY_MAP = {
+  '팀파': 'teamfight',
+  '이니시': 'engage',
+  '포킹': 'poke',
+  '캐치': 'pick',
+  '폭딜': 'burst',
+  '클리어': 'waveclear',
+  '스플릿': 'splitpush',
+  '필링': 'peel',
+};
+
+function StatTooltip({ active, payload, statContributions }) {
+  if (!active || !payload?.length) return null;
+
+  const entry = payload[0];
+  const statName = entry?.payload?.name;
+  const statKey = STAT_KEY_MAP[statName];
+  const contribs = statContributions?.[statKey] || [];
+
+  return (
+    <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 min-w-[140px]">
+      <p className="text-xs font-semibold text-gray-200 mb-1.5 border-b border-gray-700 pb-1">
+        {statName}
+        <span className="text-amber-400 ml-1.5">{entry.value}</span>
+        <span className="text-gray-500 text-[10px]"> / 25</span>
+      </p>
+      {contribs.length > 0 ? (
+        <div className="space-y-0.5">
+          {contribs.map((c, i) => (
+            <div key={i} className="flex items-center justify-between gap-3 text-[11px]">
+              <span className="text-gray-300">{c.champion}</span>
+              <span className="text-amber-400 font-medium">{c.value}</span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p className="text-[10px] text-gray-500">기여 챔피언 없음</p>
+      )}
+    </div>
+  );
+}
+
 export function TeamAnalysisChart({ teamAnalysis }) {
   const {
     ad_ratio,
@@ -18,6 +60,7 @@ export function TeamAnalysisChart({ teamAnalysis }) {
     strategy_guide,
     strengths,
     weaknesses,
+    stat_contributions,
   } = teamAnalysis;
 
   const damageData = [
@@ -64,9 +107,10 @@ export function TeamAnalysisChart({ teamAnalysis }) {
           <p className="text-[10px] text-gray-500 mb-1 text-center">팀 능력치</p>
           <BarChartWidget
             data={statsData}
-            height={180}
+            height={220}
             barColor="#0397ab"
             layout="vertical"
+            customTooltip={<StatTooltip statContributions={stat_contributions} />}
           />
         </div>
       </div>

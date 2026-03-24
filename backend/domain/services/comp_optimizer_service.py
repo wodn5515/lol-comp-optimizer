@@ -287,6 +287,19 @@ class CompOptimizerService:
         splitpush_total = sum(a.splitpush for a in champion_attrs_list)
         teamfight_total = sum(a.teamfight for a in champion_attrs_list)
 
+        # Build per-champion stat contributions
+        stat_keys = ["teamfight", "engage", "poke", "pick", "burst", "waveclear", "splitpush", "peel"]
+        stat_contributions: dict[str, list[dict]] = {}
+        for key in stat_keys:
+            contribs = []
+            for attrs in champion_attrs_list:
+                val = getattr(attrs, key, 0)
+                if val > 0:
+                    contribs.append({"champion": attrs.champion_name, "value": val})
+            # Sort by value descending
+            contribs.sort(key=lambda x: x["value"], reverse=True)
+            stat_contributions[key] = contribs
+
         # 2~3명일 때는 페널티 없음
         penalties = {} if is_partial else self._calculate_penalties(champion_attrs_list)
 
@@ -361,6 +374,7 @@ class CompOptimizerService:
                 strengths=strengths,
                 weaknesses=weaknesses,
                 penalties=penalties,
+                stat_contributions=stat_contributions,
             )
 
         strategy_map = {

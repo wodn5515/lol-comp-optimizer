@@ -32,6 +32,8 @@ class TeamAnalysis:
     strengths: list[str] = field(default_factory=list)
     weaknesses: list[str] = field(default_factory=list)
     penalties: dict[str, int] = field(default_factory=dict)
+    # Per-champion stat contributions: { "teamfight": [{"champion": "Orianna", "value": 5}, ...], ... }
+    stat_contributions: dict[str, list[dict]] = field(default_factory=dict)
 
 
 @dataclass

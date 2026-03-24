@@ -65,21 +65,23 @@ export function BarChartWidget({
   height = 200,
   barColor = '#c89b3c',
   layout = 'vertical',
+  customTooltip,
 }) {
   if (layout === 'vertical') {
     return (
       <ResponsiveContainer width="100%" height={height}>
         <BarChart data={data} layout="vertical" margin={{ left: 10, right: 20 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
-          <XAxis type="number" tick={{ fill: '#9ca3af', fontSize: 12 }} domain={[0, 'auto']} />
+          <XAxis type="number" tick={{ fill: '#9ca3af', fontSize: 11 }} domain={[0, 'auto']} />
           <YAxis
             dataKey={xAxisKey}
             type="category"
-            tick={{ fill: '#9ca3af', fontSize: 12 }}
-            width={40}
+            tick={{ fill: '#d1d5db', fontSize: 11 }}
+            width={50}
+            interval={0}
           />
-          <Tooltip content={<CustomTooltip />} />
-          <Bar dataKey={dataKey} fill={barColor} radius={[0, 4, 4, 0]} barSize={16} />
+          <Tooltip content={customTooltip || <CustomTooltip />} />
+          <Bar dataKey={dataKey} fill={barColor} radius={[0, 4, 4, 0]} barSize={14} />
         </BarChart>
       </ResponsiveContainer>
     );

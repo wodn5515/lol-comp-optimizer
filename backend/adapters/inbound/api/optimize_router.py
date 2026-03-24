@@ -172,6 +172,7 @@ def _serialize_recommendations(compositions: list) -> list[dict]:
                     "strategy_guide": comp.team_analysis.strategy_guide,
                     "strengths": comp.team_analysis.strengths,
                     "weaknesses": comp.team_analysis.weaknesses,
+                    "stat_contributions": comp.team_analysis.stat_contributions,
                 },
             }
         )
