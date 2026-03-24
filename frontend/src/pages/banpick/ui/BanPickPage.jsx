@@ -18,7 +18,7 @@ function RecommendationsPanel() {
           추천 조합
         </h2>
         {isOptimizing && (
-          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-950 border border-amber-800">
             <svg
               className="animate-spin h-3 w-3 text-amber-400"
               xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ function RecommendationsPanel() {
       </div>
 
       {recommendations.length === 0 && !isOptimizing && (
-        <div className="text-center py-12 rounded-xl border border-slate-700/30 bg-slate-900/30">
+        <div className="text-center py-12 rounded-lg border border-gray-800 bg-gray-900">
           <p className="text-gray-500 text-sm">
             밴/픽을 설정하면 추천 조합이 표시됩니다
           </p>
@@ -93,11 +93,9 @@ export function BanPickPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-slate-950 to-gray-950">
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-red-900/10 via-transparent to-transparent" />
-
-        <div className="relative max-w-6xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-950">
+      <div>
+        <div className="max-w-6xl mx-auto px-4 py-8">
           {/* Header */}
           <header className="flex items-center justify-between mb-6">
             <button
@@ -121,7 +119,7 @@ export function BanPickPage() {
             </button>
 
             <div className="text-center">
-              <h1 className="text-xl font-extrabold text-gray-100 tracking-tight">
+              <h1 className="text-xl font-bold text-gray-100">
                 밴/픽 단계
               </h1>
               <p className="text-xs text-gray-500 mt-0.5">

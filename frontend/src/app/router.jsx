@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import { HomePage } from '../pages/home/ui/HomePage';
 import { ResultPage } from '../pages/result/ui/ResultPage';
 import { BanPickPage } from '../pages/banpick/ui/BanPickPage';
+import { DesignSystemPage } from '../pages/design-system/ui/DesignSystemPage';
 
 export const router = createBrowserRouter([
   {
@@ -15,5 +16,9 @@ export const router = createBrowserRouter([
   {
     path: '/result',
     element: <ResultPage />,
+  },
+  {
+    path: '/design-system',
+    element: <DesignSystemPage />,
   },
 ]);

@@ -17,7 +17,7 @@ const CHART_COLORS = ['#c89b3c', '#0397ab', '#e44040', '#3bbf9e', '#9d48e0', '#5
 const CustomTooltip = ({ active, payload }) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-slate-800/95 border border-slate-600/50 rounded-lg px-3 py-2 shadow-xl">
+    <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2">
       {payload.map((entry, index) => (
         <p key={index} className="text-sm text-gray-200">
           <span style={{ color: entry.color || entry.fill }}>{entry.name}: </span>

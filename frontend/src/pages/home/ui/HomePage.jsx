@@ -8,20 +8,14 @@ export function HomePage() {
   const clearError = useAnalyzeStore((s) => s.clearError);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-slate-950 to-gray-950">
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent" />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-amber-500/5 blur-[100px] rounded-full" />
-
-        <div className="relative max-w-2xl mx-auto px-4 py-12">
+    <div className="min-h-screen bg-gray-950">
+      <div>
+        <div className="max-w-2xl mx-auto px-4 py-12">
           <header className="text-center mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 mb-4">
-              <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              <span className="text-xs font-medium text-amber-400">
-                LoL Comp Optimizer
-              </span>
-            </div>
-            <h1 className="text-3xl md:text-4xl font-extrabold text-gray-100 mb-3 tracking-tight">
+            <p className="text-xs font-medium text-amber-500 mb-3 uppercase tracking-wider">
+              LoL Comp Optimizer
+            </p>
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-100 mb-3">
               최적 조합을 찾아보세요
             </h1>
             <p className="text-gray-400 text-sm md:text-base max-w-md mx-auto leading-relaxed">
@@ -32,7 +26,7 @@ export function HomePage() {
           </header>
 
           {error && (
-            <div className="mb-5 p-4 rounded-xl bg-red-900/20 border border-red-700/30 flex items-start gap-3">
+            <div className="mb-5 p-4 rounded-lg bg-red-950 border border-red-900 flex items-start gap-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
@@ -47,11 +41,11 @@ export function HomePage() {
               </svg>
               <div className="flex-1">
                 <p className="text-sm text-red-300 font-medium">오류 발생</p>
-                <p className="text-xs text-red-400/80 mt-0.5">{error}</p>
+                <p className="text-xs text-red-400 mt-0.5">{error}</p>
               </div>
               <button
                 onClick={clearError}
-                className="text-red-400/60 hover:text-red-300 transition-colors"
+                className="text-red-400 hover:text-red-300 transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

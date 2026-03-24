@@ -22,8 +22,8 @@ export function ChampionBadge({
   return (
     <div
       className={cn(
-        'flex items-center gap-2 bg-slate-800/60 rounded-lg px-2.5 py-1.5',
-        'border border-slate-700/30 hover:border-slate-600/50 transition-colors',
+        'flex items-center gap-2 bg-gray-800 rounded-lg px-2.5 py-1.5',
+        'border border-gray-700 hover:border-gray-600 transition-colors',
         className
       )}
     >

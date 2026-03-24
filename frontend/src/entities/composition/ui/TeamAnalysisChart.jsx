@@ -37,10 +37,10 @@ export function TeamAnalysisChart({ teamAnalysis }) {
   ];
 
   return (
-    <div className="border-t border-slate-700/30 pt-4">
+    <div className="border-t border-gray-800 pt-4">
       {comp_type && (
         <div className="mb-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-500/10 border border-amber-500/30">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-amber-950 border border-amber-800">
             <span className="text-xs font-bold text-amber-400">{comp_type}</span>
           </div>
         </div>
@@ -76,8 +76,8 @@ export function TeamAnalysisChart({ teamAnalysis }) {
           className={cn(
             'flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-full',
             has_frontline
-              ? 'bg-emerald-900/30 text-emerald-400 border border-emerald-700/30'
-              : 'bg-red-900/30 text-red-400 border border-red-700/30'
+              ? 'bg-emerald-950 text-emerald-400 border border-emerald-800'
+              : 'bg-red-950 text-red-400 border border-red-800'
           )}
         >
           <span>{has_frontline ? '\u2713' : '\u2717'}</span>
@@ -87,12 +87,12 @@ export function TeamAnalysisChart({ teamAnalysis }) {
 
       {strengths && strengths.length > 0 && (
         <div className="mb-2">
-          <p className="text-[10px] font-medium text-emerald-400/80 mb-1">강점</p>
+          <p className="text-[10px] font-medium text-emerald-400 mb-1">강점</p>
           <div className="flex flex-wrap gap-1">
             {strengths.map((s, i) => (
               <span
                 key={i}
-                className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-900/20 text-emerald-300 border border-emerald-700/20"
+                className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800"
               >
                 {s}
               </span>
@@ -103,12 +103,12 @@ export function TeamAnalysisChart({ teamAnalysis }) {
 
       {weaknesses && weaknesses.length > 0 && (
         <div className="mb-3">
-          <p className="text-[10px] font-medium text-red-400/80 mb-1">약점</p>
+          <p className="text-[10px] font-medium text-red-400 mb-1">약점</p>
           <div className="flex flex-wrap gap-1">
             {weaknesses.map((w, i) => (
               <span
                 key={i}
-                className="text-[10px] px-2 py-0.5 rounded-full bg-red-900/20 text-red-300 border border-red-700/20"
+                className="text-[10px] px-2 py-0.5 rounded-full bg-red-950 text-red-300 border border-red-800"
               >
                 {w}
               </span>
@@ -118,7 +118,7 @@ export function TeamAnalysisChart({ teamAnalysis }) {
       )}
 
       {strategy_guide && (
-        <div className="mt-3 p-3 rounded-lg bg-sky-900/15 border border-sky-700/25">
+        <div className="mt-3 p-3 rounded-lg bg-sky-950 border border-sky-800">
           <p className="text-[10px] font-semibold text-sky-400 mb-1.5">
             운영 가이드
           </p>

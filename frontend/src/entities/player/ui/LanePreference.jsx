@@ -30,15 +30,13 @@ export function LanePreference({ laneStats, compact = false }) {
           <span className="text-[10px] text-gray-400 w-6 text-right font-medium">
             {item.label}
           </span>
-          <div className="flex-1 h-3 bg-slate-800/60 rounded-full overflow-hidden">
+          <div className="flex-1 h-3 bg-gray-800 rounded-full overflow-hidden">
             <div
               className="h-full rounded-full transition-all duration-500"
               style={{
                 width: `${(item.percent / maxPercent) * 100}%`,
-                background:
-                  item.percent > 0
-                    ? `linear-gradient(to right, #0397ab, #0397ab${item.winRate > 0.5 ? 'cc' : '88'})`
-                    : 'transparent',
+                background: item.percent > 0 ? '#0397ab' : 'transparent',
+                opacity: item.percent > 0 ? (item.winRate > 0.5 ? 1 : 0.6) : 0,
               }}
             />
           </div>

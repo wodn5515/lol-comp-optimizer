@@ -6,7 +6,7 @@ export function ProgressBar({
   label,
   showPercent = true,
   className,
-  barColor = 'bg-gradient-to-r from-amber-600 to-amber-400',
+  barColor = 'bg-amber-500',
 }) {
   const percent = Math.min(Math.round((value / max) * 100), 100);
 
@@ -24,7 +24,7 @@ export function ProgressBar({
           )}
         </div>
       )}
-      <div className="h-2 w-full rounded-full bg-slate-800/80 overflow-hidden">
+      <div className="h-2 w-full rounded-full bg-gray-800 overflow-hidden">
         <div
           className={cn(
             'h-full rounded-full transition-all duration-700 ease-out',

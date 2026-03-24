@@ -53,15 +53,15 @@ export function ApiKeyInput({ className }) {
             onKeyDown={handleKeyDown}
             placeholder="RGAPI-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
             className={cn(
-              'w-full rounded-lg border bg-slate-900/80 px-4 py-2.5 text-sm text-gray-100 pr-10',
+              'w-full rounded-lg border bg-gray-900 px-4 py-2.5 text-sm text-gray-100 pr-10',
               'placeholder:text-gray-600',
-              'transition-all duration-200',
+              'transition-colors',
               'focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-950',
               isValid
-                ? 'border-emerald-600/40 focus:ring-emerald-500/40'
+                ? 'border-emerald-700 focus:ring-emerald-500/40'
                 : localKey
-                  ? 'border-amber-600/40 focus:ring-amber-500/40'
-                  : 'border-slate-600/50 focus:ring-amber-500/40'
+                  ? 'border-amber-700 focus:ring-amber-500/40'
+                  : 'border-gray-700 focus:ring-amber-500/40'
             )}
           />
           <button
@@ -95,12 +95,12 @@ export function ApiKeyInput({ className }) {
       </div>
 
       {localKey && !isValid && (
-        <p className="text-[11px] text-amber-400/80">
+        <p className="text-[11px] text-amber-400">
           API 키는 &quot;RGAPI-&quot;로 시작해야 합니다. Dev 키는 24시간마다 갱신이 필요합니다.
         </p>
       )}
       {isValid && (
-        <p className="text-[11px] text-emerald-400/80">
+        <p className="text-[11px] text-emerald-400">
           API 키가 설정되었습니다. 키는 브라우저에만 저장됩니다.
         </p>
       )}

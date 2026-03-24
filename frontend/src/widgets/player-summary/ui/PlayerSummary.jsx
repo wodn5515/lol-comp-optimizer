@@ -10,7 +10,7 @@ export function PlayerSummary() {
     <div className="mb-8">
       <div className="flex items-center gap-2 mb-4">
         <h2 className="text-lg font-bold text-gray-100">플레이어 정보</h2>
-        <span className="text-xs text-gray-500 bg-slate-800/60 px-2 py-0.5 rounded-full">
+        <span className="text-xs text-gray-500 bg-gray-800 px-2 py-0.5 rounded-full">
           {players.length}명
         </span>
       </div>

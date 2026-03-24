@@ -112,8 +112,8 @@ export function PlayerInputForm() {
                 className={cn(
                   'text-[11px] px-2.5 py-1 rounded-full border transition-all cursor-pointer',
                   multiMode
-                    ? 'bg-sky-600/20 border-sky-500/40 text-sky-400'
-                    : 'bg-slate-800/40 border-slate-700/30 text-gray-400 hover:text-gray-300'
+                    ? 'bg-sky-950 border-sky-800 text-sky-400'
+                    : 'bg-gray-800 border-gray-700 text-gray-400 hover:text-gray-300'
                 )}
               >
                 멀티서치
@@ -138,10 +138,10 @@ export function PlayerInputForm() {
                   '미 키 #0313,dlwldms #iuiu,Daemi #Arneb'
                 }
                 rows={5}
-                className="w-full rounded-lg border border-slate-600/50 bg-slate-900/80 px-3 py-2.5 text-sm text-gray-100 placeholder:text-gray-600 placeholder:text-[11px] focus:outline-none focus:ring-2 focus:ring-sky-500/40 resize-none leading-relaxed"
+                className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-sm text-gray-100 placeholder:text-gray-600 placeholder:text-[11px] focus:outline-none focus:ring-2 focus:ring-sky-500/40 resize-none leading-relaxed"
               />
               {playerInputs.some((p) => p.rawInput) && (
-                <p className="text-[11px] text-sky-400/70">
+                <p className="text-[11px] text-sky-400">
                   {playerInputs.filter((p) => p.rawInput).length}명 인식됨 — 아래 개별 입력에 반영됨
                 </p>
               )}
@@ -163,13 +163,13 @@ export function PlayerInputForm() {
                     }
                     placeholder="소환사이름#태그 (예: Hide on bush#KR1)"
                     className={cn(
-                      'w-full rounded-lg border bg-slate-900/80 pl-8 pr-4 py-2.5 text-sm text-gray-100',
+                      'w-full rounded-lg border bg-gray-900 pl-8 pr-4 py-2.5 text-sm text-gray-100',
                       'placeholder:text-gray-600',
-                      'transition-all duration-200',
+                      'transition-colors',
                       'focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-950',
                       errors[input.id]
-                        ? 'border-red-500/60 focus:ring-red-500/40'
-                        : 'border-slate-600/50 focus:ring-amber-500/40 hover:border-slate-500/60'
+                        ? 'border-red-600 focus:ring-red-500/40'
+                        : 'border-gray-700 focus:ring-amber-500/40 hover:border-gray-600'
                     )}
                     onKeyDown={(e) => {
                       if (e.key === 'Enter') handleAnalyze();
@@ -233,11 +233,11 @@ export function PlayerInputForm() {
                 key={count}
                 onClick={() => setMatchCount(count)}
                 className={cn(
-                  'flex-1 py-2 rounded-lg text-sm font-semibold transition-all duration-200',
+                  'flex-1 py-2 rounded-lg text-sm font-semibold transition-colors',
                   'border cursor-pointer',
                   matchCount === count
-                    ? 'bg-amber-600/20 border-amber-500/50 text-amber-400'
-                    : 'bg-slate-800/40 border-slate-700/30 text-gray-400 hover:border-slate-600/50 hover:text-gray-300'
+                    ? 'bg-amber-950 border-amber-700 text-amber-400'
+                    : 'bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-600 hover:text-gray-300'
                 )}
               >
                 {count}판
@@ -252,7 +252,7 @@ export function PlayerInputForm() {
           />
 
           {!isApiKeyValid && apiKey && (
-            <p className="text-[11px] text-amber-400/80 text-center mt-2">
+            <p className="text-[11px] text-amber-400 text-center mt-2">
               유효한 API 키를 먼저 설정해주세요
             </p>
           )}

@@ -33,14 +33,12 @@ export function ResultPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-slate-950 to-gray-950">
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/10 via-transparent to-transparent" />
-
-        <div className="relative max-w-4xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-950">
+      <div>
+        <div className="max-w-4xl mx-auto px-4 py-8">
           <header className="flex items-center justify-between mb-8">
             <div>
-              <h1 className="text-2xl font-extrabold text-gray-100 tracking-tight">
+              <h1 className="text-2xl font-bold text-gray-100">
                 분석 결과
               </h1>
               <p className="text-sm text-gray-400 mt-1">

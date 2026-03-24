@@ -7,19 +7,16 @@ import { TeamAnalysisChart } from './TeamAnalysisChart';
 
 const RANK_STYLES = {
   1: {
-    badge: 'bg-gradient-to-r from-amber-500 to-yellow-400 text-gray-900',
-    glow: '#c89b3c',
-    border: 'border-amber-500/30',
+    badge: 'bg-amber-500 text-gray-900',
+    border: 'border-amber-500/40',
   },
   2: {
-    badge: 'bg-gradient-to-r from-slate-300 to-gray-400 text-gray-900',
-    glow: '#8e8e8e',
-    border: 'border-slate-400/30',
+    badge: 'bg-gray-400 text-gray-900',
+    border: 'border-gray-500/40',
   },
   3: {
-    badge: 'bg-gradient-to-r from-amber-700 to-amber-600 text-gray-100',
-    glow: '#8c5a2e',
-    border: 'border-amber-700/30',
+    badge: 'bg-amber-700 text-gray-100',
+    border: 'border-amber-700/40',
   },
 };
 
@@ -36,8 +33,8 @@ export function TeamCompCard({ recommendation }) {
   });
 
   return (
-    <Card glowColor={style.glow} className={cn('overflow-hidden', style.border)}>
-      <div className="px-5 py-4 border-b border-slate-700/40 flex items-center justify-between">
+    <Card className={cn('overflow-hidden', style.border)}>
+      <div className="px-5 py-4 border-b border-gray-800 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <div
             className={cn(
@@ -70,12 +67,12 @@ export function TeamCompCard({ recommendation }) {
               return (
                 <div
                   key={lane}
-                  className="flex flex-col items-center gap-1.5 p-2 rounded-lg bg-slate-800/30 border border-slate-700/20 opacity-40"
+                  className="flex flex-col items-center gap-1.5 p-2 rounded-lg bg-gray-800/50 border border-gray-700 opacity-40"
                 >
                   <span className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider">
                     {LANE_LABELS[lane]}
                   </span>
-                  <div className="w-10 h-10 rounded-lg bg-slate-700/30 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded-lg bg-gray-700 flex items-center justify-center">
                     <span className="text-gray-600 text-lg">?</span>
                   </div>
                   <span className="text-[10px] text-gray-600">미배정</span>
@@ -88,9 +85,9 @@ export function TeamCompCard({ recommendation }) {
             return (
               <div
                 key={lane}
-                className="flex flex-col items-center gap-1.5 p-2 rounded-lg bg-slate-800/40 border border-slate-700/30 hover:border-slate-600/50 transition-colors"
+                className="flex flex-col items-center gap-1.5 p-2 rounded-lg bg-gray-800 border border-gray-700 hover:border-gray-600 transition-colors"
               >
-                <span className="text-[10px] font-semibold text-amber-400/80 uppercase tracking-wider">
+                <span className="text-[10px] font-semibold text-amber-500 uppercase tracking-wider">
                   {LANE_LABELS[lane]}
                 </span>
                 <ChampionIcon

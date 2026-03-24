@@ -1,0 +1,469 @@
+{
+  "color": {
+    "bg": {
+      "base": {
+        "value": "#030712",
+        "type": "color",
+        "description": "gray-950 — 페이지 배경"
+      },
+      "surface": {
+        "value": "#111827",
+        "type": "color",
+        "description": "gray-900 — 카드, 인풋, 드롭다운 배경"
+      },
+      "elevated": {
+        "value": "#1f2937",
+        "type": "color",
+        "description": "gray-800 — 뱃지, 진행바 트랙, 태그 배경"
+      },
+      "hover": {
+        "value": "#374151",
+        "type": "color",
+        "description": "gray-700 — 호버 배경"
+      }
+    },
+    "border": {
+      "default": {
+        "value": "#374151",
+        "type": "color",
+        "description": "gray-700 — 인풋, 버튼 보더"
+      },
+      "subtle": {
+        "value": "#1f2937",
+        "type": "color",
+        "description": "gray-800 — 카드 보더, 구분선"
+      },
+      "hover": {
+        "value": "#4b5563",
+        "type": "color",
+        "description": "gray-600 — 호버 보더"
+      }
+    },
+    "text": {
+      "primary": {
+        "value": "#f3f4f6",
+        "type": "color",
+        "description": "gray-100 — 제목, 본문"
+      },
+      "secondary": {
+        "value": "#e5e7eb",
+        "type": "color",
+        "description": "gray-200 — 버튼 텍스트, 보조 텍스트"
+      },
+      "tertiary": {
+        "value": "#d1d5db",
+        "type": "color",
+        "description": "gray-300 — 라벨"
+      },
+      "muted": {
+        "value": "#6b7280",
+        "type": "color",
+        "description": "gray-500 — 플레이스홀더, 부가 정보"
+      },
+      "disabled": {
+        "value": "#4b5563",
+        "type": "color",
+        "description": "gray-600 — 비활성 텍스트"
+      }
+    },
+    "accent": {
+      "default": {
+        "value": "#d97706",
+        "type": "color",
+        "description": "amber-600 — 기본 버튼 배경"
+      },
+      "hover": {
+        "value": "#f59e0b",
+        "type": "color",
+        "description": "amber-500 — 버튼 호버, 라벨 강조"
+      },
+      "text": {
+        "value": "#fbbf24",
+        "type": "color",
+        "description": "amber-400 — 강조 텍스트, 점수"
+      },
+      "surface": {
+        "value": "#451a03",
+        "type": "color",
+        "description": "amber-950 — 선택된 상태 배경"
+      },
+      "border": {
+        "value": "#92400e",
+        "type": "color",
+        "description": "amber-800 — 선택된 상태 보더"
+      },
+      "strong-border": {
+        "value": "#b45309",
+        "type": "color",
+        "description": "amber-700 — 강한 액센트 보더"
+      }
+    },
+    "danger": {
+      "surface": {
+        "value": "#450a0a",
+        "type": "color",
+        "description": "red-950 — 에러/밴 배경"
+      },
+      "bg": {
+        "value": "#7f1d1d",
+        "type": "color",
+        "description": "red-900 — danger 버튼 배경"
+      },
+      "bg-hover": {
+        "value": "#991b1b",
+        "type": "color",
+        "description": "red-800 — danger 버튼 호버"
+      },
+      "border": {
+        "value": "#991b1b",
+        "type": "color",
+        "description": "red-800 — 에러/밴 보더"
+      },
+      "text": {
+        "value": "#f87171",
+        "type": "color",
+        "description": "red-400 — 에러 텍스트, 패배 승률"
+      },
+      "input-border": {
+        "value": "#dc2626",
+        "type": "color",
+        "description": "red-600 — 에러 인풋 보더"
+      }
+    },
+    "success": {
+      "surface": {
+        "value": "#052e16",
+        "type": "color",
+        "description": "emerald-950 — 강점 태그 배경"
+      },
+      "border": {
+        "value": "#065f46",
+        "type": "color",
+        "description": "emerald-800 — 강점 태그 보더"
+      },
+      "text": {
+        "value": "#34d399",
+        "type": "color",
+        "description": "emerald-400 — 높은 승률, 강점 텍스트"
+      }
+    },
+    "info": {
+      "surface": {
+        "value": "#082f49",
+        "type": "color",
+        "description": "sky-950 — 운영 가이드 배경"
+      },
+      "border": {
+        "value": "#075985",
+        "type": "color",
+        "description": "sky-800 — 운영 가이드 보더"
+      },
+      "text": {
+        "value": "#38bdf8",
+        "type": "color",
+        "description": "sky-400 — 정보 텍스트, 링크"
+      }
+    },
+    "chart": {
+      "gold": {
+        "value": "#c89b3c",
+        "type": "color",
+        "description": "기본 차트 색, AD 비율"
+      },
+      "teal": {
+        "value": "#0397ab",
+        "type": "color",
+        "description": "라인 선호도, 팀 능력치 바"
+      },
+      "red": {
+        "value": "#e44040",
+        "type": "color",
+        "description": "AD 딜 타입"
+      },
+      "mint": {
+        "value": "#3bbf9e",
+        "type": "color",
+        "description": "차트 보조색"
+      },
+      "purple": {
+        "value": "#9d48e0",
+        "type": "color",
+        "description": "차트 보조색"
+      },
+      "blue": {
+        "value": "#576bce",
+        "type": "color",
+        "description": "AP 딜 타입"
+      }
+    },
+    "tier": {
+      "iron": {
+        "value": "#6b6b6b",
+        "type": "color",
+        "description": "아이언"
+      },
+      "bronze": {
+        "value": "#8c5a2e",
+        "type": "color",
+        "description": "브론즈"
+      },
+      "silver": {
+        "value": "#8e8e8e",
+        "type": "color",
+        "description": "실버"
+      },
+      "gold": {
+        "value": "#c89b3c",
+        "type": "color",
+        "description": "골드"
+      },
+      "platinum": {
+        "value": "#3bbf9e",
+        "type": "color",
+        "description": "플래티넘"
+      },
+      "emerald": {
+        "value": "#009a49",
+        "type": "color",
+        "description": "에메랄드"
+      },
+      "diamond": {
+        "value": "#576bce",
+        "type": "color",
+        "description": "다이아몬드"
+      },
+      "master": {
+        "value": "#9d48e0",
+        "type": "color",
+        "description": "마스터"
+      },
+      "grandmaster": {
+        "value": "#e44040",
+        "type": "color",
+        "description": "그랜드마스터"
+      },
+      "challenger": {
+        "value": "#f4c874",
+        "type": "color",
+        "description": "챌린저"
+      }
+    }
+  },
+  "borderRadius": {
+    "sm": {
+      "value": "6px",
+      "type": "borderRadius",
+      "description": "rounded-md — 챔피언 아이콘"
+    },
+    "md": {
+      "value": "8px",
+      "type": "borderRadius",
+      "description": "rounded-lg — 버튼, 인풋, 뱃지"
+    },
+    "lg": {
+      "value": "12px",
+      "type": "borderRadius",
+      "description": "rounded-xl — 카드"
+    },
+    "full": {
+      "value": "9999px",
+      "type": "borderRadius",
+      "description": "rounded-full — 프로그레스바, 태그"
+    }
+  },
+  "spacing": {
+    "0.5": {
+      "value": "2px",
+      "type": "spacing"
+    },
+    "1": {
+      "value": "4px",
+      "type": "spacing"
+    },
+    "1.5": {
+      "value": "6px",
+      "type": "spacing"
+    },
+    "2": {
+      "value": "8px",
+      "type": "spacing"
+    },
+    "2.5": {
+      "value": "10px",
+      "type": "spacing"
+    },
+    "3": {
+      "value": "12px",
+      "type": "spacing"
+    },
+    "4": {
+      "value": "16px",
+      "type": "spacing"
+    },
+    "5": {
+      "value": "20px",
+      "type": "spacing"
+    },
+    "6": {
+      "value": "24px",
+      "type": "spacing"
+    },
+    "7": {
+      "value": "28px",
+      "type": "spacing"
+    },
+    "8": {
+      "value": "32px",
+      "type": "spacing"
+    },
+    "12": {
+      "value": "48px",
+      "type": "spacing"
+    }
+  },
+  "typography": {
+    "fontFamily": {
+      "value": "'Inter', system-ui, -apple-system, sans-serif",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "2xs": {
+        "value": "10px",
+        "type": "fontSizes",
+        "description": "text-[10px] — 부가 정보, 라인 라벨"
+      },
+      "xs": {
+        "value": "12px",
+        "type": "fontSizes",
+        "description": "text-xs — 태그, 뱃지, 보조 텍스트"
+      },
+      "sm": {
+        "value": "14px",
+        "type": "fontSizes",
+        "description": "text-sm — 버튼, 인풋, 본문"
+      },
+      "base": {
+        "value": "16px",
+        "type": "fontSizes",
+        "description": "text-base — 큰 버튼"
+      },
+      "lg": {
+        "value": "18px",
+        "type": "fontSizes",
+        "description": "text-lg — 섹션 제목"
+      },
+      "xl": {
+        "value": "20px",
+        "type": "fontSizes",
+        "description": "text-xl — 페이지 부제목"
+      },
+      "2xl": {
+        "value": "24px",
+        "type": "fontSizes",
+        "description": "text-2xl — 점수"
+      },
+      "3xl": {
+        "value": "30px",
+        "type": "fontSizes",
+        "description": "text-3xl — 페이지 제목"
+      },
+      "4xl": {
+        "value": "36px",
+        "type": "fontSizes",
+        "description": "text-4xl — 페이지 제목 (md 이상)"
+      }
+    },
+    "fontWeight": {
+      "regular": {
+        "value": "400",
+        "type": "fontWeights"
+      },
+      "medium": {
+        "value": "500",
+        "type": "fontWeights",
+        "description": "font-medium — 라벨, 보조 텍스트"
+      },
+      "semibold": {
+        "value": "600",
+        "type": "fontWeights",
+        "description": "font-semibold — 버튼, 값 표시"
+      },
+      "bold": {
+        "value": "700",
+        "type": "fontWeights",
+        "description": "font-bold — 제목, 섹션 헤더"
+      },
+      "extrabold": {
+        "value": "800",
+        "type": "fontWeights",
+        "description": "font-extrabold — 랭크 뱃지, 점수"
+      }
+    },
+    "lineHeight": {
+      "tight": {
+        "value": "1.25",
+        "type": "lineHeights"
+      },
+      "normal": {
+        "value": "1.5",
+        "type": "lineHeights"
+      },
+      "relaxed": {
+        "value": "1.625",
+        "type": "lineHeights"
+      }
+    },
+    "letterSpacing": {
+      "wider": {
+        "value": "0.05em",
+        "type": "letterSpacing",
+        "description": "tracking-wider — 소제목 라벨"
+      }
+    }
+  },
+  "sizing": {
+    "button": {
+      "sm": {
+        "paddingX": "12px",
+        "paddingY": "6px",
+        "fontSize": "14px"
+      },
+      "md": {
+        "paddingX": "20px",
+        "paddingY": "10px",
+        "fontSize": "14px"
+      },
+      "lg": {
+        "paddingX": "28px",
+        "paddingY": "12px",
+        "fontSize": "16px"
+      }
+    },
+    "input": {
+      "paddingX": "16px",
+      "paddingY": "10px",
+      "fontSize": "14px"
+    },
+    "card": {
+      "paddingX": "20px",
+      "paddingY": "16px"
+    },
+    "championIcon": {
+      "sm": "20px",
+      "md": "32px",
+      "lg": "40px",
+      "xl": "44px"
+    },
+    "profileIcon": "48px",
+    "progressBar": {
+      "height": "8px"
+    }
+  },
+  "opacity": {
+    "disabled": {
+      "value": "0.5",
+      "type": "opacity",
+      "description": "비활성 상태"
+    }
+  }
+}

@@ -22,7 +22,6 @@ export function PlayerCard({ player, compact = false }) {
 
   return (
     <Card
-      glowColor={tierColor}
       className={cn(
         'overflow-hidden',
         compact ? 'min-w-[240px] max-w-[280px]' : 'w-full'
@@ -30,7 +29,7 @@ export function PlayerCard({ player, compact = false }) {
     >
       <div
         className="h-1 w-full"
-        style={{ background: `linear-gradient(to right, ${tierColor}, ${tierColor}88)` }}
+        style={{ background: tierColor }}
       />
       <CardContent className={compact ? 'p-3' : 'p-4'}>
         <div className="flex items-center gap-3 mb-3">
@@ -66,7 +65,7 @@ export function PlayerCard({ player, compact = false }) {
               {top_champions.slice(0, 3).map((champ) => (
                 <div
                   key={champ.champion_id}
-                  className="flex items-center gap-1.5 bg-slate-800/60 rounded-lg px-2 py-1"
+                  className="flex items-center gap-1.5 bg-gray-800 rounded-lg px-2 py-1"
                 >
                   <ChampionIcon
                     championName={champ.champion_name}

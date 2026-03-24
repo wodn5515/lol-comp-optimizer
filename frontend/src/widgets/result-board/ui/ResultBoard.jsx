@@ -16,7 +16,7 @@ export function ResultBoard() {
     <div className="space-y-5">
       <div className="flex items-center gap-2 mb-2">
         <h2 className="text-lg font-bold text-gray-100">추천 조합</h2>
-        <span className="text-xs text-gray-500 bg-slate-800/60 px-2 py-0.5 rounded-full">
+        <span className="text-xs text-gray-500 bg-gray-800 px-2 py-0.5 rounded-full">
           상위 {recommendations.length}개
         </span>
       </div>

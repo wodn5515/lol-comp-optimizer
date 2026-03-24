@@ -15,9 +15,9 @@ export function LoadingProgress() {
 
   return (
     <div className="w-full max-w-lg mx-auto">
-      <div className="relative rounded-xl border border-slate-700/50 bg-gradient-to-b from-slate-900/95 to-slate-950/95 p-8 shadow-xl">
+      <div className="rounded-xl border border-gray-800 bg-gray-900 p-8">
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-500/10 mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-800 mb-4">
             <svg
               className="animate-spin h-8 w-8 text-amber-400"
               xmlns="http://www.w3.org/2000/svg"
@@ -57,18 +57,18 @@ export function LoadingProgress() {
                 className={cn(
                   'flex items-center gap-3 px-4 py-2.5 rounded-lg transition-all duration-300',
                   isActive
-                    ? 'bg-amber-500/10 border border-amber-500/20'
-                    : 'bg-slate-800/20 border border-transparent'
+                    ? 'bg-amber-950 border border-amber-800'
+                    : 'bg-gray-800/50 border border-transparent'
                 )}
               >
                 <div
                   className={cn(
                     'w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0',
                     isActive
-                      ? 'bg-amber-500/20 text-amber-400 animate-pulse'
+                      ? 'bg-amber-900 text-amber-400'
                       : isComplete
-                        ? 'bg-emerald-500/20 text-emerald-400'
-                        : 'bg-slate-700/30 text-gray-600'
+                        ? 'bg-emerald-900 text-emerald-400'
+                        : 'bg-gray-800 text-gray-600'
                   )}
                 >
                   {isComplete ? '\u2713' : index + 1}
@@ -94,7 +94,7 @@ export function LoadingProgress() {
           value={33}
           max={100}
           showPercent={false}
-          barColor="bg-gradient-to-r from-amber-600 to-amber-400"
+          barColor="bg-amber-500"
         />
 
         <p className="text-[11px] text-gray-500 text-center mt-4">

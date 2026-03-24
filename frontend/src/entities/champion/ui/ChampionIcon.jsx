@@ -32,7 +32,7 @@ export function ChampionIcon({
         onError={() => setError(true)}
       />
       {showName && showTooltip && championName && (
-        <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-slate-800 border border-slate-600/50 rounded text-[10px] text-gray-200 whitespace-nowrap z-50 shadow-lg">
+        <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 border border-gray-700 rounded text-[10px] text-gray-200 whitespace-nowrap z-50">
           {championName}
         </div>
       )}

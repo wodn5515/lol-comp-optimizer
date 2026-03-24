@@ -69,23 +69,23 @@ function ChampionSearchInput({ onSelect, placeholder, excludeList = [] }) {
         onFocus={() => setIsOpen(true)}
         placeholder={placeholder}
         className={cn(
-          'w-full rounded-lg border bg-slate-900/80 px-3 py-2 text-sm text-gray-100',
+          'w-full rounded-lg border bg-gray-900 px-3 py-2 text-sm text-gray-100',
           'placeholder:text-gray-600',
-          'border-slate-600/50 focus:ring-2 focus:ring-amber-500/40 focus:outline-none',
-          'transition-all duration-200'
+          'border-gray-700 focus:ring-2 focus:ring-amber-500/40 focus:outline-none',
+          'transition-colors'
         )}
       />
       {isOpen && filtered.length > 0 && (
         <div
           ref={dropdownRef}
-          className="absolute z-50 mt-1 w-full max-h-48 overflow-y-auto rounded-lg border border-slate-600/50 bg-slate-900 shadow-xl"
+          className="absolute z-50 mt-1 w-full max-h-48 overflow-y-auto rounded-lg border border-gray-700 bg-gray-900"
         >
           {filtered.map((champ) => (
             <button
               key={champ}
               type="button"
               onClick={() => handleSelect(champ)}
-              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-200 hover:bg-slate-800 transition-colors text-left"
+              className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors text-left"
             >
               <ChampionIcon championName={champ} size={20} showTooltip={false} />
               <span>{champ}</span>
@@ -94,7 +94,7 @@ function ChampionSearchInput({ onSelect, placeholder, excludeList = [] }) {
         </div>
       )}
       {isOpen && query.trim() && filtered.length === 0 && (
-        <div className="absolute z-50 mt-1 w-full rounded-lg border border-slate-600/50 bg-slate-900 shadow-xl p-3">
+        <div className="absolute z-50 mt-1 w-full rounded-lg border border-gray-700 bg-gray-900 p-3">
           <p className="text-xs text-gray-500 text-center">챔피언을 찾을 수 없습니다</p>
         </div>
       )}
@@ -134,10 +134,10 @@ function BanSection() {
               key={i}
               className={cn(
                 'relative aspect-square rounded-lg flex items-center justify-center',
-                'border transition-all duration-200',
+                'border transition-colors',
                 champ
-                  ? 'bg-[#2a1a1a] border-red-700/40'
-                  : 'bg-slate-800/20 border-slate-700/20'
+                  ? 'bg-red-950 border-red-800'
+                  : 'bg-gray-800/50 border-gray-700'
               )}
             >
               {champ ? (
@@ -218,10 +218,10 @@ function EnemyPickSection() {
               key={i}
               className={cn(
                 'relative aspect-square rounded-lg flex flex-col items-center justify-center gap-1',
-                'border-2 transition-all duration-200',
+                'border-2 transition-colors',
                 champ
-                  ? 'bg-[#2a1a1a] border-red-600/50'
-                  : 'bg-slate-800/20 border-slate-700/20 border-dashed'
+                  ? 'bg-red-950 border-red-800'
+                  : 'bg-gray-800/50 border-gray-700 border-dashed'
               )}
             >
               {champ ? (
@@ -298,11 +298,11 @@ function AllyLockSection() {
             <div
               key={playerKey}
               className={cn(
-                'flex items-center gap-3 p-2.5 rounded-lg transition-all duration-200',
+                'flex items-center gap-3 p-2.5 rounded-lg transition-colors',
                 'border',
                 isLocked
-                  ? 'bg-amber-900/10 border-amber-500/30'
-                  : 'bg-slate-800/30 border-slate-700/20'
+                  ? 'bg-amber-950 border-amber-800'
+                  : 'bg-gray-800/50 border-gray-700'
               )}
             >
               <div className="flex-1 min-w-0">
@@ -314,7 +314,7 @@ function AllyLockSection() {
 
               {isLocked ? (
                 <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1.5 bg-amber-500/10 rounded-md px-2 py-1">
+                  <div className="flex items-center gap-1.5 bg-amber-900 rounded-md px-2 py-1">
                     <ChampionIcon
                       championName={lockedChamp}
                       size={20}
@@ -361,8 +361,8 @@ function AllyLockSection() {
                     }
                   }}
                   className={cn(
-                    'rounded-md border bg-slate-900/80 px-2 py-1.5 text-xs text-gray-300',
-                    'border-slate-600/50 focus:ring-1 focus:ring-amber-500/40 focus:outline-none',
+                    'rounded-md border bg-gray-900 px-2 py-1.5 text-xs text-gray-300',
+                    'border-gray-700 focus:ring-1 focus:ring-amber-500/40 focus:outline-none',
                     'cursor-pointer max-w-[140px]'
                   )}
                 >
@@ -397,11 +397,11 @@ export function BanPickPanel() {
 
         <BanSection />
 
-        <div className="border-t border-slate-700/30" />
+        <div className="border-t border-gray-800" />
 
         <EnemyPickSection />
 
-        <div className="border-t border-slate-700/30" />
+        <div className="border-t border-gray-800" />
 
         <AllyLockSection />
       </CardContent>

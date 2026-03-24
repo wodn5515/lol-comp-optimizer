@@ -24,13 +24,13 @@ export function Input({
         id={inputId}
         type={type}
         className={cn(
-          'w-full rounded-lg border bg-slate-900/80 px-4 py-2.5 text-sm text-gray-100',
+          'w-full rounded-lg border bg-gray-900 px-4 py-2.5 text-sm text-gray-100',
           'placeholder:text-gray-500',
-          'transition-all duration-200',
+          'transition-colors',
           'focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-950',
           error
-            ? 'border-red-500/60 focus:ring-red-500/40 focus:border-red-500/80'
-            : 'border-slate-600/50 focus:ring-amber-500/40 focus:border-amber-500/60 hover:border-slate-500/60',
+            ? 'border-red-600 focus:ring-red-500/40'
+            : 'border-gray-700 focus:ring-amber-500/40 focus:border-amber-600 hover:border-gray-600',
           className
         )}
         {...props}

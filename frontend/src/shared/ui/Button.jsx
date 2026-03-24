@@ -2,13 +2,13 @@ import { cn } from '../lib/cn';
 
 const variants = {
   primary:
-    'bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white shadow-lg shadow-amber-900/30 hover:shadow-amber-800/40',
+    'bg-amber-600 hover:bg-amber-500 text-white',
   secondary:
-    'bg-slate-800/80 hover:bg-slate-700/80 text-gray-200 border border-slate-600/50 hover:border-slate-500/50',
+    'bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700',
   danger:
-    'bg-red-900/60 hover:bg-red-800/60 text-red-100 border border-red-700/50 hover:border-red-600/50',
+    'bg-red-900 hover:bg-red-800 text-red-100 border border-red-800',
   ghost:
-    'bg-transparent hover:bg-slate-800/50 text-gray-400 hover:text-gray-200',
+    'bg-transparent hover:bg-gray-800 text-gray-400 hover:text-gray-200',
 };
 
 const sizes = {
@@ -30,7 +30,7 @@ export function Button({
     <button
       disabled={disabled || loading}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer',
+        'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors cursor-pointer',
         'focus:outline-none focus:ring-2 focus:ring-amber-500/50 focus:ring-offset-2 focus:ring-offset-gray-950',
         'disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none',
         variants[variant],
