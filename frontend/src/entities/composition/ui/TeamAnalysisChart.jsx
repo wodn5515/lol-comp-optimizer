@@ -1,24 +1,12 @@
 import { PieChartWidget, BarChartWidget } from '../../../shared/ui';
 import { cn } from '../../../shared/lib/cn';
 
-const STAT_KEY_MAP = {
-  '팀파': 'teamfight',
-  '이니시': 'engage',
-  '포킹': 'poke',
-  '캐치': 'pick',
-  '폭딜': 'burst',
-  '클리어': 'waveclear',
-  '스플릿': 'splitpush',
-  '필링': 'peel',
-};
-
-function StatTooltip({ active, payload, statContributions }) {
+function StatTooltip({ active, payload }) {
   if (!active || !payload?.length) return null;
 
   const entry = payload[0];
   const statName = entry?.payload?.name;
-  const statKey = STAT_KEY_MAP[statName];
-  const contribs = statContributions?.[statKey] || [];
+  const contribs = entry?.payload?.contributions || [];
 
   return (
     <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 min-w-[140px]">
@@ -68,15 +56,16 @@ export function TeamAnalysisChart({ teamAnalysis }) {
     { name: 'AP', value: Math.round((ap_ratio || 0) * 100), color: '#576bce' },
   ];
 
+  const sc = stat_contributions || {};
   const statsData = [
-    { name: '팀파', value: teamfight_score || 0 },
-    { name: '이니시', value: engage_score || 0 },
-    { name: '포킹', value: poke_score || 0 },
-    { name: '캐치', value: pick_score || 0 },
-    { name: '폭딜', value: burst_score || 0 },
-    { name: '클리어', value: waveclear_score || 0 },
-    { name: '스플릿', value: splitpush_score || 0 },
-    { name: '필링', value: peel_score || 0 },
+    { name: '팀파', value: teamfight_score || 0, contributions: sc.teamfight || [] },
+    { name: '이니시', value: engage_score || 0, contributions: sc.engage || [] },
+    { name: '포킹', value: poke_score || 0, contributions: sc.poke || [] },
+    { name: '캐치', value: pick_score || 0, contributions: sc.pick || [] },
+    { name: '폭딜', value: burst_score || 0, contributions: sc.burst || [] },
+    { name: '클리어', value: waveclear_score || 0, contributions: sc.waveclear || [] },
+    { name: '스플릿', value: splitpush_score || 0, contributions: sc.splitpush || [] },
+    { name: '필링', value: peel_score || 0, contributions: sc.peel || [] },
   ];
 
   return (
@@ -110,7 +99,7 @@ export function TeamAnalysisChart({ teamAnalysis }) {
             height={220}
             barColor="#0397ab"
             layout="vertical"
-            customTooltip={(props) => <StatTooltip {...props} statContributions={stat_contributions} />}
+            customTooltip={<StatTooltip />}
           />
         </div>
       </div>
