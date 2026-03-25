@@ -33,7 +33,7 @@ jobs:
         working-directory: frontend
         run: npm run build
         env:
-          VITE_API_BASE_URL: https://lol-comp-optimizer-api.onrender.com/api
+          VITE_API_BASE_URL: https://lol-comp-optimizer.onrender.com/api
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
