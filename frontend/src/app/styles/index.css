@@ -30,10 +30,9 @@ body {
   color: #f0e6d2;
 }
 
-/* Focus visible */
+/* Focus visible — 각 컴포넌트에서 border 색상으로 개별 처리 */
 *:focus-visible {
-  outline: 2px solid rgba(200, 155, 60, 0.5);
-  outline-offset: 2px;
+  outline: none;
 }
 
 /* Smooth animations */
