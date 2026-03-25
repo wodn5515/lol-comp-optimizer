@@ -360,6 +360,57 @@ class CompOptimizerService:
 
         return "팀 내 역할을 수행하세요."
 
+    def _build_general_guide(
+        self,
+        engage: int, peel: int, poke: int, teamfight: int,
+        splitpush: int, burst: int, pick: int,
+        has_frontline: bool, n: int,
+        weaknesses: list[str], strengths: list[str],
+    ) -> str:
+        """뚜렷한 조합 유형이 없을 때 약점/강점 기반 전체 운영 가이드 생성."""
+        lines: list[str] = ["[전체 운영 가이드]"]
+
+        # 이니시 부족 → 정면 한타 피하기
+        if engage < 2 * n:
+            lines.append("• 이니시 수단이 부족합니다. 정면 5v5를 피하고 소규모 교전이나 오브젝트 주변 소모전을 노리세요.")
+            if poke >= 2.5 * n:
+                lines.append("  → 포킹 능력이 있으니 오브젝트 앞에서 스킬로 적 체력을 깎은 뒤 진입하세요.")
+            if pick >= 2.5 * n:
+                lines.append("  → 시야를 장악하고 고립된 적을 캐치하여 숫자 우위를 만드세요.")
+            if splitpush >= 2.5 * n:
+                lines.append("  → 스플릿으로 적을 분산시킨 후 소규모 교전에서 승리하세요.")
+            if burst >= 3 * n:
+                lines.append("  → 안개 속 매복으로 핵심 타겟을 순삭한 뒤 오브젝트로 전환하세요.")
+
+        # 필링 부족 → 원딜 보호 어려움
+        if peel < 1.5 * n:
+            lines.append("• 원딜 보호 수단이 부족합니다. 원딜은 포지셔닝에 각별히 주의하고, 적 어쌔신의 접근을 경계하세요.")
+
+        # 팀파이트 약 → 한타 피하기
+        if teamfight < 3 * n and engage >= 2 * n:
+            lines.append("• 한타 능력이 약하지만 이니시는 가능합니다. 소수 교전에서 이기고 빠르게 오브젝트를 가져가세요.")
+
+        # 특별한 약점이 없으면 일반 가이드
+        if len(lines) == 1:
+            lines.append("• 뚜렷한 강점/약점이 없는 균형 조합입니다. 상대 조합의 약점을 파악하고 그에 맞춰 플레이하세요.")
+            if has_frontline:
+                lines.append("• 프론트라인이 있으니 오브젝트 앞 5v5에서 정면 교전도 가능합니다.")
+            lines.append("• 초반 라인전에서 우위를 잡고 오브젝트 주도권을 확보하세요.")
+
+        # 승리 조건 제안
+        lines.append("")
+        lines.append("[승리 조건]")
+        if splitpush >= 3 * n:
+            lines.append("• 사이드 압박으로 적을 분산시키고 오브젝트를 확보하세요.")
+        elif burst >= 3 * n:
+            lines.append("• 핵심 타겟을 빠르게 제거하고 숫자 우위로 오브젝트를 가져가세요.")
+        elif teamfight >= 3.5 * n and has_frontline:
+            lines.append("• 오브젝트 앞에서 정면 한타를 유도하세요. 프론트라인이 버텨주는 동안 원딜이 딜을 넣습니다.")
+        else:
+            lines.append("• 소규모 교전에서 이기고 이점을 오브젝트로 전환하세요. 불리한 정면 한타는 피하세요.")
+
+        return "\n".join(lines)
+
     def _build_champion_roles_guide(
         self,
         assignments: list[Assignment],
@@ -752,12 +803,18 @@ class CompOptimizerService:
             weaknesses.append("프론트라인 부재")
         if "low_waveclear" in penalties:
             weaknesses.append("웨이브클리어 부족")
-        if engage_total < 8:
-            weaknesses.append("이니시에이트 부족")
-        if teamfight_total < 12:
+        # 약점 기준: 평균 이하면 약점 (n 기반 상대적 판별)
+        n = total
+        if engage_total < 2 * n:  # 평균 2.4*n, 이하면 이니시 부족
+            weaknesses.append("이니시에이트 부족 — 한타를 걸기 어려움")
+        if teamfight_total < 3 * n:  # 평균 3.4*n
             weaknesses.append("팀파이트 능력 부족")
-        if poke_total < 6:
+        if poke_total < 1.5 * n:
             weaknesses.append("포킹 능력 부족")
+        if peel_total < 1.5 * n:
+            weaknesses.append("필링 부족 — 원딜 보호가 어려움")
+        if pick_total < 2 * n:
+            weaknesses.append("캐치 능력 부족")
 
         # Build comp type string and strategy guide
         # Build champion attrs map if not provided
@@ -775,11 +832,18 @@ class CompOptimizerService:
                 strategy_guide = strategy_guide + "\n" + champion_roles if strategy_guide else champion_roles
         else:
             comp_type = "균형 조합"
-            # Still build champion roles guide even for balanced comps
+            # 뚜렷한 조합 유형이 없을 때 약점 기반 운영 가이드 생성
+            general_guide = self._build_general_guide(
+                engage_total, peel_total, poke_total, teamfight_total,
+                splitpush_total, burst_total, pick_total,
+                has_frontline, n, weaknesses, strengths
+            )
             champion_roles = self._build_champion_roles_guide(
                 assignments, champion_attrs_map, comp_types
             )
-            strategy_guide = champion_roles if champion_roles else ""
+            strategy_guide = general_guide
+            if champion_roles:
+                strategy_guide = strategy_guide + "\n" + champion_roles if strategy_guide else champion_roles
 
         return TeamAnalysis(
             ad_ratio=round(ad_ratio, 2),
