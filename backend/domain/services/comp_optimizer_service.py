@@ -917,9 +917,7 @@ class CompOptimizerService:
         all_compositions: list[Composition] = []
 
         for lane_assignment in lane_assignments:
-            # If the best lane assignment already produced enough results, stop
-            if all_compositions and len(all_compositions) >= top_n:
-                break
+            # 모든 라인 배정을 전수 탐색 — 가장 높은 점수 조합을 찾기 위해
             # Build champion pools for each assignment slot
             champion_pools: list[list[ChampionStats]] = []
 

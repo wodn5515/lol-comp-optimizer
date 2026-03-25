@@ -474,9 +474,11 @@ async def _run_optimization(players: list[Player]) -> tuple[list, dict[str, Cham
                 )
                 champion_attrs_map[cs.champion_name] = auto_attrs
 
-    # Run lane optimizer (with champion pool inference for sparse lane_stats)
+    # Run lane optimizer — 전수 탐색 (모든 라인 배정 시도)
+    from math import perm
+    total_perms = perm(5, len(players))
     lane_assignments = lane_optimizer_service.optimize(
-        players, top_n=3, champion_attrs_map=champion_attrs_map,
+        players, top_n=total_perms, champion_attrs_map=champion_attrs_map,
     )
 
     # Run comp optimizer
@@ -703,9 +705,11 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
         )
         logger.info("  플레이어 라인 통계: %s → %s", key, stats_str or "(없음)")
 
-    # Run lane optimizer (with lane constraints for locked picks)
+    # Run lane optimizer — 전수 탐색 (모든 라인 배정 시도)
+    from math import perm
+    total_perms = perm(5, len(players))
     lane_assignments = lane_optimizer_service.optimize(
-        players, top_n=3, lane_constraints=lane_constraints,
+        players, top_n=total_perms, lane_constraints=lane_constraints,
         champion_attrs_map=champion_attrs_map,
     )
 
