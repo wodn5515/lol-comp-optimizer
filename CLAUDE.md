@@ -251,7 +251,9 @@ npm run test
 
 ### 다음 세션 메모
 
-Phase 4 완료, 98개 테스트 통과. GitHub Pages + Render 배포 완료.
-다음: Phase 5a (P0 개선) → 기획서 섹션 9 참조.
-  - analyze() 최적화 (top-N 지연 호출)
-  - Session persistence (sessionStorage)
+Phase 5a/5b/5c 전체 완료. 119개 테스트 통과. staging 브랜치에 커밋 완료.
+P0~P2 개선 9개 항목 모두 구현:
+  - analyze() 최적화, Session persistence
+  - 프론트라인 등급제, 점수 분해, 다양성 필터, 클립보드 복사
+  - 적 조합 카운터 점수, 접이식 카드, 플렉스 픽 감지
+다음: 유저가 "배포해줘" 하면 README 업데이트 → staging push → main 머지
