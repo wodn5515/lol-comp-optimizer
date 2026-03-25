@@ -713,10 +713,7 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
         champion_attrs_map=champion_attrs_map,
     )
 
-    # Log lane assignment results
-    for i, la in enumerate(lane_assignments[:3]):
-        assign_str = ", ".join(f"{a.player_game_name}→{a.lane}" for a in la.assignments)
-        logger.info("  라인배정 #%d (점수 %.3f): %s", i + 1, la.score, assign_str)
+    logger.info("  라인 배정 %d가지 전수 탐색", len(lane_assignments))
 
     # Run comp optimizer
     compositions = comp_optimizer_service.optimize(

@@ -1001,13 +1001,8 @@ class CompOptimizerService:
                 )
                 score += off_lane_count * PENALTY_OFF_LANE_PER_CHAMPION
 
-                # Lane assignment quality bonus: 라인 배정 적합도 반영 (0~20점)
-                # lane_assignment.score = sum of (win_rate * game_count_weight) per player
-                # Normalize: max possible ~ 1.0 per player * 5 players = 5.0
-                max_lane_score = len(assignments) * 1.0
-                if max_lane_score > 0:
-                    lane_quality = (lane_assignment.score / max_lane_score) * 20.0
-                    score += lane_quality
+                # 라인 배정 보너스 제거 — 개인 숙련도(25%)에서 이미 게임수/승률 반영됨
+                # 이중 반영하면 게임수 많은 챔피언이 과도하게 유리해짐
 
                 score = max(score, 0.0)
                 analysis = self.analyze(assignments, attrs_list, champion_attrs_map)
