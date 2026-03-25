@@ -86,6 +86,30 @@
 [ ] 전체 플로우 검증
 ```
 
+### Phase 5a: P0 개선 (성능 + 안정성)
+
+```
+[ ] analyze() 최적화 — optimize() 내 top-N 지연 호출
+[ ] Session persistence — zustand + sessionStorage
+```
+
+### Phase 5b: P1 개선 (알고리즘 + UX)
+
+```
+[ ] 단계적 프론트라인 점수 — 기존 -25 페널티 삭제, 등급제 교체
+[ ] 점수 분해 / "Why This Comp" — ScoreBreakdown 모델 + UI
+[ ] 다양성 필터 강화 — min_diff=max(1,n-2) + archetype 다양성
+[ ] 클립보드 복사 — 로비 채팅용 텍스트 복사
+```
+
+### Phase 5c: P2 개선 (추가 기능)
+
+```
+[ ] 적 조합 카운터 점수 — 상성 기반 보너스/패널티
+[ ] 접이식 조합 카드 — 1위 펼침, 나머지 접힘
+[ ] 플렉스 픽 감지 — 2+ 라인 챔피언 표시
+```
+
 ---
 
 ## 3. 테스트 전략
@@ -416,10 +440,16 @@ tests/
 | 기획서 규칙 | 테스트 파일 | 테스트 케이스 |
 |------------|-----------|-------------|
 | 풀 AD: -30점 | test_comp_optimizer | test_full_ad_penalty |
-| 프론트라인 0: -25점 | test_comp_optimizer | test_no_frontline_penalty |
+| 프론트라인 등급제 (필수 조합 0/1/2/3명) | test_comp_optimizer | test_graduated_frontline_required |
+| 프론트라인 등급제 (불필요 조합) | test_comp_optimizer | test_graduated_frontline_unnecessary |
 | 웨이브클리어 <10: -10점 | test_comp_optimizer | test_waveclear_low_penalty |
-| 개인 숙련도 30% | test_comp_optimizer | test_personal_mastery_weight |
-| AD/AP 밸런스 20% | test_comp_optimizer | test_balanced_comp_high_score |
+| 개인 숙련도 25% | test_comp_optimizer | test_personal_mastery_weight |
+| 가중치 합계 = 1.0 | test_comp_optimizer | test_weights_sum_to_one |
+| 다양성 필터 (5명: min_diff=3) | test_comp_optimizer | test_diversity_filter_5players |
+| 다양성 필터 (2명: min_diff=1) | test_comp_optimizer | test_diversity_filter_2players |
+| 점수 분해 합 = total_score | test_comp_optimizer | test_score_breakdown_sum |
+| 카운터 점수 (적 3명+ 유리상성) | test_comp_optimizer | test_counter_score_favorable |
+| 카운터 점수 (적 2명 미적용) | test_comp_optimizer | test_counter_score_inactive |
 
 ### 챔피언 데이터
 
@@ -521,7 +551,9 @@ VITE_DDRAGON_VERSION=14.10.1
 
 ```
 [ ] 기획서 숫자/규칙과 코드 값 일치?
-    (가중치 30/20/15/15/10/10, 페널티 -30/-25/-10, 게임 수 ×0.1/0.5/0.8/1.0)
+    (가중치 25/10/15/15/15/10/10, 페널티 -30/-10/-8, 게임 수 ×0.1/0.5/0.8/1.0)
+[ ] 프론트라인: 등급제 점수 사용 (기존 -25 페널티 아님)
+[ ] 다양성 필터: min_diff = max(1, n-2)
 [ ] 기획서에 없는 기능이 추가되지 않았는가?
 [ ] 단위 테스트가 기획서 규칙을 검증하는가?
 ```
