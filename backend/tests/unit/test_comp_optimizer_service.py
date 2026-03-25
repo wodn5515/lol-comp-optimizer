@@ -118,9 +118,8 @@ class TestPenalties:
         assert "full_ap" in penalties
         assert penalties["full_ap"] == -30
 
-    def test_no_frontline_penalty_for_engage_comp(self, comp_optimizer: CompOptimizerService) -> None:
-        """Spec: No frontline penalty (-25) applies for comps that NEED frontline (이니시, 한타, 프로텍트).
-        Engage comp (engage>=15) without frontline should get -25 penalty."""
+    def test_graduated_frontline_required_0(self, comp_optimizer: CompOptimizerService) -> None:
+        """Spec: 이니시 comp with 0 frontline → graduated frontline score 0."""
         # Engage comp without frontline: engage >= 15, no TANK/BRUISER
         no_frontline_engage = [
             make_champ("Zed", damage_type="AD", role_tags=["ASSASSIN"], engage=5, poke=1, pick=1, burst=1),
@@ -129,14 +128,29 @@ class TestPenalties:
             make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"], engage=2, poke=1, pick=1, burst=1),
             make_champ("Lux", damage_type="AP", role_tags=["MAGE"], engage=3, poke=1, pick=1, burst=1),
         ]
-        # engage = 5+4+3+2+3 = 17 >= 15 → 이니시 comp → needs frontline
-        penalties = comp_optimizer._calculate_penalties(no_frontline_engage)
-        assert "no_frontline" in penalties
-        assert penalties["no_frontline"] == -25
+        # engage = 5+4+3+2+3 = 17 >= 15 → 이니시 comp → frontline required
+        comp_types = comp_optimizer._detect_comp_types(no_frontline_engage)
+        assert "이니시" in comp_types
+        score = comp_optimizer._frontline_score(no_frontline_engage, comp_types)
+        assert score == 0.0
 
-    def test_no_frontline_penalty_skipped_for_poke_comp(self, comp_optimizer: CompOptimizerService) -> None:
-        """Spec: No frontline penalty does NOT apply for comps that don't need it (포킹, 픽, 폭딜, 다이브)."""
-        # Poke comp without frontline: poke >= 14, no TANK/BRUISER
+    def test_graduated_frontline_required_2(self, comp_optimizer: CompOptimizerService) -> None:
+        """Spec: 이니시 comp with 2 frontline (TANK+BRUISER) → graduated frontline score 100."""
+        engage_with_frontline = [
+            make_champ("Ornn", damage_type="AP", role_tags=["TANK"], engage=5, poke=1, pick=1, burst=1),
+            make_champ("LeeSin", damage_type="AD", role_tags=["BRUISER"], engage=4, poke=1, pick=1, burst=1),
+            make_champ("Syndra", damage_type="AP", role_tags=["MAGE"], engage=3, poke=1, pick=1, burst=1),
+            make_champ("Jinx", damage_type="AD", role_tags=["MARKSMAN"], engage=2, poke=1, pick=1, burst=1),
+            make_champ("Thresh", damage_type="AP", role_tags=["SUPPORT"], engage=3, poke=1, pick=1, burst=1),
+        ]
+        # engage = 5+4+3+2+3 = 17 >= 15 → 이니시 comp, 2 frontline (TANK + BRUISER)
+        comp_types = comp_optimizer._detect_comp_types(engage_with_frontline)
+        assert "이니시" in comp_types
+        score = comp_optimizer._frontline_score(engage_with_frontline, comp_types)
+        assert score == 100.0
+
+    def test_graduated_frontline_unnecessary_0(self, comp_optimizer: CompOptimizerService) -> None:
+        """Spec: 포킹 comp with 0 frontline → graduated frontline score 80."""
         poke_no_frontline = [
             make_champ("Jayce", damage_type="AD", role_tags=["MARKSMAN"], poke=4, engage=1, pick=1, burst=1),
             make_champ("Xerath", damage_type="AP", role_tags=["MAGE"], poke=5, engage=1, pick=1, burst=1),
@@ -144,21 +158,30 @@ class TestPenalties:
             make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"], poke=3, engage=1, pick=1, burst=1),
             make_champ("Lux", damage_type="AP", role_tags=["MAGE"], poke=3, engage=1, pick=1, burst=1),
         ]
-        # poke = 4+5+4+3+3 = 19 >= 14 → 포킹 comp → no frontline penalty
-        penalties = comp_optimizer._calculate_penalties(poke_no_frontline)
-        assert "no_frontline" not in penalties
+        # poke = 4+5+4+3+3 = 19 >= 15 → 포킹 comp → frontline not needed
+        comp_types = comp_optimizer._detect_comp_types(poke_no_frontline)
+        assert "포킹" in comp_types
+        score = comp_optimizer._frontline_score(poke_no_frontline, comp_types)
+        assert score == 80.0
 
-    def test_no_frontline_penalty_skipped_for_balanced_comp(self, comp_optimizer: CompOptimizerService) -> None:
-        """Spec: Balanced comp (no detected type) should NOT get frontline penalty."""
-        balanced_no_frontline = [
-            make_champ("Zed", damage_type="AD", role_tags=["ASSASSIN"], engage=2, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=2),
+    def test_graduated_frontline_flexible_1(self, comp_optimizer: CompOptimizerService) -> None:
+        """Spec: 균형 comp with 1 BRUISER → graduated frontline score 85."""
+        balanced_one_bruiser = [
+            make_champ("Garen", damage_type="AD", role_tags=["BRUISER"], engage=2, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=2),
             make_champ("Nidalee", damage_type="AP", role_tags=["MAGE"], engage=2, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=2),
             make_champ("LeBlanc", damage_type="AP", role_tags=["ASSASSIN"], engage=2, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=2),
             make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"], engage=1, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=1),
             make_champ("Lux", damage_type="AP", role_tags=["MAGE"], engage=2, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=2),
         ]
-        penalties = comp_optimizer._calculate_penalties(balanced_no_frontline)
-        assert "no_frontline" not in penalties
+        comp_types = comp_optimizer._detect_comp_types(balanced_one_bruiser)
+        # No strong comp type detected → flexible
+        score = comp_optimizer._frontline_score(balanced_one_bruiser, comp_types)
+        assert score == 85.0
+
+    def test_old_frontline_penalty_removed(self, comp_optimizer: CompOptimizerService) -> None:
+        """Verify PENALTY_NO_FRONTLINE constant no longer exists."""
+        import domain.services.comp_optimizer_service as mod
+        assert not hasattr(mod, "PENALTY_NO_FRONTLINE")
 
     def test_waveclear_low_penalty(self, comp_optimizer: CompOptimizerService) -> None:
         """Spec: Waveclear total < 10 -> -10 points."""

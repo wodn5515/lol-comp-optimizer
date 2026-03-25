@@ -24,7 +24,6 @@ META_TIER_SCORES: dict[str, int] = {"S": 100, "A": 80, "B": 60, "C": 40, "D": 20
 # Penalties (점수에서 직접 감점)
 PENALTY_FULL_AD: int = -30
 PENALTY_FULL_AP: int = -30
-PENALTY_NO_FRONTLINE: int = -25
 PENALTY_LOW_WAVECLEAR: int = -10
 PENALTY_OFF_LANE_PER_CHAMPION: int = -25
 PENALTY_LOW_ENGAGE: int = -10     # 이니시 부족
@@ -43,7 +42,7 @@ TOP_CHAMPIONS_PER_PLAYER: int = 50
 FRONTLINE_REQUIRED_COMP_TYPES = {"이니시", "한타", "프로텍트"}
 
 # Comp types that do NOT need frontline — no penalty regardless
-FRONTLINE_NOT_NEEDED_COMP_TYPES = {"포킹", "픽", "폭딜", "다이브"}
+FRONTLINE_NOT_NEEDED_COMP_TYPES = {"포킹", "픽", "폭딜"}
 
 # Synergy strategies for comp type pairs
 SYNERGY_STRATEGIES: dict[frozenset, str] = {
@@ -215,17 +214,64 @@ class CompOptimizerService:
         return balance * 100.0
 
     def _frontline_score(
-        self, champion_attrs_list: list[ChampionAttributes]
+        self,
+        champion_attrs_list: list[ChampionAttributes],
+        comp_types: list[str] | None = None,
     ) -> float:
-        """Calculate frontline score (0-100 scale).
+        """Calculate graduated frontline score (0-100 scale).
 
-        100 if at least one TANK or BRUISER, 0 otherwise.
+        Score depends on the number of frontline champions (TANK or BRUISER)
+        and the composition type category:
+
+        [Frontline required] — 이니시, 한타, 프로텍트:
+            0명: 0, 1명: 60, 2명: 100, 3명+: 80
+
+        [Frontline not needed] — 포킹, 픽, 폭딜:
+            0명: 80, 1명: 100, 2명+: 70
+
+        [Flexible] — all others:
+            0명: 50, 1명: 85, 2명: 100, 3명+: 75
         """
-        has_frontline = any(
-            "TANK" in a.role_tags or "BRUISER" in a.role_tags
-            for a in champion_attrs_list
+        frontline_count = sum(
+            1 for a in champion_attrs_list
+            if "TANK" in a.role_tags or "BRUISER" in a.role_tags
         )
-        return 100.0 if has_frontline else 0.0
+
+        if comp_types is None:
+            comp_types = []
+
+        comp_type_set = set(comp_types)
+        needs_frontline = bool(comp_type_set & FRONTLINE_REQUIRED_COMP_TYPES)
+        no_frontline_needed = bool(comp_type_set & FRONTLINE_NOT_NEEDED_COMP_TYPES)
+
+        if needs_frontline and not no_frontline_needed:
+            # Frontline required: 이니시, 한타, 프로텍트
+            if frontline_count == 0:
+                return 0.0
+            elif frontline_count == 1:
+                return 60.0
+            elif frontline_count == 2:
+                return 100.0
+            else:
+                return 80.0
+        elif no_frontline_needed and not needs_frontline:
+            # Frontline not needed: 포킹, 픽, 폭딜
+            if frontline_count == 0:
+                return 80.0
+            elif frontline_count == 1:
+                return 100.0
+            else:
+                return 70.0
+        else:
+            # Flexible: 균형 or mixed comp types
+            if frontline_count == 0:
+                return 50.0
+            elif frontline_count == 1:
+                return 85.0
+            elif frontline_count == 2:
+                return 100.0
+            else:
+                return 75.0
 
     def _deal_composition_score(
         self, champion_attrs_list: list[ChampionAttributes]
@@ -548,10 +594,8 @@ class CompOptimizerService:
     ) -> dict[str, int]:
         """Calculate penalty deductions.
 
-        Frontline penalty is conditional based on comp type:
-        - Apply for: 이니시, 한타, 프로텍트
-        - Do NOT apply for: 포킹, 픽, 폭딜, 다이브
-        - Other comps: no penalty either way
+        Frontline scoring is now graduated (handled in _frontline_score),
+        so no frontline penalty is applied here.
         """
         penalties: dict[str, int] = {}
 
@@ -573,30 +617,6 @@ class CompOptimizerService:
         # Full AP (0 AD): -30
         if ad_count == 0 and len(champion_attrs_list) > 0:
             penalties["full_ap"] = PENALTY_FULL_AP
-
-        # No frontline: -25 (conditional based on comp type)
-        has_frontline = any(
-            "TANK" in a.role_tags or "BRUISER" in a.role_tags
-            for a in champion_attrs_list
-        )
-        if not has_frontline and len(champion_attrs_list) > 0:
-            # Detect comp types if not provided
-            if comp_types is None:
-                comp_types = self._detect_comp_types(champion_attrs_list)
-
-            comp_type_set = set(comp_types)
-
-            # Check if any detected comp type requires frontline
-            needs_frontline = bool(comp_type_set & FRONTLINE_REQUIRED_COMP_TYPES)
-            # Check if any detected comp type explicitly doesn't need frontline
-            no_frontline_ok = bool(comp_type_set & FRONTLINE_NOT_NEEDED_COMP_TYPES)
-
-            # Apply penalty only if comp needs frontline
-            # If comp has types that need frontline, apply penalty
-            # If comp has types that don't need frontline, skip penalty
-            # If comp has no detected types (균형), no penalty
-            if needs_frontline and not no_frontline_ok:
-                penalties["no_frontline"] = PENALTY_NO_FRONTLINE
 
         # Low waveclear: -10
         total_waveclear = self._waveclear_score_value(champion_attrs_list)
@@ -646,9 +666,12 @@ class CompOptimizerService:
         if champion_attrs_map is None:
             champion_attrs_map = {a.champion_name: a for a in champion_attrs_list}
 
+        # Detect comp types first so _frontline_score can use them
+        comp_types = self._detect_comp_types(champion_attrs_list)
+
         meta = self._meta_tier_score(assignments, champion_attrs_map)
         ad_ap = self._ad_ap_balance_score(champion_attrs_list)
-        frontline = self._frontline_score(champion_attrs_list)
+        frontline = self._frontline_score(champion_attrs_list, comp_types)
         deal = self._deal_composition_score(champion_attrs_list)
         waveclear = self._waveclear_score(champion_attrs_list)
         splitpush = self._splitpush_score(champion_attrs_list)
@@ -663,8 +686,6 @@ class CompOptimizerService:
             + splitpush * WEIGHT_SPLITPUSH
         )
 
-        # Detect comp types first, then pass to penalty calculation
-        comp_types = self._detect_comp_types(champion_attrs_list)
         penalties = self._calculate_penalties(champion_attrs_list, comp_types)
         penalty_total = sum(penalties.values())
 
@@ -816,7 +837,7 @@ class CompOptimizerService:
             weaknesses.append("풀 AD 조합 - AP 딜러 부재")
         if "full_ap" in penalties:
             weaknesses.append("풀 AP 조합 - AD 딜러 부재")
-        if "no_frontline" in penalties:
+        if not has_frontline:
             weaknesses.append("프론트라인 부재")
         if "low_waveclear" in penalties:
             weaknesses.append("웨이브클리어 부족")
