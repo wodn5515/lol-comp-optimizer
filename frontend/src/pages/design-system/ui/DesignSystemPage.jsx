@@ -387,7 +387,7 @@ export function DesignSystemPage() {
                     <input
                       type="text"
                       placeholder="소환사이름#태그"
-                      className="w-full rounded-lg border bg-gray-900 pl-8 pr-4 py-2.5 text-sm text-gray-100 placeholder:text-gray-600 border-gray-700 focus:outline-none focus:ring-2 focus:ring-amber-500/40"
+                      className="w-full rounded-lg border bg-gray-900 pl-8 pr-4 py-2.5 text-sm text-gray-100 placeholder:text-gray-600 border-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-amber-500/40"
                     />
                   </div>
                 </div>
@@ -398,12 +398,12 @@ export function DesignSystemPage() {
               <textarea
                 placeholder="롤 로비 채팅을 붙여넣거나 쉼표로 구분하여 입력하세요"
                 rows={4}
-                className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-sm text-gray-100 placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-sky-500/40 resize-none"
+                className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-sm text-gray-100 placeholder:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500/40 resize-none"
               />
             </SubSection>
 
             <SubSection title="Select">
-              <select className="rounded-md border bg-gray-900 px-2 py-1.5 text-xs text-gray-300 border-gray-700 focus:ring-1 focus:ring-amber-500/40 focus:outline-none cursor-pointer">
+              <select className="rounded-md border bg-gray-900 px-2 py-1.5 text-xs text-gray-300 border-gray-700 focus:ring-1 focus:ring-inset focus:ring-amber-500/40 focus:outline-none cursor-pointer">
                 <option>챔피언 선택...</option>
                 <option>Aatrox</option>
                 <option>Ahri</option>

@@ -56,7 +56,7 @@ export function ApiKeyInput({ className }) {
               'w-full rounded-lg border bg-gray-900 px-4 py-2.5 text-sm text-gray-100 pr-10',
               'placeholder:text-gray-600',
               'transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-gray-950',
+              'focus:outline-none focus:ring-2 focus:ring-inset',
               isValid
                 ? 'border-emerald-700 focus:ring-emerald-500/40'
                 : localKey
