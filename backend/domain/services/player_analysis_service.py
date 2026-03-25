@@ -91,3 +91,21 @@ class PlayerAnalysisService:
         # Sort by games descending
         result.sort(key=lambda c: c.games, reverse=True)
         return result
+
+    def detect_flex_picks(
+        self,
+        champion_stats: list[ChampionStats],
+        champion_attrs_map: dict,
+    ) -> None:
+        """Mark champions that can be played in 2+ lanes (flex picks).
+
+        Uses primary_lanes from champion_attrs_map. Mutates champion_stats in place.
+        """
+        for cs in champion_stats:
+            attrs = champion_attrs_map.get(cs.champion_name)
+            if attrs and hasattr(attrs, "primary_lanes") and len(attrs.primary_lanes) >= 2:
+                cs.is_flex = True
+                cs.flex_lanes = list(attrs.primary_lanes)
+            else:
+                cs.is_flex = False
+                cs.flex_lanes = []

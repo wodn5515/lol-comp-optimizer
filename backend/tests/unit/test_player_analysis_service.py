@@ -1,5 +1,7 @@
 import pytest
 from domain.models.match import MatchSummary
+from domain.models.player import ChampionStats
+from domain.models.champion import ChampionAttributes
 from domain.services.player_analysis_service import PlayerAnalysisService
 
 
@@ -148,3 +150,62 @@ class TestCalculateChampionStats:
     def test_empty_matches(self, service: PlayerAnalysisService) -> None:
         champs = service.calculate_champion_stats([])
         assert champs == []
+
+
+class TestDetectFlexPicks:
+    def test_flex_pick_with_two_primary_lanes(self, service: PlayerAnalysisService) -> None:
+        """Champion with primary_lanes ["TOP", "MID"] should be marked as flex."""
+        champion_stats = [
+            ChampionStats(champion_id=85, champion_name="Kennen", games=5, wins=3),
+        ]
+        attrs_map = {
+            "Kennen": ChampionAttributes(
+                champion_id=85,
+                champion_name="Kennen",
+                primary_lanes=["TOP", "MID"],
+            ),
+        }
+        service.detect_flex_picks(champion_stats, attrs_map)
+        assert champion_stats[0].is_flex is True
+        assert champion_stats[0].flex_lanes == ["TOP", "MID"]
+
+    def test_single_lane_champion_not_flex(self, service: PlayerAnalysisService) -> None:
+        """Champion with only 1 primary lane should NOT be flex."""
+        champion_stats = [
+            ChampionStats(champion_id=238, champion_name="Zed", games=10, wins=6),
+        ]
+        attrs_map = {
+            "Zed": ChampionAttributes(
+                champion_id=238,
+                champion_name="Zed",
+                primary_lanes=["MID"],
+            ),
+        }
+        service.detect_flex_picks(champion_stats, attrs_map)
+        assert champion_stats[0].is_flex is False
+        assert champion_stats[0].flex_lanes == []
+
+    def test_champion_not_in_attrs_map(self, service: PlayerAnalysisService) -> None:
+        """Champion not found in attrs map should not be flex."""
+        champion_stats = [
+            ChampionStats(champion_id=999, champion_name="Unknown", games=1),
+        ]
+        service.detect_flex_picks(champion_stats, {})
+        assert champion_stats[0].is_flex is False
+        assert champion_stats[0].flex_lanes == []
+
+    def test_three_lane_flex(self, service: PlayerAnalysisService) -> None:
+        """Champion with 3 primary lanes should be flex with all lanes listed."""
+        champion_stats = [
+            ChampionStats(champion_id=245, champion_name="Ekko", games=8),
+        ]
+        attrs_map = {
+            "Ekko": ChampionAttributes(
+                champion_id=245,
+                champion_name="Ekko",
+                primary_lanes=["MID", "JG", "TOP"],
+            ),
+        }
+        service.detect_flex_picks(champion_stats, attrs_map)
+        assert champion_stats[0].is_flex is True
+        assert set(champion_stats[0].flex_lanes) == {"MID", "JG", "TOP"}

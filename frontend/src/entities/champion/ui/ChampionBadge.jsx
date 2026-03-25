@@ -9,6 +9,8 @@ export function ChampionBadge({
   winRate,
   kda,
   games,
+  isFlex,
+  flexLanes,
   className,
   size = 'md',
 }) {
@@ -36,8 +38,13 @@ export function ChampionBadge({
         showTooltip={false}
       />
       <div className={cn('flex flex-col', s.text)}>
-        <span className="text-gray-200 font-semibold leading-tight">
+        <span className="text-gray-200 font-semibold leading-tight flex items-center gap-1">
           {championNameKo || championName}
+          {isFlex && (
+            <span className="inline-flex items-center px-1 py-0.5 rounded text-[8px] font-bold bg-violet-500/20 text-violet-400 border border-violet-500/30 leading-none">
+              FLEX
+            </span>
+          )}
         </span>
         <div className="flex items-center gap-1.5 text-gray-400">
           {winRate != null && (

@@ -18,6 +18,8 @@ class ChampionStats:
     win_rate: float = 0.0
     kda: float = 0.0
     mastery_points: int = 0
+    is_flex: bool = False
+    flex_lanes: list[str] = field(default_factory=list)
 
     @property
     def display_name(self) -> str:
