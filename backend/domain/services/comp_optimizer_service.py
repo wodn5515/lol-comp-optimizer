@@ -21,12 +21,15 @@ WEIGHT_SPLITPUSH: float = 0.10
 # Meta tier score mapping
 META_TIER_SCORES: dict[str, int] = {"S": 100, "A": 80, "B": 60, "C": 40, "D": 20}
 
-# Penalties
+# Penalties (점수에서 직접 감점)
 PENALTY_FULL_AD: int = -30
 PENALTY_FULL_AP: int = -30
 PENALTY_NO_FRONTLINE: int = -25
 PENALTY_LOW_WAVECLEAR: int = -10
-PENALTY_OFF_LANE_PER_CHAMPION: int = -25  # 챔피언이 primary_lanes 밖 라인에 배정될 때
+PENALTY_OFF_LANE_PER_CHAMPION: int = -25
+PENALTY_LOW_ENGAGE: int = -10     # 이니시 부족
+PENALTY_LOW_PEEL: int = -8        # 필링 부족
+PENALTY_LOW_TEAMFIGHT: int = -8   # 팀파이트 부족
 
 # Max values for normalization
 MAX_WAVECLEAR: int = 25  # 5 champions * 5 max each
@@ -599,6 +602,20 @@ class CompOptimizerService:
         total_waveclear = self._waveclear_score_value(champion_attrs_list)
         if total_waveclear < 10 and len(champion_attrs_list) > 0:
             penalties["low_waveclear"] = PENALTY_LOW_WAVECLEAR
+
+        # 약점 기반 감점 (4명 이상일 때만)
+        n = len(champion_attrs_list)
+        if n >= 4:
+            engage_total = sum(a.engage for a in champion_attrs_list)
+            peel_total = sum(a.peel for a in champion_attrs_list)
+            teamfight_total = sum(a.teamfight for a in champion_attrs_list)
+
+            if engage_total < 2 * n:
+                penalties["low_engage"] = PENALTY_LOW_ENGAGE
+            if peel_total < 1.5 * n:
+                penalties["low_peel"] = PENALTY_LOW_PEEL
+            if teamfight_total < 3 * n:
+                penalties["low_teamfight"] = PENALTY_LOW_TEAMFIGHT
 
         return penalties
 
