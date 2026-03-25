@@ -948,8 +948,11 @@ class CompOptimizerService:
                         lane_fit.append(champ)
 
                 # primary_lanes에 맞는 챔피언만 사용
+                # 풀 크기: 인원수에 따라 조절 (조합 폭발 방지)
+                # 2명: 10개, 3명: 8개, 4명: 6개, 5명: 5개
+                max_per_lane = max(11 - len(lane_assignment.assignments), 5)
                 if lane_fit:
-                    champion_pools.append(lane_fit[:5])
+                    champion_pools.append(lane_fit[:max_per_lane])
                 else:
                     # 이 라인에 맞는 챔피언이 없음 → 이 라인 배정 스킵, 다음 배정 시도
                     champion_pools = None
