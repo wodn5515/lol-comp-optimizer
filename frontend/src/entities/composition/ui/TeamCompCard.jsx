@@ -6,6 +6,7 @@ import { formatCompText } from '../../../shared/lib/formatCompText';
 import { cn } from '../../../shared/lib/cn';
 import { ChampionIcon } from '../../champion';
 import { TeamAnalysisChart } from './TeamAnalysisChart';
+import { ScoreBreakdownPanel } from './ScoreBreakdownPanel';
 
 const RANK_STYLES = {
   1: {
@@ -25,8 +26,9 @@ const RANK_STYLES = {
 const LANE_ORDER = ['TOP', 'JG', 'MID', 'ADC', 'SUP'];
 
 export function TeamCompCard({ recommendation }) {
-  const { rank, total_score, assignments, team_analysis } = recommendation;
+  const { rank, total_score, assignments, team_analysis, score_breakdown } = recommendation;
   const [copied, setCopied] = useState(false);
+  const [showBreakdown, setShowBreakdown] = useState(false);
 
   const handleCopy = useCallback(async () => {
     try {
@@ -93,6 +95,30 @@ export function TeamCompCard({ recommendation }) {
           </div>
         </div>
       </div>
+
+      {score_breakdown && (
+        <div className="px-5 border-b border-gray-800">
+          <button
+            onClick={() => setShowBreakdown((v) => !v)}
+            className="w-full flex items-center justify-between py-2.5 text-xs text-gray-400 hover:text-gray-200 transition-colors"
+          >
+            <span className="font-medium">점수 상세</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+              className={cn('w-4 h-4 transition-transform', showBreakdown && 'rotate-180')}
+            >
+              <path fillRule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+            </svg>
+          </button>
+          {showBreakdown && (
+            <div className="pb-3">
+              <ScoreBreakdownPanel breakdown={score_breakdown} />
+            </div>
+          )}
+        </div>
+      )}
 
       <CardContent className="p-5">
         <div className="grid grid-cols-5 gap-2 mb-5">

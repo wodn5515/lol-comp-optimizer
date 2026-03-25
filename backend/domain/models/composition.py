@@ -49,8 +49,34 @@ class LaneAssignment:
 
 
 @dataclass
+class ScoreBreakdownItem:
+    score: float = 0.0       # raw sub-score (0-100)
+    weighted: float = 0.0    # score * weight
+    weight: float = 0.0
+
+
+@dataclass
+class PenaltyBreakdown:
+    details: list[str] = field(default_factory=list)
+    total: float = 0.0
+
+
+@dataclass
+class ScoreBreakdown:
+    personal_mastery: ScoreBreakdownItem = field(default_factory=ScoreBreakdownItem)
+    meta_tier: ScoreBreakdownItem = field(default_factory=ScoreBreakdownItem)
+    ad_ap_balance: ScoreBreakdownItem = field(default_factory=ScoreBreakdownItem)
+    frontline: ScoreBreakdownItem = field(default_factory=ScoreBreakdownItem)
+    deal_composition: ScoreBreakdownItem = field(default_factory=ScoreBreakdownItem)
+    waveclear: ScoreBreakdownItem = field(default_factory=ScoreBreakdownItem)
+    splitpush: ScoreBreakdownItem = field(default_factory=ScoreBreakdownItem)
+    penalties: PenaltyBreakdown = field(default_factory=PenaltyBreakdown)
+
+
+@dataclass
 class Composition:
     rank: int = 0
     total_score: float = 0.0
     assignments: list[Assignment] = field(default_factory=list)
     team_analysis: TeamAnalysis = field(default_factory=TeamAnalysis)
+    score_breakdown: ScoreBreakdown = field(default_factory=ScoreBreakdown)

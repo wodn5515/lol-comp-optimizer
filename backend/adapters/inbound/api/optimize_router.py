@@ -189,9 +189,39 @@ def _serialize_recommendations(
                     "weaknesses": comp.team_analysis.weaknesses,
                     "stat_contributions": comp.team_analysis.stat_contributions,
                 },
+                "score_breakdown": _serialize_score_breakdown(comp.score_breakdown),
             }
         )
     return recommendations
+
+
+def _serialize_score_breakdown(breakdown) -> dict:
+    """Serialize ScoreBreakdown into the API response format."""
+    from domain.models.composition import ScoreBreakdown
+
+    if breakdown is None:
+        return {}
+
+    def _item(item) -> dict:
+        return {
+            "score": item.score,
+            "weighted": item.weighted,
+            "weight": item.weight,
+        }
+
+    return {
+        "personal_mastery": _item(breakdown.personal_mastery),
+        "meta_tier": _item(breakdown.meta_tier),
+        "ad_ap_balance": _item(breakdown.ad_ap_balance),
+        "frontline": _item(breakdown.frontline),
+        "deal_composition": _item(breakdown.deal_composition),
+        "waveclear": _item(breakdown.waveclear),
+        "splitpush": _item(breakdown.splitpush),
+        "penalties": {
+            "details": breakdown.penalties.details,
+            "total": breakdown.penalties.total,
+        },
+    }
 
 
 async def _fetch_players_from_riot(
