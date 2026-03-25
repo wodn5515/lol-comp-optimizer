@@ -23,7 +23,7 @@ export function ResultBoard() {
 
       <div className="grid gap-5">
         {recommendations.map((rec) => (
-          <TeamCompCard key={rec.rank} recommendation={rec} />
+          <TeamCompCard key={rec.rank} recommendation={rec} defaultExpanded={rec.rank === 1} />
         ))}
       </div>
     </div>
