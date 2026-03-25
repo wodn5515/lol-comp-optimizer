@@ -1007,22 +1007,18 @@ class CompOptimizerService:
         # Sort by total_score descending
         all_compositions.sort(key=lambda c: c.total_score, reverse=True)
 
-        # Diversity filter: 각 추천은 이전 추천과 최소 2개 챔피언이 달라야 함
+        # Diversity filter: 각 추천은 이전 추천과 최소 1개 챔피언이 달라야 함
         result: list[Composition] = []
+        seen_combos: set[frozenset[str]] = set()
         for comp in all_compositions:
             if len(result) >= top_n:
                 break
-            comp_champs = set(a.champion_name for a in comp.assignments)
-            is_diverse = True
-            for existing in result:
-                existing_champs = set(a.champion_name for a in existing.assignments)
-                shared = comp_champs & existing_champs
-                diff_count = len(comp_champs - shared) + len(existing_champs - shared)
-                if diff_count < 2:  # 1개 이하 차이 → 너무 비슷
-                    is_diverse = False
-                    break
-            if is_diverse:
-                result.append(comp)
+            comp_champs = frozenset(a.champion_name for a in comp.assignments)
+            # 완전 동일 조합만 제거
+            if comp_champs in seen_combos:
+                continue
+            seen_combos.add(comp_champs)
+            result.append(comp)
 
         for i, comp in enumerate(result):
             comp.rank = i + 1
