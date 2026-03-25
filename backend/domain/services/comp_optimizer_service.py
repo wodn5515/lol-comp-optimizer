@@ -683,7 +683,8 @@ class CompOptimizerService:
             for attrs in champion_attrs_list:
                 val = getattr(attrs, key, 0)
                 if val > 0:
-                    contribs.append({"champion": attrs.champion_name, "value": val})
+                    name = attrs.champion_name_ko if attrs.champion_name_ko else attrs.champion_name
+                    contribs.append({"champion": name, "value": val})
             # Sort by value descending
             contribs.sort(key=lambda x: x["value"], reverse=True)
             stat_contributions[key] = contribs
