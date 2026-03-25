@@ -36,8 +36,8 @@ MAX_WAVECLEAR: int = 25  # 5 champions * 5 max each
 MAX_SPLITPUSH: int = 25
 MAX_TEAMFIGHT: int = 25
 
-# How many top champions per player to consider
-TOP_CHAMPIONS_PER_PLAYER: int = 10
+# How many top champions per player to consider (no artificial limit)
+TOP_CHAMPIONS_PER_PLAYER: int = 50
 
 # Comp types that REQUIRE frontline — penalty applies if no frontline
 FRONTLINE_REQUIRED_COMP_TYPES = {"이니시", "한타", "프로텍트"}
@@ -948,11 +948,9 @@ class CompOptimizerService:
                         lane_fit.append(champ)
 
                 # primary_lanes에 맞는 챔피언만 사용
-                # 풀 크기: 인원수에 따라 조절 (조합 폭발 방지)
-                # 2명: 10개, 3명: 8개, 4명: 6개, 5명: 5개
-                max_per_lane = max(11 - len(lane_assignment.assignments), 5)
+                # 전체 풀 탐색 — 숙련도 점수가 자연스럽게 우선순위 결정
                 if lane_fit:
-                    champion_pools.append(lane_fit[:max_per_lane])
+                    champion_pools.append(lane_fit)
                 else:
                     # 이 라인에 맞는 챔피언이 없음 → 이 라인 배정 스킵, 다음 배정 시도
                     champion_pools = None
