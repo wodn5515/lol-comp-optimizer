@@ -376,7 +376,7 @@ class CompOptimizerService:
         for a in assignments:
             attrs = champion_attrs_map.get(a.champion_name)
             lane_ko = lane_ko_map.get(a.lane, a.lane)
-            name_ko = attrs.champion_name_ko if attrs and attrs.champion_name_ko else a.champion_name
+            name_ko = attrs.display_name if attrs else a.champion_name
             tips = attrs.play_tips if attrs and attrs.play_tips else ""
 
             role_desc = self._get_champion_comp_role(a, attrs, comp_types)
@@ -683,8 +683,7 @@ class CompOptimizerService:
             for attrs in champion_attrs_list:
                 val = getattr(attrs, key, 0)
                 if val > 0:
-                    name = attrs.champion_name_ko if attrs.champion_name_ko else attrs.champion_name
-                    contribs.append({"champion": name, "value": val})
+                    contribs.append({"champion": attrs.display_name, "value": val})
             # Sort by value descending
             contribs.sort(key=lambda x: x["value"], reverse=True)
             stat_contributions[key] = contribs
@@ -898,10 +897,7 @@ class CompOptimizerService:
                             player_tag_line=base_assignment.player_tag_line,
                             lane=base_assignment.lane,
                             champion_name=champ_stats.champion_name,
-                            champion_name_ko=(
-                                champ_stats.champion_name_ko
-                                or attrs.champion_name_ko
-                            ),
+                            champion_name_ko=champ_stats.display_name if champ_stats.champion_name_ko else attrs.display_name,
                             champion_id=champ_stats.champion_id
                             or attrs.champion_id,
                             personal_win_rate=champ_stats.win_rate,

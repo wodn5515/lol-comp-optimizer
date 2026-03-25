@@ -20,3 +20,8 @@ class ChampionAttributes:
     play_tips: str = ""
     meta_tier: dict[str, str] = field(default_factory=dict)  # {"TOP": "S", "MID": "A"}
     source: str = "MANUAL"  # "MANUAL" | "AUTO"
+
+    @property
+    def display_name(self) -> str:
+        """한글 이름 우선, 없으면 영문 이름 반환."""
+        return self.champion_name_ko or self.champion_name

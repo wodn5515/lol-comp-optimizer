@@ -19,6 +19,11 @@ class ChampionStats:
     kda: float = 0.0
     mastery_points: int = 0
 
+    @property
+    def display_name(self) -> str:
+        """한글 이름 우선, 없으면 영문 이름 반환."""
+        return self.champion_name_ko or self.champion_name
+
 
 @dataclass
 class Player:
