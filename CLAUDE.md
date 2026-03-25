@@ -104,14 +104,32 @@ frontend/src/
 ```
 8. 3곳 문서 동기화 (spec.md ↔ CLAUDE.md ↔ dev-process.md)
 9. "현재 진행 상황" 체크리스트 업데이트
-10. 커밋 (1기능 = 1커밋)
+10. 커밋 (1기능 = 1커밋) → staging 브랜치에 push
+```
+
+### 브랜치 전략
+
+```
+main (배포용) ← staging (작업용)
+
+일상 작업:
+  - 항상 staging 브랜치에서 작업
+  - 커밋 + push는 staging에만
+  - main 브랜치에 직접 커밋 금지
+
+배포 (유저가 "배포해줘" 요청 시):
+  1. staging에서 모든 작업 커밋 완료 확인
+  2. README.md에 이번 배포 반영사항 업데이트 (변경 내용 요약)
+  3. staging push
+  4. staging → main 머지 (git merge staging)
+  5. main push
 ```
 
 ### 금지 사항
 
 ```
+- main 브랜치에 직접 커밋/push 금지 (배포 프로세스를 통해서만)
 - docker compose up/build, 배포 관련 명령 실행 금지 (유저가 직접 배포)
-- git push는 유저가 요청할 때만
 - 테스트 없이 커밋 금지
 - 기획서에 없는 기능 추가 금지
 - 기획서 신규 파일 생성 금지 (v1.5-spec.md 같은 분리 문서 만들지 않기)
