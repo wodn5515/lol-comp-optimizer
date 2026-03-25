@@ -3958,6 +3958,29 @@
       "TOP": "B"
     }
   },
+  "Yunara": {
+    "champion_id": 804,
+    "damage_type": "AD",
+    "role_tags": [
+      "MARKSMAN"
+    ],
+    "waveclear": 3,
+    "splitpush": 3,
+    "teamfight": 3,
+    "engage": 1,
+    "peel": 1,
+    "poke": 3,
+    "pick": 2,
+    "burst": 3,
+    "primary_lanes": [
+      "ADC"
+    ],
+    "champion_name_ko": "유나라",
+    "meta_tier": {
+      "ADC": "A"
+    },
+    "play_tips": "원거리 딜러. 안전한 포지셔닝에서 지속 딜링이 핵심."
+  },
   "Yuumi": {
     "champion_id": 350,
     "damage_type": "AP",
