@@ -87,11 +87,11 @@
 [x] 전체 플로우 검증 + GitHub Pages/Render 배포
 ```
 
-### Phase 5a: P0 개선 (성능 + 안정성)
+### Phase 5a: P0 개선 (성능 + 안정성) ✅
 
 ```
-[ ] analyze() 최적화 — optimize() 내 top-N 지연 호출
-[ ] Session persistence — zustand + sessionStorage
+[x] analyze() 최적화 — optimize() 내 top-N 지연 호출
+[x] Session persistence — zustand + sessionStorage (30분 만료)
 ```
 
 ### Phase 5b: P1 개선 (알고리즘 + UX)

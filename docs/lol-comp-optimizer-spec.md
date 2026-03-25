@@ -725,8 +725,8 @@ GET /api/health                       # 서버 상태 체크
 
 | 우선순위 | 항목 | 유형 | 상태 |
 |---------|------|------|------|
-| P0 | analyze() 최적화 — 최종 top-N에 대해서만 호출 | 성능 | 미구현 |
-| P0 | Session persistence — sessionStorage로 새로고침 시 상태 유지 | UX | 미구현 |
+| P0 | analyze() 최적화 — 최종 top-N에 대해서만 호출 | 성능 | ✅ 구현 |
+| P0 | Session persistence — sessionStorage로 새로고침 시 상태 유지 | UX | ✅ 구현 |
 | P1 | 다양성 필터 강화 — min_diff=max(1,n-2) + archetype 다양성 | 알고리즘 | 미구현 |
 | P1 | 점수 분해 / "Why This Comp" — 항목별 점수 시각화 | UX | 미구현 |
 | P1 | 단계적 프론트라인 점수 — 이진→등급제 | 알고리즘 | 미구현 |

@@ -1005,14 +1005,10 @@ class CompOptimizerService:
                 # 이중 반영하면 게임수 많은 챔피언이 과도하게 유리해짐
 
                 score = max(score, 0.0)
-                analysis = self.analyze(assignments, attrs_list, champion_attrs_map)
 
+                # Store lightweight tuple — analyze() deferred to top-N only
                 all_compositions.append(
-                    Composition(
-                        total_score=round(score, 1),
-                        assignments=assignments,
-                        team_analysis=analysis,
-                    )
+                    (round(score, 1), assignments, attrs_list)
                 )
 
         import logging
@@ -1020,27 +1016,36 @@ class CompOptimizerService:
         _logger.info("총 %d개 조합 생성됨", len(all_compositions))
 
         # Sort by total_score descending
-        all_compositions.sort(key=lambda c: c.total_score, reverse=True)
+        all_compositions.sort(key=lambda t: t[0], reverse=True)
 
         # 상위 10개 조합 로깅 (디버그용)
-        for i, comp in enumerate(all_compositions[:10]):
-            champs = ", ".join(f"{a.display_name}({a.lane})" for a in comp.assignments)
-            _logger.info("  생성 조합 #%d: 점수=%.1f | %s", i+1, comp.total_score, champs)
+        for i, (sc, assigns, _) in enumerate(all_compositions[:10]):
+            champs = ", ".join(f"{a.display_name}({a.lane})" for a in assigns)
+            _logger.info("  생성 조합 #%d: 점수=%.1f | %s", i+1, sc, champs)
 
         # Diversity filter: 각 추천은 이전 추천과 최소 1개 챔피언이 달라야 함
-        result: list[Composition] = []
+        selected: list[tuple[float, list[Assignment], list[ChampionAttributes]]] = []
         seen_combos: set[frozenset[str]] = set()
-        for comp in all_compositions:
-            if len(result) >= top_n:
+        for comp_tuple in all_compositions:
+            if len(selected) >= top_n:
                 break
-            comp_champs = frozenset(a.champion_name for a in comp.assignments)
+            comp_champs = frozenset(a.champion_name for a in comp_tuple[1])
             # 완전 동일 조합만 제거
             if comp_champs in seen_combos:
                 continue
             seen_combos.add(comp_champs)
-            result.append(comp)
+            selected.append(comp_tuple)
 
-        for i, comp in enumerate(result):
-            comp.rank = i + 1
+        # analyze() 최적화 — 최종 top-N에 대해서만 호출
+        result: list[Composition] = []
+        for i, (sc, assigns, attrs_lst) in enumerate(selected):
+            analysis = self.analyze(assigns, attrs_lst, champion_attrs_map)
+            comp = Composition(
+                total_score=sc,
+                assignments=assigns,
+                team_analysis=analysis,
+                rank=i + 1,
+            )
+            result.append(comp)
 
         return result

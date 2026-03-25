@@ -610,3 +610,81 @@ class TestChampionRolesGuide:
         assignment = make_assignment(lane="MID", champion_name="Xerath")
         role = comp_optimizer._get_champion_comp_role(assignment, attrs, comp_types)
         assert "포킹" in role
+
+
+class TestAnalyzeOptimization:
+    def test_analyze_called_only_for_top_n(self, comp_optimizer: CompOptimizerService) -> None:
+        """analyze() should be called only for the final top-N results, not every combination."""
+        from unittest.mock import patch, MagicMock
+        from domain.models.player import Player, ChampionStats
+        from domain.models.composition import LaneAssignment, Assignment as LaneAssign
+
+        # Create 2 players with 3 champions each => 9 combinations
+        players = [
+            Player(
+                game_name="P1",
+                tag_line="KR1",
+                lane_stats={},
+                top_champions=[
+                    ChampionStats(champion_name="Aatrox", champion_id=1, games=10, wins=6, win_rate=0.6, kda=3.0),
+                    ChampionStats(champion_name="Darius", champion_id=2, games=10, wins=5, win_rate=0.5, kda=2.5),
+                    ChampionStats(champion_name="Garen", champion_id=3, games=10, wins=7, win_rate=0.7, kda=3.5),
+                ],
+            ),
+            Player(
+                game_name="P2",
+                tag_line="KR1",
+                lane_stats={},
+                top_champions=[
+                    ChampionStats(champion_name="Jinx", champion_id=4, games=10, wins=6, win_rate=0.6, kda=3.0),
+                    ChampionStats(champion_name="Caitlyn", champion_id=5, games=10, wins=5, win_rate=0.5, kda=2.5),
+                    ChampionStats(champion_name="Ezreal", champion_id=6, games=10, wins=7, win_rate=0.7, kda=3.5),
+                ],
+            ),
+        ]
+
+        champion_attrs_map = {
+            "Aatrox": make_champ("Aatrox", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=1),
+            "Darius": make_champ("Darius", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=2),
+            "Garen": make_champ("Garen", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=3),
+            "Jinx": make_champ("Jinx", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"], champion_id=4),
+            "Caitlyn": make_champ("Caitlyn", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"], champion_id=5),
+            "Ezreal": make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"], champion_id=6),
+        }
+
+        lane_assignments = [
+            LaneAssignment(
+                assignments=[
+                    LaneAssign(player_game_name="P1", player_tag_line="KR1", lane="TOP"),
+                    LaneAssign(player_game_name="P2", player_tag_line="KR1", lane="ADC"),
+                ],
+                score=1.0,
+            ),
+        ]
+
+        top_n = 2
+
+        # Patch analyze to track call count
+        original_analyze = comp_optimizer.analyze
+        analyze_call_count = 0
+
+        def counting_analyze(*args, **kwargs):
+            nonlocal analyze_call_count
+            analyze_call_count += 1
+            return original_analyze(*args, **kwargs)
+
+        with patch.object(comp_optimizer, "analyze", side_effect=counting_analyze):
+            results = comp_optimizer.optimize(
+                players=players,
+                lane_assignments=lane_assignments,
+                champion_attrs_map=champion_attrs_map,
+                top_n=top_n,
+            )
+
+        # analyze() should be called exactly top_n times (or fewer if fewer results)
+        assert analyze_call_count <= top_n
+        assert analyze_call_count == len(results)
+        # Verify we still get valid Composition objects with team_analysis
+        for comp in results:
+            assert comp.team_analysis is not None
+            assert comp.assignments is not None

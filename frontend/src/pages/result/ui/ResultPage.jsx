@@ -10,17 +10,24 @@ export function ResultPage() {
   const clearResult = useAnalyzeStore((s) => s.clearResult);
   const analyzedPlayers = useBanPickStore((s) => s.analyzedPlayers);
   const recommendations = useBanPickStore((s) => s.recommendations);
+  const hydrateFromSession = useBanPickStore((s) => s.hydrateFromSession);
 
   useEffect(() => {
     if (!analyzedPlayers || analyzedPlayers.length === 0) {
-      navigate('/');
+      const restored = hydrateFromSession();
+      if (!restored) {
+        navigate('/');
+      }
     }
-  }, [analyzedPlayers, navigate]);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!analyzedPlayers || analyzedPlayers.length === 0) return null;
 
+  const resetBanPick = useBanPickStore((s) => s.reset);
+
   const handleGoBack = () => {
     clearResult();
+    resetBanPick();
     navigate('/');
   };
 
