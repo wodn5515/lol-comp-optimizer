@@ -59,10 +59,10 @@ function SummonerInput({ value, onChange, onEnter, error, index }) {
           'w-full rounded-lg border bg-gray-900 pl-8 pr-4 py-2.5 text-sm text-gray-100',
           'placeholder:text-gray-600',
           'transition-colors',
-          'focus:outline-none focus:ring-2 focus:ring-inset',
+          'focus:outline-none',
           error
-            ? 'border-red-600 focus:ring-red-500/40'
-            : 'border-gray-700 focus:ring-amber-500/40 hover:border-gray-600'
+            ? 'border-red-600'
+            : 'border-gray-700 focus:border-amber-500 hover:border-gray-600'
         )}
         onKeyDown={(e) => {
           if (e.key === 'Enter') onEnter();
@@ -226,7 +226,7 @@ export function PlayerInputForm() {
                   '미 키 #0313,dlwldms #iuiu,Daemi #Arneb'
                 }
                 rows={5}
-                className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-sm text-gray-100 placeholder:text-gray-600 placeholder:text-[11px] focus:outline-none focus:ring-2 focus:ring-inset focus:ring-sky-500/40 resize-none leading-relaxed"
+                className="w-full rounded-lg border border-gray-700 bg-gray-900 px-3 py-2.5 text-sm text-gray-100 placeholder:text-gray-600 placeholder:text-[11px] focus:outline-none focus:border-amber-500 resize-none leading-relaxed"
               />
               {playerInputs.some((p) => p.rawInput) && (
                 <p className="text-[11px] text-sky-400">

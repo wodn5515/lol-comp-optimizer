@@ -56,12 +56,12 @@ export function ApiKeyInput({ className }) {
               'w-full rounded-lg border bg-gray-900 px-4 py-2.5 text-sm text-gray-100 pr-10',
               'placeholder:text-gray-600',
               'transition-colors',
-              'focus:outline-none focus:ring-2 focus:ring-inset',
+              'focus:outline-none',
               isValid
-                ? 'border-emerald-700 focus:ring-emerald-500/40'
+                ? 'border-emerald-700 focus:border-emerald-500'
                 : localKey
-                  ? 'border-amber-700 focus:ring-amber-500/40'
-                  : 'border-gray-700 focus:ring-amber-500/40'
+                  ? 'border-amber-700 focus:border-amber-500'
+                  : 'border-gray-700 focus:border-amber-500'
             )}
           />
           <button

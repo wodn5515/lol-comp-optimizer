@@ -27,10 +27,10 @@ export function Input({
           'w-full rounded-lg border bg-gray-900 px-4 py-2.5 text-sm text-gray-100',
           'placeholder:text-gray-500',
           'transition-colors',
-          'focus:outline-none focus:ring-2 focus:ring-inset',
+          'focus:outline-none',
           error
-            ? 'border-red-600 focus:ring-red-500/40'
-            : 'border-gray-700 focus:ring-amber-500/40 focus:border-amber-600 hover:border-gray-600',
+            ? 'border-red-600'
+            : 'border-gray-700 focus:border-amber-500 hover:border-gray-600',
           className
         )}
         {...props}

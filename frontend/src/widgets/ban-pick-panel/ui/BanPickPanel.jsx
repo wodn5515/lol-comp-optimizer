@@ -84,7 +84,7 @@ function ChampionSearchInput({ onSelect, placeholder, excludeList = [] }) {
         className={cn(
           'w-full rounded-lg border bg-gray-900 px-3 py-2 text-sm text-gray-100',
           'placeholder:text-gray-600',
-          'border-gray-700 focus:ring-2 focus:ring-inset focus:ring-amber-500/40 focus:outline-none',
+          'border-gray-700 focus:outline-none focus:border-amber-500',
           'transition-colors'
         )}
       />
@@ -397,7 +397,7 @@ function AllyLockSection() {
                   }}
                   className={cn(
                     'rounded-md border bg-gray-900 px-2 py-1.5 text-xs text-gray-300',
-                    'border-gray-700 focus:ring-1 focus:ring-inset focus:ring-amber-500/40 focus:outline-none',
+                    'border-gray-700 focus:outline-none focus:border-amber-500',
                     'cursor-pointer max-w-[140px]'
                   )}
                 >
@@ -485,7 +485,7 @@ function PositionLockSection() {
                   onChange={(e) => {
                     if (e.target.value) lockPosition(playerKey, e.target.value);
                   }}
-                  className="rounded-md border bg-gray-900 border-gray-700 px-2 py-1.5 text-xs text-gray-300 focus:ring-1 focus:ring-inset focus:ring-sky-500/40 focus:outline-none cursor-pointer"
+                  className="rounded-md border bg-gray-900 border-gray-700 px-2 py-1.5 text-xs text-gray-300 focus:outline-none focus:border-amber-500 cursor-pointer"
                 >
                   <option value="">라인 선택...</option>
                   {LANE_OPTIONS.filter((l) => !usedLanes.includes(l.value) || lockedLane === l.value).map((l) => (
