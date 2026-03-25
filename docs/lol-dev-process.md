@@ -31,59 +31,60 @@
 
 ## 2. 개발 순서
 
-### Phase 0: 스캐폴딩
+### Phase 0: 스캐폴딩 ✅
 
 ```
-[ ] 백엔드 셋업 (FastAPI + SQLite + SQLModel)
-[ ] 프론트엔드 셋업 (React + Vite + Tailwind + zustand)
-[ ] FSD 디렉토리 구조 생성
-[ ] 포트앤어댑터 디렉토리 구조 생성
-[ ] CORS 설정
-[ ] CLAUDE.md 작성
+[x] 백엔드 셋업 (FastAPI + SQLite + SQLModel)
+[x] 프론트엔드 셋업 (React + Vite + Tailwind + zustand)
+[x] FSD 디렉토리 구조 생성
+[x] 포트앤어댑터 디렉토리 구조 생성
+[x] CORS 설정
+[x] CLAUDE.md 작성
 ```
 
-### Phase 1: 도메인 모델 + 챔피언 데이터
+### Phase 1: 도메인 모델 + 챔피언 데이터 ✅
 
 ```
-[ ] domain/models/ 전체 정의 (Player, Champion, Composition, Match)
-[ ] domain/ports/ 전체 정의 (ABC)
-[ ] 챔피언 속성 JSON 작성 (주요 80~100개)
-[ ] champion_data_service (Data Dragon 태그 기반 기본값 부여)
-[ ] adapters/outbound/persistence/champion_repo_impl
-[ ] DB seed 스크립트 (챔피언 속성 초기화)
+[x] domain/models/ 전체 정의 (Player, Champion, Composition, Match)
+[x] domain/ports/ 전체 정의 (ABC)
+[x] 챔피언 속성 JSON 작성 (171개, 메타 티어·한글 이름·운영 팁 포함)
+[x] champion_data_service (Data Dragon 태그 기반 기본값 부여)
+[x] adapters/outbound/persistence/champion_repo_impl
+[x] DB seed 스크립트 (챔피언 속성 초기화)
 ```
 
-### Phase 2: Riot API 연동
+### Phase 2: Riot API 연동 ✅
 
 ```
-[ ] adapters/outbound/external/riot_api_client (rate limiter 포함)
-[ ] adapters/outbound/external/ddragon_client
-[ ] domain/services/player_analysis_service (전적 데이터 → 라인별 승률, 챔피언풀)
-[ ] 프론트: shared/ (API client, 공통 UI)
-[ ] 프론트: entities/player, entities/champion
-[ ] 프론트: features/setup-api-key
+[x] adapters/outbound/external/riot_api_client (rate limiter 포함)
+[x] adapters/outbound/external/ddragon_client
+[x] domain/services/player_analysis_service (전적 데이터 → 라인별 승률, 챔피언풀)
+[x] 프론트: shared/ (API client, 공통 UI)
+[x] 프론트: entities/player, entities/champion
+[x] 프론트: features/setup-api-key
 ```
 
-### Phase 3: 최적화 알고리즘
+### Phase 3: 최적화 알고리즘 ✅
 
 ```
-[ ] domain/services/lane_optimizer_service (라인 배정 전수 탐색)
-[ ] domain/services/comp_optimizer_service (챔피언 조합 점수 산정)
-[ ] adapters/inbound/api/optimize_router (POST /api/optimize)
-[ ] 프론트: features/analyze-comp
-[ ] 프론트: features/add-player
-[ ] 프론트: widgets/player-input-form
+[x] domain/services/lane_optimizer_service (라인 배정 전수 탐색 + 챔피언풀 추론)
+[x] domain/services/comp_optimizer_service (챔피언 조합 점수 산정 + 12가지 archetype)
+[x] adapters/inbound/api/optimize_router (POST /api/optimize, /analyze-players, /optimize-comp)
+[x] 프론트: features/analyze-comp
+[x] 프론트: features/add-player
+[x] 프론트: widgets/player-input-form (멀티서치 포함)
 ```
 
-### Phase 4: 결과 화면 + 마무리
+### Phase 4: 결과 화면 + 밴픽 ✅
 
 ```
-[ ] 프론트: entities/composition (TeamCompCard, TeamAnalysisChart)
-[ ] 프론트: widgets/result-board, widgets/player-summary
-[ ] 프론트: widgets/loading-progress
-[ ] 프론트: pages/home, pages/result
-[ ] E2E 테스트
-[ ] 전체 플로우 검증
+[x] 프론트: entities/composition (TeamCompCard, TeamAnalysisChart, 챔피언 기여도 툴팁)
+[x] 프론트: widgets/result-board, widgets/player-summary
+[x] 프론트: widgets/loading-progress
+[x] 프론트: widgets/ban-pick-panel (밴/적픽/고정픽/포지션 고정)
+[x] 프론트: pages/home, pages/banpick, pages/result
+[x] 98개 테스트 통과 (unit + integration)
+[x] 전체 플로우 검증 + GitHub Pages/Render 배포
 ```
 
 ### Phase 5a: P0 개선 (성능 + 안정성)
