@@ -78,6 +78,8 @@ class ChampionStatsData(BaseModel):
     win_rate: float = 0.0
     kda: float = 0.0
     mastery_points: int = 0
+    is_flex: bool = False
+    flex_lanes: list[str] = Field(default_factory=list)
 
 
 class LaneStatsData(BaseModel):
@@ -134,6 +136,8 @@ def _serialize_player(player: Player) -> dict:
                 "win_rate": round(c.win_rate, 3),
                 "kda": c.kda,
                 "mastery_points": c.mastery_points,
+                "is_flex": c.is_flex,
+                "flex_lanes": c.flex_lanes,
             }
             for c in player.top_champions
         ],
@@ -158,12 +162,18 @@ def _serialize_recommendations(
                 "personal_win_rate": round(a.personal_win_rate, 3),
                 "personal_kda": a.personal_kda,
             }
-            # Add champion play tips if champion_attrs_map is available
+            # Add flex pick info if champion has 2+ primary lanes
             if champion_attrs_map:
                 attrs = champion_attrs_map.get(a.champion_name)
                 if attrs:
                     assignment_dict["champion_play_tips"] = attrs.play_tips
                     assignment_dict["champion_meta_tier"] = attrs.meta_tier
+                    if hasattr(attrs, "primary_lanes") and len(attrs.primary_lanes) >= 2:
+                        assignment_dict["is_flex"] = True
+                        assignment_dict["flex_lanes"] = list(attrs.primary_lanes)
+                    else:
+                        assignment_dict["is_flex"] = False
+                        assignment_dict["flex_lanes"] = []
             assignments_data.append(assignment_dict)
 
         recommendations.append(
@@ -402,6 +412,12 @@ async def _fetch_players_from_riot(
                     or champion_id_to_name_ko.get(cs.champion_id, "")
                 )
 
+            # Detect flex picks based on champion primary_lanes
+            all_attrs_for_flex = await champion_data_service.get_all() if champion_data_service else []
+            flex_attrs_map = {a.champion_name: a for a in all_attrs_for_flex}
+            if player_analysis_service:
+                player_analysis_service.detect_flex_picks(champion_stats, flex_attrs_map)
+
             # 매치 기반 챔피언이 부족하면 숙련도(모스트) 데이터로 보충
             MIN_CHAMPION_POOL = 5
             if len(champion_stats) < MIN_CHAMPION_POOL:
@@ -544,6 +560,8 @@ def _player_data_to_domain(player_data: PlayerData) -> Player:
                 win_rate=c.win_rate,
                 kda=c.kda,
                 mastery_points=c.mastery_points,
+                is_flex=c.is_flex,
+                flex_lanes=list(c.flex_lanes),
             )
         )
 
@@ -660,6 +678,11 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
                 )
                 champion_attrs_map[cs.champion_name] = auto_attrs
 
+    # Detect flex picks for all players
+    if player_analysis_service:
+        for player in players:
+            player_analysis_service.detect_flex_picks(player.top_champions, champion_attrs_map)
+
     # Build lane constraints
     lane_constraints: dict[str, list[str]] = {}
 
@@ -772,12 +795,20 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
 
     logger.info("  라인 배정 %d가지 전수 탐색", len(lane_assignments))
 
+    # Build enemy champion attributes list for counter scoring
+    enemy_attrs_list: list[ChampionAttributes] = []
+    for enemy_name in request.enemy_picks:
+        attrs = champion_attrs_map.get(enemy_name)
+        if attrs:
+            enemy_attrs_list.append(attrs)
+
     # Run comp optimizer
     compositions = comp_optimizer_service.optimize(
         players=players,
         lane_assignments=lane_assignments,
         champion_attrs_map=champion_attrs_map,
         top_n=5,
+        enemy_attrs_list=enemy_attrs_list if enemy_attrs_list else None,
     )
 
     return {"recommendations": _serialize_recommendations(compositions, champion_attrs_map)}

@@ -59,6 +59,20 @@ SYNERGY_STRATEGIES: dict[frozenset, str] = {
     frozenset(["다이브", "폭딜"]): "전원 백라인 직행. 다이버가 CC로 잡으면 어쌔신이 원샷. 교전을 2~3초 내에 끝내세요.",
 }
 
+# Comp counter relationship table (섹션 3-2)
+# ally_type -> {enemy_type: score}  유리 +8, 불리 -5, 중립 0
+COMP_COUNTER_TABLE: dict[str, dict[str, int]] = {
+    "이니시":     {"포킹": 8, "스플릿": 8, "디스인게이지": -5, "픽": -5},
+    "디스인게이지": {"이니시": 8, "다이브": 8, "스플릿": -5, "포킹": -5},
+    "포킹":      {"디스인게이지": 8, "스케일링": 8, "이니시": -5, "서스테인": -5},
+    "픽":        {"포킹": 8, "스플릿": 8, "디스인게이지": -5, "한타": -5},
+    "스플릿":     {"포킹": 8, "디스인게이지": 8, "이니시": -5, "픽": -5},
+    "한타":      {"이니시": 8, "다이브": -5, "스플릿": -5},
+    "프로텍트":   {"한타": 8, "포킹": 8, "다이브": -5, "폭딜": -5},
+    "다이브":     {"프로텍트": 8, "한타": 8, "디스인게이지": -5},
+    "폭딜":      {"포킹": 8, "다이브": -5},
+}
+
 # Detailed strategy for each comp type
 COMP_STRATEGIES: dict[str, dict[str, str]] = {
     "이니시": {
@@ -642,6 +656,43 @@ class CompOptimizerService:
 
         return penalties
 
+    def _calculate_counter_score(
+        self,
+        ally_types: list[str],
+        enemy_types: list[str],
+    ) -> float:
+        """Calculate counter score based on comp type matchups.
+
+        For each ally type, look up its score against each enemy type in
+        COMP_COUNTER_TABLE (favorable +8, unfavorable -5, neutral 0).
+        If multiple ally types exist, average their scores.
+        """
+        if not ally_types or not enemy_types:
+            return 0.0
+
+        type_scores: list[float] = []
+        for ally_t in ally_types:
+            matchups = COMP_COUNTER_TABLE.get(ally_t, {})
+            total = 0.0
+            for enemy_t in enemy_types:
+                total += matchups.get(enemy_t, 0)
+            # Average over enemy types
+            type_scores.append(total / len(enemy_types))
+
+        # Average over ally types
+        return sum(type_scores) / len(type_scores)
+
+    def _detect_enemy_comp_types(
+        self,
+        enemy_attrs_list: list[ChampionAttributes],
+    ) -> list[str]:
+        """Detect enemy comp types, scaling thresholds by (enemy_count / 5).
+
+        Reuses _detect_comp_types but adjusts for partial enemy info
+        by temporarily not scaling (thresholds are already n-based).
+        """
+        return self._detect_comp_types(enemy_attrs_list)
+
     def calculate_score(
         self,
         assignments: list[Assignment],
@@ -1018,6 +1069,7 @@ class CompOptimizerService:
         lane_assignments: list[LaneAssignment],
         champion_attrs_map: dict[str, ChampionAttributes],
         top_n: int = 5,
+        enemy_attrs_list: list[ChampionAttributes] | None = None,
     ) -> list[Composition]:
         """Find optimal champion compositions for the given lane assignments.
 
@@ -1032,6 +1084,11 @@ class CompOptimizerService:
             player_map[key] = p
 
         all_compositions: list[Composition] = []
+
+        # Pre-compute enemy comp types for counter scoring (3+ enemy picks required)
+        enemy_comp_types: list[str] = []
+        if enemy_attrs_list and len(enemy_attrs_list) >= 3:
+            enemy_comp_types = self._detect_enemy_comp_types(enemy_attrs_list)
 
         for lane_assignment in lane_assignments:
             # 모든 라인 배정을 전수 탐색 — 가장 높은 점수 조합을 찾기 위해
@@ -1117,6 +1174,12 @@ class CompOptimizerService:
                     assignments, champion_attrs_map
                 )
                 score += off_lane_count * PENALTY_OFF_LANE_PER_CHAMPION
+
+                # Counter score: 적 조합 상성 (3+ enemy picks, 가중치 미적용 직접 가산)
+                if enemy_comp_types:
+                    ally_types = self._detect_comp_types(attrs_list)
+                    counter = self._calculate_counter_score(ally_types, enemy_comp_types)
+                    score += counter
 
                 # 라인 배정 보너스 제거 — 개인 숙련도(25%)에서 이미 게임수/승률 반영됨
                 # 이중 반영하면 게임수 많은 챔피언이 과도하게 유리해짐
