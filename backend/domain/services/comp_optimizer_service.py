@@ -393,19 +393,19 @@ class CompOptimizerService:
         """Detect composition archetypes from champion attributes.
 
         Returns a list of detected comp type names (Korean).
-        12 possible types:
-        1. 이니시: engage >= 15
-        2. 디스인게이지: peel >= 14, engage < 10
-        3. 포킹: poke >= 14
-        4. 픽: pick >= 14
-        5. 스플릿: splitpush >= 14, at least 1 champ with splitpush >= 4
-        6. 한타 (프론트투백): teamfight >= 18, TANK or BRUISER present
-        7. 프로텍트: peel >= 12, MARKSMAN present
-        8. 다이브: engage >= 12, burst >= 12, peel < 8
-        9. 스커미시: 3+ champs with ASSASSIN or BRUISER in role_tags
-        10. 궁합 (Wombo): engage >= 12, teamfight >= 15
-        11. 글로벌: skipped (no GLOBAL tag yet)
-        12. 폭딜: burst >= 16, 2+ ASSASSIN
+        기준값은 인원수(n) 기반 상대적 판별 (5명 기준 예시):
+        1. 이니시: engage >= 3*n (15)
+        2. 디스인게이지: peel >= 3*n (15), engage < 2*n (10)
+        3. 포킹: poke >= 3*n (15)
+        4. 픽: pick >= 3.5*n (17.5)
+        5. 스플릿: splitpush >= 3*n (15), 스플릿러 1명+
+        6. 한타: teamfight >= 4*n (20), 프론트라인 있음
+        7. 프로텍트: peel >= 2.5*n (12.5), 원딜 있음
+        8. 다이브: engage >= 2.5*n, burst >= 3*n, peel < 1.5*n
+        9. 스커미시: 어쌔신/브루저 3명+ (4명 이상일 때만)
+        10. 궁합: engage >= 2.5*n, teamfight >= 3.5*n
+        11. 글로벌: 미구현
+        12. 폭딜: burst >= 3.5*n, 어쌔신 2명+
         """
         if not champion_attrs_list:
             return []
@@ -435,50 +435,54 @@ class CompOptimizerService:
 
         comp_types: list[str] = []
 
-        # 1. 이니시 조합: engage >= 15
-        if engage_total >= 15:
+        # 기준값은 5명 평균 합계 대비 유의미하게 높은 값으로 설정
+        # engage 평균합=12, peel=8, poke=10, pick=13, burst=15, split=12, teamfight=17
+        n = len(champion_attrs_list)
+
+        # 1. 이니시 조합: engage가 평균(2.4*n) 대비 충분히 높음
+        if engage_total >= 3 * n:  # 5명: 15
             comp_types.append("이니시")
 
-        # 2. 디스인게이지 조합: peel >= 14, engage < 10
-        if peel_total >= 14 and engage_total < 10:
+        # 2. 디스인게이지 조합: peel 높고 engage 낮음
+        if peel_total >= 3 * n and engage_total < 2 * n:
             comp_types.append("디스인게이지")
 
-        # 3. 포킹/시즈 조합: poke >= 14
-        if poke_total >= 14:
+        # 3. 포킹/시즈 조합: poke가 평균(2.0*n) 대비 높음
+        if poke_total >= 3 * n:  # 5명: 15
             comp_types.append("포킹")
 
-        # 4. 픽/캐치 조합: pick >= 14
-        if pick_total >= 14:
+        # 4. 픽/캐치 조합: pick이 평균(2.5*n) 대비 높음
+        if pick_total >= 3.5 * n:  # 5명: 17.5
             comp_types.append("픽")
 
-        # 5. 스플릿 조합: splitpush >= 14, at least 1 champ with splitpush >= 4
-        if splitpush_total >= 14 and any(a.splitpush >= 4 for a in champion_attrs_list):
+        # 5. 스플릿 조합: splitpush 높고 스플릿러 1명+
+        if splitpush_total >= 3 * n and any(a.splitpush >= 4 for a in champion_attrs_list):
             comp_types.append("스플릿")
 
-        # 6. 프론트투백 한타 조합: teamfight >= 18, TANK or BRUISER present
-        if teamfight_total >= 18 and has_frontline:
+        # 6. 프론트투백 한타 조합: teamfight가 평균(3.4*n) 대비 확실히 높음 + 프론트라인
+        if teamfight_total >= 4 * n and has_frontline:  # 5명: 20
             comp_types.append("한타")
 
-        # 7. 프로텍트 조합: peel >= 12, MARKSMAN present
-        if peel_total >= 12 and has_marksman:
+        # 7. 프로텍트 조합: peel 높고 원딜 있음
+        if peel_total >= 2.5 * n and has_marksman:
             comp_types.append("프로텍트")
 
-        # 8. 다이브 조합: engage >= 12, burst >= 12, peel < 8
-        if engage_total >= 12 and burst_total >= 12 and peel_total < 8:
+        # 8. 다이브 조합: engage+burst 높고 peel 낮음
+        if engage_total >= 2.5 * n and burst_total >= 3 * n and peel_total < 1.5 * n:
             comp_types.append("다이브")
 
         # 9. 스커미시/초반 조합: 3+ champions with ASSASSIN or BRUISER
-        if skirmish_count >= 3:
+        if skirmish_count >= 3 and n >= 4:
             comp_types.append("스커미시")
 
-        # 10. 궁합(Wombo) 조합: engage >= 12, teamfight >= 15
-        if engage_total >= 12 and teamfight_total >= 15:
+        # 10. 궁합(Wombo) 조합: engage + teamfight 둘 다 높음
+        if engage_total >= 2.5 * n and teamfight_total >= 3.5 * n:
             comp_types.append("궁합")
 
         # 11. 글로벌 조합: skipped for now (no GLOBAL tag)
 
-        # 12. 폭딜/어쌔신 조합: burst >= 16, 2+ ASSASSIN
-        if burst_total >= 16 and assassin_count >= 2:
+        # 12. 폭딜/어쌔신 조합: burst 높고 어쌔신 2명+
+        if burst_total >= 3.5 * n and assassin_count >= 2:
             comp_types.append("폭딜")
 
         return comp_types
