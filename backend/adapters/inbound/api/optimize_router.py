@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 from domain.models.match import MatchSummary
 from domain.models.champion import ChampionAttributes
 from domain.services.player_analysis_service import PlayerAnalysisService
-from domain.services.lane_optimizer_service import LaneOptimizerService
+from domain.services.lane_optimizer_service import LaneOptimizerService, LANES
 from domain.services.comp_optimizer_service import CompOptimizerService
 from domain.services.champion_data_service import ChampionDataService
 from domain.ports.external.riot_api_port import RiotApiPort
@@ -101,7 +101,8 @@ class OptimizeCompRequest(BaseModel):
     players: list[PlayerData] = Field(..., min_length=2, max_length=5)
     banned_champions: list[str] = Field(default_factory=list)
     enemy_picks: list[str] = Field(default_factory=list)
-    locked_picks: dict[str, str] = Field(default_factory=dict)
+    locked_picks: dict[str, str] = Field(default_factory=dict)  # {"name#tag": "ChampionName"}
+    locked_positions: dict[str, str] = Field(default_factory=dict)  # {"name#tag": "TOP"}
 
 
 # ── Helpers ────────────────────────────────────────────────────────────────
@@ -623,13 +624,21 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
                 )
                 champion_attrs_map[cs.champion_name] = auto_attrs
 
-    # Build lane constraints from locked picks
-    # 허용 라인 = 챔피언의 primary_lanes + 플레이어가 실제 플레이한 라인
+    # Build lane constraints
     lane_constraints: dict[str, list[str]] = {}
+
+    # 1) 포지션 고정: 특정 플레이어를 특정 라인에 고정
+    for player_key, lane in request.locked_positions.items():
+        lane_constraints[player_key] = [lane]
+        logger.info("  포지션 고정: %s → %s", player_key, lane)
+
+    # 2) 챔피언 고정: 허용 라인 = 챔피언 primary_lanes + 플레이어 실제 라인
+    #    (포지션 고정이 이미 있으면 그게 우선)
     for player_key, champion_name in request.locked_picks.items():
+        if player_key in lane_constraints:
+            continue  # 포지션 고정이 이미 설정됨
         attrs = champion_attrs_map.get(champion_name)
         allowed = set(attrs.primary_lanes) if attrs and attrs.primary_lanes else set(LANES)
-        # 플레이어가 실제 플레이한 라인도 추가 (판테온 정글 등)
         for player in players:
             key = f"{player.game_name}#{player.tag_line}"
             if key == player_key:
@@ -639,7 +648,7 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
                 break
         lane_constraints[player_key] = list(allowed)
         logger.info(
-            "  라인 제약: %s → %s (허용: %s)",
+            "  챔프 잠금 라인 제약: %s → %s (허용: %s)",
             player_key, champion_name, lane_constraints[player_key]
         )
 

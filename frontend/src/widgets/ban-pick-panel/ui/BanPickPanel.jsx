@@ -417,6 +417,90 @@ function AllyLockSection() {
   );
 }
 
+const LANE_OPTIONS = [
+  { value: 'TOP', label: '탑' },
+  { value: 'JG', label: '정글' },
+  { value: 'MID', label: '미드' },
+  { value: 'ADC', label: '원딜' },
+  { value: 'SUP', label: '서폿' },
+];
+
+function PositionLockSection() {
+  const analyzedPlayers = useBanPickStore((s) => s.analyzedPlayers);
+  const lockedPositions = useBanPickStore((s) => s.lockedPositions);
+  const lockPosition = useBanPickStore((s) => s.lockPosition);
+  const unlockPosition = useBanPickStore((s) => s.unlockPosition);
+
+  if (!analyzedPlayers || analyzedPlayers.length === 0) return null;
+
+  const usedLanes = Object.values(lockedPositions);
+
+  return (
+    <div className="space-y-3">
+      <h3 className="text-sm font-bold text-sky-400">
+        포지션 고정
+      </h3>
+
+      <div className="space-y-2">
+        {analyzedPlayers.map((player) => {
+          const playerKey = `${player.game_name}#${player.tag_line}`;
+          const lockedLane = lockedPositions[playerKey];
+
+          return (
+            <div
+              key={playerKey}
+              className={cn(
+                'flex items-center gap-3 p-2.5 rounded-lg transition-colors border',
+                lockedLane
+                  ? 'bg-sky-950 border-sky-800'
+                  : 'bg-gray-800/50 border-gray-700'
+              )}
+            >
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-semibold text-gray-200 truncate">
+                  {player.game_name}
+                  <span className="text-gray-500">#{player.tag_line}</span>
+                </p>
+              </div>
+
+              {lockedLane ? (
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-bold text-sky-300 bg-sky-900 rounded-md px-2 py-1">
+                    {LANE_OPTIONS.find((l) => l.value === lockedLane)?.label || lockedLane}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => unlockPosition(playerKey)}
+                    className="text-gray-500 hover:text-sky-400 transition-colors p-1"
+                    title="고정 해제"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                      <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                    </svg>
+                  </button>
+                </div>
+              ) : (
+                <select
+                  value=""
+                  onChange={(e) => {
+                    if (e.target.value) lockPosition(playerKey, e.target.value);
+                  }}
+                  className="rounded-md border bg-gray-900 border-gray-700 px-2 py-1.5 text-xs text-gray-300 focus:ring-1 focus:ring-sky-500/40 focus:outline-none cursor-pointer"
+                >
+                  <option value="">라인 선택...</option>
+                  {LANE_OPTIONS.filter((l) => !usedLanes.includes(l.value) || lockedLane === l.value).map((l) => (
+                    <option key={l.value} value={l.value}>{l.label}</option>
+                  ))}
+                </select>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export function BanPickPanel() {
   return (
     <Card>
@@ -426,7 +510,7 @@ export function BanPickPanel() {
             밴/픽 설정
           </h2>
           <p className="text-xs text-gray-500 mt-0.5">
-            밴과 적 팀 픽을 설정하면 추천이 자동으로 업데이트됩니다
+            밴, 적 팀 픽, 포지션/챔프 고정을 설정하면 추천이 자동으로 업데이트됩니다
           </p>
         </div>
 
@@ -435,6 +519,10 @@ export function BanPickPanel() {
         <div className="border-t border-gray-800" />
 
         <EnemyPickSection />
+
+        <div className="border-t border-gray-800" />
+
+        <PositionLockSection />
 
         <div className="border-t border-gray-800" />
 

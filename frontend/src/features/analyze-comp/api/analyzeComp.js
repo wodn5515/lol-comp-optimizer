@@ -50,11 +50,12 @@ export async function analyzePlayers({ apiKey, players, matchCount = 15 }) {
  * @param {Object} params.lockedPicks - 고정 픽 { "playerName#tag": "ChampionName" }
  * @returns {Promise<Object>} 최적화 결과
  */
-export async function optimizeComp({ players, bannedChampions = [], enemyPicks = [], lockedPicks = {} }) {
+export async function optimizeComp({ players, bannedChampions = [], enemyPicks = [], lockedPicks = {}, lockedPositions = {} }) {
   return apiClient.post('/optimize-comp', {
     players,
     banned_champions: bannedChampions,
     enemy_picks: enemyPicks,
     locked_picks: lockedPicks,
+    locked_positions: lockedPositions,
   });
 }

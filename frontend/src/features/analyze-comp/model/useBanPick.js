@@ -5,6 +5,7 @@ const initialState = {
   bannedChampions: [],
   enemyPicks: [],
   lockedPicks: {},
+  lockedPositions: {},   // {"playerKey": "TOP"}
   recommendations: [],
   isOptimizing: false,
 };
@@ -48,6 +49,18 @@ export const useBanPickStore = create((set) => ({
       const lockedPicks = { ...state.lockedPicks };
       delete lockedPicks[playerKey];
       return { lockedPicks };
+    }),
+
+  lockPosition: (playerKey, lane) =>
+    set((state) => ({
+      lockedPositions: { ...state.lockedPositions, [playerKey]: lane },
+    })),
+
+  unlockPosition: (playerKey) =>
+    set((state) => {
+      const lockedPositions = { ...state.lockedPositions };
+      delete lockedPositions[playerKey];
+      return { lockedPositions };
     }),
 
   setRecommendations: (recs) => set({ recommendations: recs }),

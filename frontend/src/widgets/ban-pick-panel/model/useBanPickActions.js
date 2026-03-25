@@ -3,7 +3,7 @@ import { useBanPickStore } from '../../../features/analyze-comp';
 import { optimizeComp } from '../../../features/analyze-comp/api/analyzeComp';
 
 /**
- * 밴/픽 변경 시 자동으로 최적화 API를 호출하는 훅
+ * 밴/픽/포지션 변경 시 자동으로 최적화 API를 호출하는 훅
  * 500ms 디바운스 적용
  */
 export function useBanPickActions() {
@@ -11,6 +11,7 @@ export function useBanPickActions() {
   const bannedChampions = useBanPickStore((s) => s.bannedChampions);
   const enemyPicks = useBanPickStore((s) => s.enemyPicks);
   const lockedPicks = useBanPickStore((s) => s.lockedPicks);
+  const lockedPositions = useBanPickStore((s) => s.lockedPositions);
   const setRecommendations = useBanPickStore((s) => s.setRecommendations);
   const setIsOptimizing = useBanPickStore((s) => s.setIsOptimizing);
 
@@ -33,6 +34,7 @@ export function useBanPickActions() {
         bannedChampions,
         enemyPicks,
         lockedPicks,
+        lockedPositions,
       });
 
       if (result?.recommendations) {
@@ -47,7 +49,7 @@ export function useBanPickActions() {
     } finally {
       setIsOptimizing(false);
     }
-  }, [analyzedPlayers, bannedChampions, enemyPicks, lockedPicks, setRecommendations, setIsOptimizing]);
+  }, [analyzedPlayers, bannedChampions, enemyPicks, lockedPicks, lockedPositions, setRecommendations, setIsOptimizing]);
 
   useEffect(() => {
     if (!analyzedPlayers || analyzedPlayers.length === 0) return;
@@ -65,7 +67,7 @@ export function useBanPickActions() {
         clearTimeout(timerRef.current);
       }
     };
-  }, [bannedChampions, enemyPicks, lockedPicks, fetchOptimization]);
+  }, [bannedChampions, enemyPicks, lockedPicks, lockedPositions, fetchOptimization]);
 
   // Initial fetch when players are first set
   const hasInitialFetch = useRef(false);
