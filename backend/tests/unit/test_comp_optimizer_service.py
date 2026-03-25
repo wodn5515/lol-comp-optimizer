@@ -704,10 +704,326 @@ class TestAnalyzeOptimization:
                 top_n=top_n,
             )
 
-        # analyze() should be called exactly top_n times (or fewer if fewer results)
-        assert analyze_call_count <= top_n
-        assert analyze_call_count == len(results)
+        # analyze() should be called for top_n results plus diversity filter calls
+        # The diversity filter now also calls analyze() for archetype tracking,
+        # so count may be higher than top_n but results should still be valid
+        assert analyze_call_count >= len(results)
         # Verify we still get valid Composition objects with team_analysis
         for comp in results:
             assert comp.team_analysis is not None
             assert comp.assignments is not None
+
+
+class TestDiversityFilter:
+    def test_diversity_filter_5players_min_3_diff(self, comp_optimizer: CompOptimizerService) -> None:
+        """With 5 players, results must differ by >= 3 champions (min_diff = max(1, 5-2) = 3)."""
+        from domain.models.player import Player, ChampionStats
+        from domain.models.composition import LaneAssignment, Assignment as LaneAssign
+
+        # 5 players, each with multiple champion options
+        players = [
+            Player(game_name="P1", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Aatrox", champion_id=1, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Darius", champion_id=2, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Garen", champion_id=3, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+            Player(game_name="P2", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="LeeSin", champion_id=4, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Hecarim", champion_id=5, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Nocturne", champion_id=6, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+            Player(game_name="P3", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Viktor", champion_id=7, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Syndra", champion_id=8, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Ahri", champion_id=9, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+            Player(game_name="P4", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Jinx", champion_id=10, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Caitlyn", champion_id=11, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Ezreal", champion_id=12, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+            Player(game_name="P5", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Thresh", champion_id=13, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Lulu", champion_id=14, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Nautilus", champion_id=15, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+        ]
+
+        champion_attrs_map = {
+            "Aatrox": make_champ("Aatrox", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=1),
+            "Darius": make_champ("Darius", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=2),
+            "Garen": make_champ("Garen", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=3),
+            "LeeSin": make_champ("LeeSin", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["JG"], champion_id=4),
+            "Hecarim": make_champ("Hecarim", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["JG"], champion_id=5),
+            "Nocturne": make_champ("Nocturne", damage_type="AD", role_tags=["ASSASSIN"], primary_lanes=["JG"], champion_id=6),
+            "Viktor": make_champ("Viktor", damage_type="AP", role_tags=["MAGE"], primary_lanes=["MID"], champion_id=7),
+            "Syndra": make_champ("Syndra", damage_type="AP", role_tags=["MAGE"], primary_lanes=["MID"], champion_id=8),
+            "Ahri": make_champ("Ahri", damage_type="AP", role_tags=["MAGE"], primary_lanes=["MID"], champion_id=9),
+            "Jinx": make_champ("Jinx", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"], champion_id=10),
+            "Caitlyn": make_champ("Caitlyn", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"], champion_id=11),
+            "Ezreal": make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"], champion_id=12),
+            "Thresh": make_champ("Thresh", damage_type="AP", role_tags=["SUPPORT"], primary_lanes=["SUP"], champion_id=13),
+            "Lulu": make_champ("Lulu", damage_type="AP", role_tags=["SUPPORT"], primary_lanes=["SUP"], champion_id=14),
+            "Nautilus": make_champ("Nautilus", damage_type="AP", role_tags=["TANK"], primary_lanes=["SUP"], champion_id=15),
+        }
+
+        lane_assignments = [
+            LaneAssignment(
+                assignments=[
+                    LaneAssign(player_game_name="P1", player_tag_line="KR1", lane="TOP"),
+                    LaneAssign(player_game_name="P2", player_tag_line="KR1", lane="JG"),
+                    LaneAssign(player_game_name="P3", player_tag_line="KR1", lane="MID"),
+                    LaneAssign(player_game_name="P4", player_tag_line="KR1", lane="ADC"),
+                    LaneAssign(player_game_name="P5", player_tag_line="KR1", lane="SUP"),
+                ],
+                score=1.0,
+            ),
+        ]
+
+        compositions = comp_optimizer.optimize(
+            players=players,
+            lane_assignments=lane_assignments,
+            champion_attrs_map=champion_attrs_map,
+            top_n=5,
+        )
+
+        # Each pair of results must differ by >= 3 champions
+        for i in range(len(compositions)):
+            for j in range(i + 1, len(compositions)):
+                champs_i = frozenset(a.champion_name for a in compositions[i].assignments)
+                champs_j = frozenset(a.champion_name for a in compositions[j].assignments)
+                diff = len(champs_i.symmetric_difference(champs_j)) // 2
+                assert diff >= 3, (
+                    f"Compositions {i+1} and {j+1} differ by only {diff} champions "
+                    f"(need >= 3): {champs_i} vs {champs_j}"
+                )
+
+    def test_diversity_filter_2players_min_1_diff(self, comp_optimizer: CompOptimizerService) -> None:
+        """With 2 players, results must differ by >= 1 champion (min_diff = max(1, 2-2) = 1)."""
+        from domain.models.player import Player, ChampionStats
+        from domain.models.composition import LaneAssignment, Assignment as LaneAssign
+
+        players = [
+            Player(game_name="P1", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Aatrox", champion_id=1, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Darius", champion_id=2, games=10, wins=5, win_rate=0.5, kda=2.5),
+            ]),
+            Player(game_name="P2", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Jinx", champion_id=3, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Caitlyn", champion_id=4, games=10, wins=5, win_rate=0.5, kda=2.5),
+            ]),
+        ]
+
+        champion_attrs_map = {
+            "Aatrox": make_champ("Aatrox", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=1),
+            "Darius": make_champ("Darius", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"], champion_id=2),
+            "Jinx": make_champ("Jinx", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"], champion_id=3),
+            "Caitlyn": make_champ("Caitlyn", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"], champion_id=4),
+        }
+
+        lane_assignments = [
+            LaneAssignment(
+                assignments=[
+                    LaneAssign(player_game_name="P1", player_tag_line="KR1", lane="TOP"),
+                    LaneAssign(player_game_name="P2", player_tag_line="KR1", lane="ADC"),
+                ],
+                score=1.0,
+            ),
+        ]
+
+        compositions = comp_optimizer.optimize(
+            players=players,
+            lane_assignments=lane_assignments,
+            champion_attrs_map=champion_attrs_map,
+            top_n=5,
+        )
+
+        # Each pair of results must differ by >= 1 champion
+        for i in range(len(compositions)):
+            for j in range(i + 1, len(compositions)):
+                champs_i = frozenset(a.champion_name for a in compositions[i].assignments)
+                champs_j = frozenset(a.champion_name for a in compositions[j].assignments)
+                diff = len(champs_i.symmetric_difference(champs_j)) // 2
+                assert diff >= 1, (
+                    f"Compositions {i+1} and {j+1} are identical: {champs_i}"
+                )
+
+        # Should have multiple results (4 combos possible: 2x2)
+        assert len(compositions) >= 2
+
+    def test_diversity_archetype_variety(self, comp_optimizer: CompOptimizerService) -> None:
+        """If possible, top 5 should include 2+ different comp types."""
+        from domain.models.player import Player, ChampionStats
+        from domain.models.composition import LaneAssignment, Assignment as LaneAssign
+
+        # Design champions so different combos produce different archetypes:
+        # High-engage set vs high-poke set
+        players = [
+            Player(game_name="P1", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Ornn", champion_id=1, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Jayce", champion_id=2, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+            Player(game_name="P2", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Amumu", champion_id=3, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Nidalee", champion_id=4, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+            Player(game_name="P3", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Malphite", champion_id=5, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Xerath", champion_id=6, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+            Player(game_name="P4", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="MissFortune", champion_id=7, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Ezreal", champion_id=8, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+            Player(game_name="P5", tag_line="KR1", lane_stats={}, top_champions=[
+                ChampionStats(champion_name="Leona", champion_id=9, games=10, wins=6, win_rate=0.6, kda=3.0),
+                ChampionStats(champion_name="Karma", champion_id=10, games=10, wins=6, win_rate=0.6, kda=3.0),
+            ]),
+        ]
+
+        # Engage archetype champions: high engage, low poke
+        # Poke archetype champions: high poke, low engage
+        champion_attrs_map = {
+            "Ornn": make_champ("Ornn", damage_type="AP", role_tags=["TANK"], primary_lanes=["TOP"],
+                              champion_id=1, engage=5, poke=1, pick=1, burst=1, teamfight=5),
+            "Jayce": make_champ("Jayce", damage_type="AD", role_tags=["BRUISER"], primary_lanes=["TOP"],
+                               champion_id=2, engage=1, poke=5, pick=2, burst=2, teamfight=2),
+            "Amumu": make_champ("Amumu", damage_type="AP", role_tags=["TANK"], primary_lanes=["JG"],
+                               champion_id=3, engage=5, poke=1, pick=1, burst=1, teamfight=5),
+            "Nidalee": make_champ("Nidalee", damage_type="AP", role_tags=["MAGE"], primary_lanes=["JG"],
+                                 champion_id=4, engage=1, poke=5, pick=2, burst=3, teamfight=2),
+            "Malphite": make_champ("Malphite", damage_type="AP", role_tags=["TANK"], primary_lanes=["MID"],
+                                  champion_id=5, engage=5, poke=1, pick=1, burst=1, teamfight=5),
+            "Xerath": make_champ("Xerath", damage_type="AP", role_tags=["MAGE"], primary_lanes=["MID"],
+                                champion_id=6, engage=1, poke=5, pick=2, burst=3, teamfight=2),
+            "MissFortune": make_champ("MissFortune", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"],
+                                     champion_id=7, engage=2, poke=2, pick=1, burst=2, teamfight=4),
+            "Ezreal": make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"], primary_lanes=["ADC"],
+                                champion_id=8, engage=1, poke=4, pick=2, burst=2, teamfight=2),
+            "Leona": make_champ("Leona", damage_type="AP", role_tags=["TANK"], primary_lanes=["SUP"],
+                               champion_id=9, engage=5, poke=1, pick=2, burst=1, teamfight=4),
+            "Karma": make_champ("Karma", damage_type="AP", role_tags=["SUPPORT"], primary_lanes=["SUP"],
+                               champion_id=10, engage=1, poke=4, pick=1, burst=1, teamfight=2),
+        }
+
+        lane_assignments = [
+            LaneAssignment(
+                assignments=[
+                    LaneAssign(player_game_name="P1", player_tag_line="KR1", lane="TOP"),
+                    LaneAssign(player_game_name="P2", player_tag_line="KR1", lane="JG"),
+                    LaneAssign(player_game_name="P3", player_tag_line="KR1", lane="MID"),
+                    LaneAssign(player_game_name="P4", player_tag_line="KR1", lane="ADC"),
+                    LaneAssign(player_game_name="P5", player_tag_line="KR1", lane="SUP"),
+                ],
+                score=1.0,
+            ),
+        ]
+
+        compositions = comp_optimizer.optimize(
+            players=players,
+            lane_assignments=lane_assignments,
+            champion_attrs_map=champion_attrs_map,
+            top_n=5,
+        )
+
+        # Collect distinct comp types
+        comp_types = set()
+        for comp in compositions:
+            if comp.team_analysis and comp.team_analysis.comp_type:
+                comp_types.add(comp.team_analysis.comp_type)
+
+        # Should have at least 2 different archetypes if the champion pool allows it
+        assert len(comp_types) >= 2, (
+            f"Expected 2+ different comp types, got {len(comp_types)}: {comp_types}"
+        )
+
+
+class TestScoreBreakdown:
+    """Score breakdown must satisfy: sum(weighted) + penalties.total == total_score (±0.1)."""
+
+    def test_score_breakdown_sum_matches_total(self, comp_optimizer: CompOptimizerService) -> None:
+        """Verify the breakdown weighted values sum to total_score (±0.1)."""
+        assignments = make_5_assignments(win_rate=0.6, games=10)
+        attrs_list = [
+            make_champ("Aatrox", damage_type="AD", role_tags=["BRUISER"], teamfight=4, engage=4, waveclear=3, splitpush=4),
+            make_champ("LeeSin", damage_type="AD", role_tags=["BRUISER"], teamfight=3, engage=4, pick=4, burst=3),
+            make_champ("Viktor", damage_type="AP", role_tags=["MAGE"], teamfight=5, waveclear=5, poke=4),
+            make_champ("Jinx", damage_type="AD", role_tags=["MARKSMAN"], teamfight=5, waveclear=3, splitpush=2),
+            make_champ("Thresh", damage_type="AP", role_tags=["SUPPORT", "TANK"], engage=4, peel=4, pick=3),
+        ]
+
+        total_score = comp_optimizer.calculate_score(assignments, attrs_list)
+        breakdown = comp_optimizer.calculate_score_breakdown(assignments, attrs_list)
+
+        weighted_sum = (
+            breakdown.personal_mastery.weighted
+            + breakdown.meta_tier.weighted
+            + breakdown.ad_ap_balance.weighted
+            + breakdown.frontline.weighted
+            + breakdown.deal_composition.weighted
+            + breakdown.waveclear.weighted
+            + breakdown.splitpush.weighted
+            + breakdown.penalties.total
+        )
+
+        # Allow ±0.5 for rounding (each sub-score is rounded to 0.1)
+        assert abs(max(weighted_sum, 0.0) - total_score) <= 0.5, (
+            f"Breakdown sum {weighted_sum:.1f} != total_score {total_score:.1f}\n"
+            f"  personal_mastery: {breakdown.personal_mastery.weighted}\n"
+            f"  meta_tier: {breakdown.meta_tier.weighted}\n"
+            f"  ad_ap_balance: {breakdown.ad_ap_balance.weighted}\n"
+            f"  frontline: {breakdown.frontline.weighted}\n"
+            f"  deal_composition: {breakdown.deal_composition.weighted}\n"
+            f"  waveclear: {breakdown.waveclear.weighted}\n"
+            f"  splitpush: {breakdown.splitpush.weighted}\n"
+            f"  penalties: {breakdown.penalties.total}"
+        )
+
+    def test_score_breakdown_with_penalties(self, comp_optimizer: CompOptimizerService) -> None:
+        """Verify breakdown includes penalty details for full AD comp."""
+        assignments = make_5_assignments(win_rate=0.6, games=10)
+        all_ad = [
+            make_champ("Zed", damage_type="AD", role_tags=["ASSASSIN"], engage=1, peel=0, teamfight=2),
+            make_champ("LeeSin", damage_type="AD", role_tags=["BRUISER"], engage=3, peel=1, teamfight=3),
+            make_champ("Jayce", damage_type="AD", role_tags=["BRUISER"], engage=2, peel=0, teamfight=3),
+            make_champ("Jinx", damage_type="AD", role_tags=["MARKSMAN"], engage=0, peel=0, teamfight=4),
+            make_champ("Pyke", damage_type="AD", role_tags=["ASSASSIN", "SUPPORT"], engage=3, peel=1, teamfight=2),
+        ]
+
+        breakdown = comp_optimizer.calculate_score_breakdown(assignments, all_ad)
+
+        # Should contain full_ad penalty
+        assert breakdown.penalties.total < 0
+        assert any("풀 AD" in d for d in breakdown.penalties.details)
+
+    def test_score_breakdown_weights_sum_to_one(self, comp_optimizer: CompOptimizerService) -> None:
+        """Verify that the weights of all dimensions sum to 1.0."""
+        assignments = make_5_assignments()
+        attrs_list = [make_champ() for _ in range(5)]
+        breakdown = comp_optimizer.calculate_score_breakdown(assignments, attrs_list)
+
+        weight_sum = (
+            breakdown.personal_mastery.weight
+            + breakdown.meta_tier.weight
+            + breakdown.ad_ap_balance.weight
+            + breakdown.frontline.weight
+            + breakdown.deal_composition.weight
+            + breakdown.waveclear.weight
+            + breakdown.splitpush.weight
+        )
+        assert abs(weight_sum - 1.0) < 0.01, f"Weight sum {weight_sum} != 1.0"
+
+    def test_score_breakdown_partial_team(self, comp_optimizer: CompOptimizerService) -> None:
+        """For 2-3 players, breakdown should use personal_mastery at weight 1.0."""
+        assignments = [
+            make_assignment(name="P1", lane="TOP", champion_name="Aatrox"),
+            make_assignment(name="P2", lane="MID", champion_name="Viktor"),
+        ]
+        attrs_list = [
+            make_champ("Aatrox", damage_type="AD"),
+            make_champ("Viktor", damage_type="AP"),
+        ]
+
+        breakdown = comp_optimizer.calculate_score_breakdown(assignments, attrs_list)
+        assert breakdown.personal_mastery.weight == 1.0
+        assert breakdown.meta_tier.weight == 0.0

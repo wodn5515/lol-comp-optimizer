@@ -6,6 +6,9 @@ from domain.models.composition import (
     TeamAnalysis,
     LaneAssignment,
     Composition,
+    ScoreBreakdown,
+    ScoreBreakdownItem,
+    PenaltyBreakdown,
 )
 
 
@@ -691,6 +694,99 @@ class CompOptimizerService:
 
         return max(base_score + penalty_total, 0.0)
 
+    def calculate_score_breakdown(
+        self,
+        assignments: list[Assignment],
+        champion_attrs_list: list[ChampionAttributes],
+        champion_attrs_map: dict[str, ChampionAttributes] | None = None,
+    ) -> ScoreBreakdown:
+        """Calculate score breakdown for display purposes.
+
+        Called only for the final top-N compositions (not in the inner loop).
+        The sum of all weighted values + penalties.total == total_score (±0.1).
+        """
+        personal = self._personal_mastery_score(assignments)
+
+        # 4명 이하: 팀 조합 평가 불가 → 개인 숙련도만
+        if len(assignments) < 4:
+            return ScoreBreakdown(
+                personal_mastery=ScoreBreakdownItem(
+                    score=round(personal, 1),
+                    weighted=round(personal, 1),
+                    weight=1.0,
+                ),
+            )
+
+        if champion_attrs_map is None:
+            champion_attrs_map = {a.champion_name: a for a in champion_attrs_list}
+
+        comp_types = self._detect_comp_types(champion_attrs_list)
+
+        meta = self._meta_tier_score(assignments, champion_attrs_map)
+        ad_ap = self._ad_ap_balance_score(champion_attrs_list)
+        frontline = self._frontline_score(champion_attrs_list, comp_types)
+        deal = self._deal_composition_score(champion_attrs_list)
+        waveclear = self._waveclear_score(champion_attrs_list)
+        splitpush = self._splitpush_score(champion_attrs_list)
+
+        penalties = self._calculate_penalties(champion_attrs_list, comp_types)
+        penalty_total = sum(penalties.values())
+
+        # Penalty detail labels (Korean)
+        penalty_labels = {
+            "full_ad": f"{PENALTY_FULL_AD}: 풀 AD",
+            "full_ap": f"{PENALTY_FULL_AP}: 풀 AP",
+            "low_waveclear": f"{PENALTY_LOW_WAVECLEAR}: 웨이브클리어 부족",
+            "low_engage": f"{PENALTY_LOW_ENGAGE}: 이니시 부족",
+            "low_peel": f"{PENALTY_LOW_PEEL}: 필링 부족",
+            "low_teamfight": f"{PENALTY_LOW_TEAMFIGHT}: 팀파이트 부족",
+        }
+        penalty_details = [
+            penalty_labels.get(k, f"{v}: {k}") for k, v in penalties.items()
+        ]
+
+        return ScoreBreakdown(
+            personal_mastery=ScoreBreakdownItem(
+                score=round(personal, 1),
+                weighted=round(personal * WEIGHT_PERSONAL_MASTERY, 1),
+                weight=WEIGHT_PERSONAL_MASTERY,
+            ),
+            meta_tier=ScoreBreakdownItem(
+                score=round(meta, 1),
+                weighted=round(meta * WEIGHT_META_TIER, 1),
+                weight=WEIGHT_META_TIER,
+            ),
+            ad_ap_balance=ScoreBreakdownItem(
+                score=round(ad_ap, 1),
+                weighted=round(ad_ap * WEIGHT_AD_AP_BALANCE, 1),
+                weight=WEIGHT_AD_AP_BALANCE,
+            ),
+            frontline=ScoreBreakdownItem(
+                score=round(frontline, 1),
+                weighted=round(frontline * WEIGHT_FRONTLINE, 1),
+                weight=WEIGHT_FRONTLINE,
+            ),
+            deal_composition=ScoreBreakdownItem(
+                score=round(deal, 1),
+                weighted=round(deal * WEIGHT_DEAL_COMPOSITION, 1),
+                weight=WEIGHT_DEAL_COMPOSITION,
+            ),
+            waveclear=ScoreBreakdownItem(
+                score=round(waveclear, 1),
+                weighted=round(waveclear * WEIGHT_WAVECLEAR, 1),
+                weight=WEIGHT_WAVECLEAR,
+            ),
+            splitpush=ScoreBreakdownItem(
+                score=round(splitpush, 1),
+                weighted=round(splitpush * WEIGHT_SPLITPUSH, 1),
+                weight=WEIGHT_SPLITPUSH,
+            ),
+            penalties=PenaltyBreakdown(
+                details=penalty_details,
+                total=float(penalty_total),
+            ),
+        )
+
     def _build_strategy_guide(self, comp_types: list[str]) -> str:
         """Build strategy guide with synergy awareness.
 
@@ -1044,29 +1140,98 @@ class CompOptimizerService:
             champs = ", ".join(f"{a.display_name}({a.lane})" for a in assigns)
             _logger.info("  생성 조합 #%d: 점수=%.1f | %s", i+1, sc, champs)
 
-        # Diversity filter: 각 추천은 이전 추천과 최소 1개 챔피언이 달라야 함
-        selected: list[tuple[float, list[Assignment], list[ChampionAttributes]]] = []
-        seen_combos: set[frozenset[str]] = set()
-        for comp_tuple in all_compositions:
-            if len(selected) >= top_n:
-                break
-            comp_champs = frozenset(a.champion_name for a in comp_tuple[1])
-            # 완전 동일 조합만 제거
-            if comp_champs in seen_combos:
-                continue
-            seen_combos.add(comp_champs)
-            selected.append(comp_tuple)
+        # Diversity filter: min_diff개 이상 챔피언이 달라야 포함 + 아키타입 다양성
+        selected = self._diversity_filter(
+            all_compositions, top_n, len(players), champion_attrs_map
+        )
 
-        # analyze() 최적화 — 최종 top-N에 대해서만 호출
+        # analyze() + score_breakdown — 최종 top-N에 대해서만 호출
         result: list[Composition] = []
         for i, (sc, assigns, attrs_lst) in enumerate(selected):
             analysis = self.analyze(assigns, attrs_lst, champion_attrs_map)
+            breakdown = self.calculate_score_breakdown(
+                assigns, attrs_lst, champion_attrs_map
+            )
             comp = Composition(
                 total_score=sc,
                 assignments=assigns,
                 team_analysis=analysis,
+                score_breakdown=breakdown,
                 rank=i + 1,
             )
             result.append(comp)
+
+        return result
+
+    def _diversity_filter(
+        self,
+        candidates: list[tuple[float, list[Assignment], list[ChampionAttributes]]],
+        top_n: int,
+        player_count: int,
+        champion_attrs_map: dict[str, ChampionAttributes],
+    ) -> list[tuple[float, list[Assignment], list[ChampionAttributes]]]:
+        """Filter compositions for diversity.
+
+        - min_diff = max(1, player_count - 2): results must differ by at least
+          this many champions from every already-selected result.
+        - Archetype variety: try to include 2+ different comp types in top_n.
+        """
+        min_diff = max(1, player_count - 2)
+        result: list[tuple[float, list[Assignment], list[ChampionAttributes]]] = []
+        seen_archetypes: set[str] = set()
+
+        for score, assignments, attrs_list in candidates:
+            if len(result) >= top_n:
+                break
+            comp_champs = frozenset(a.champion_name for a in assignments)
+
+            too_similar = False
+            for _, existing_assignments, _ in result:
+                existing_champs = frozenset(
+                    a.champion_name for a in existing_assignments
+                )
+                diff_count = len(
+                    comp_champs.symmetric_difference(existing_champs)
+                ) // 2
+                if diff_count < min_diff:
+                    too_similar = True
+                    break
+            if too_similar:
+                continue
+
+            result.append((score, assignments, attrs_list))
+            # Track archetypes for diversity
+            analysis = self.analyze(assignments, attrs_list, champion_attrs_map)
+            if analysis.comp_type:
+                seen_archetypes.add(analysis.comp_type)
+
+        # If only 1 archetype found, try to add a different one
+        if len(seen_archetypes) < 2 and len(result) < top_n:
+            for score, assignments, attrs_list in candidates:
+                if any(
+                    assignments is r[1] for r in result
+                ):
+                    continue
+                # Must also pass min_diff check
+                comp_champs = frozenset(a.champion_name for a in assignments)
+                too_similar = False
+                for _, existing_assignments, _ in result:
+                    existing_champs = frozenset(
+                        a.champion_name for a in existing_assignments
+                    )
+                    diff_count = len(
+                        comp_champs.symmetric_difference(existing_champs)
+                    ) // 2
+                    if diff_count < min_diff:
+                        too_similar = True
+                        break
+                if too_similar:
+                    continue
+
+                analysis = self.analyze(assignments, attrs_list, champion_attrs_map)
+                if analysis.comp_type and analysis.comp_type not in seen_archetypes:
+                    result.append((score, assignments, attrs_list))
+                    if len(result) >= top_n:
+                        break
 
         return result
