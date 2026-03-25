@@ -17,4 +17,6 @@ class ChampionAttributes:
     pick: int = 3       # 1~5
     burst: int = 3      # 1~5
     primary_lanes: list[str] = field(default_factory=lambda: ["TOP", "MID"])  # lanes this champion naturally plays
+    play_tips: str = ""
+    meta_tier: dict[str, str] = field(default_factory=dict)  # {"TOP": "S", "MID": "A"}
     source: str = "MANUAL"  # "MANUAL" | "AUTO"

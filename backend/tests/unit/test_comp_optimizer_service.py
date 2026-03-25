@@ -18,10 +18,14 @@ def make_champ(
     pick: int = 3,
     burst: int = 3,
     champion_id: int = 0,
+    play_tips: str = "",
+    meta_tier: dict[str, str] | None = None,
+    champion_name_ko: str = "",
 ) -> ChampionAttributes:
     return ChampionAttributes(
         champion_id=champion_id,
         champion_name=name,
+        champion_name_ko=champion_name_ko,
         damage_type=damage_type,
         role_tags=role_tags or ["BRUISER"],
         primary_lanes=primary_lanes or ["TOP", "MID", "JG", "ADC", "SUP"],
@@ -33,6 +37,8 @@ def make_champ(
         poke=poke,
         pick=pick,
         burst=burst,
+        play_tips=play_tips,
+        meta_tier=meta_tier or {},
     )
 
 
@@ -200,8 +206,8 @@ class TestScoreWeights:
         assert analysis.waveclear_score >= 10
         assert len(analysis.penalties) == 0
 
-    def test_personal_mastery_weight_30pct(self, comp_optimizer: CompOptimizerService) -> None:
-        """Spec: Personal mastery weight is 30%."""
+    def test_personal_mastery_weight_25pct(self, comp_optimizer: CompOptimizerService) -> None:
+        """Spec: Personal mastery weight is 25% (was 30%, reduced for meta_tier)."""
         balanced_champs = [
             make_champ("Ornn", damage_type="AP", role_tags=["TANK"], waveclear=3, teamfight=4),
             make_champ("LeeSin", damage_type="AD", role_tags=["BRUISER"], waveclear=3, teamfight=3),
@@ -217,8 +223,8 @@ class TestScoreWeights:
         score_low = comp_optimizer.calculate_score(low_mastery, balanced_champs)
 
         diff = score_high - score_low
-        # 30% weight * 100 * (0.9 - 0.3) * mastery_factor(1.0) = 18
-        assert diff == pytest.approx(18.0, abs=5)
+        # 25% weight * 100 * (0.9 - 0.3) * mastery_factor(1.0) / 1.3 = ~11.5
+        assert diff == pytest.approx(11.5, abs=5)
 
 
 class TestAnalyze:
@@ -353,7 +359,9 @@ class TestCompArchetypes:
         assignments = make_5_assignments()
         analysis = comp_optimizer.analyze(assignments, champs)
         assert analysis.comp_type == "균형 조합"
-        assert analysis.strategy_guide == ""
+        # Strategy guide may contain champion roles guide even for balanced comps
+        if analysis.strategy_guide:
+            assert "챔피언별 역할" in analysis.strategy_guide
 
 
 class TestPrimaryLanesFiltering:
@@ -451,3 +459,154 @@ class TestPrimaryLanesFiltering:
         assert len(compositions) >= 1
         assert compositions[0].assignments[0].lane == "TOP"
         assert compositions[0].assignments[0].champion_name == "Aatrox"
+
+
+class TestMetaTier:
+    def test_meta_tier_score_all_s_tier(self, comp_optimizer: CompOptimizerService) -> None:
+        """All S-tier champions should get perfect meta score (100)."""
+        assignments = [
+            make_assignment(name="P1", lane="TOP", champion_name="Fiora"),
+            make_assignment(name="P2", lane="JG", champion_name="LeeSin"),
+            make_assignment(name="P3", lane="MID", champion_name="Zed"),
+            make_assignment(name="P4", lane="ADC", champion_name="Caitlyn"),
+            make_assignment(name="P5", lane="SUP", champion_name="Thresh"),
+        ]
+        champion_attrs_map = {
+            "Fiora": make_champ("Fiora", meta_tier={"TOP": "S"}),
+            "LeeSin": make_champ("LeeSin", meta_tier={"JG": "S"}),
+            "Zed": make_champ("Zed", meta_tier={"MID": "S"}),
+            "Caitlyn": make_champ("Caitlyn", meta_tier={"ADC": "S"}),
+            "Thresh": make_champ("Thresh", meta_tier={"SUP": "S"}),
+        }
+        score = comp_optimizer._meta_tier_score(assignments, champion_attrs_map)
+        assert score == 100.0
+
+    def test_meta_tier_score_all_d_tier(self, comp_optimizer: CompOptimizerService) -> None:
+        """All D-tier champions should get low meta score (20)."""
+        assignments = [
+            make_assignment(name="P1", lane="TOP", champion_name="A"),
+        ]
+        champion_attrs_map = {
+            "A": make_champ("A", meta_tier={"TOP": "D"}),
+        }
+        score = comp_optimizer._meta_tier_score(assignments, champion_attrs_map)
+        assert score == 20.0
+
+    def test_meta_tier_default_b_for_missing(self, comp_optimizer: CompOptimizerService) -> None:
+        """Champions without meta_tier data should default to B (60)."""
+        assignments = [
+            make_assignment(name="P1", lane="TOP", champion_name="Unknown"),
+        ]
+        champion_attrs_map: dict = {}
+        score = comp_optimizer._meta_tier_score(assignments, champion_attrs_map)
+        assert score == 60.0
+
+    def test_meta_tier_off_lane_defaults_to_b(self, comp_optimizer: CompOptimizerService) -> None:
+        """Champion played in a lane not in their meta_tier defaults to B (60)."""
+        assignments = [
+            make_assignment(name="P1", lane="SUP", champion_name="Zed"),
+        ]
+        champion_attrs_map = {
+            "Zed": make_champ("Zed", meta_tier={"MID": "S"}),
+        }
+        score = comp_optimizer._meta_tier_score(assignments, champion_attrs_map)
+        assert score == 60.0  # B tier default for off-meta lane
+
+    def test_meta_tier_affects_total_score(self, comp_optimizer: CompOptimizerService) -> None:
+        """Meta tier 10% weight should affect total score."""
+        # Use the same champion names as make_5_assignments: Aatrox, LeeSin, Viktor, Jinx, Thresh
+        champs_s = [
+            make_champ("Aatrox", damage_type="AD", role_tags=["TANK"], waveclear=3, teamfight=3, meta_tier={"TOP": "S"}),
+            make_champ("LeeSin", damage_type="AD", role_tags=["BRUISER"], waveclear=3, teamfight=3, meta_tier={"JG": "S"}),
+            make_champ("Viktor", damage_type="AP", role_tags=["MAGE"], waveclear=3, teamfight=3, meta_tier={"MID": "S"}),
+            make_champ("Jinx", damage_type="AD", role_tags=["MARKSMAN"], waveclear=3, teamfight=3, meta_tier={"ADC": "S"}),
+            make_champ("Thresh", damage_type="AP", role_tags=["SUPPORT"], waveclear=3, teamfight=3, meta_tier={"SUP": "S"}),
+        ]
+        champs_d = [
+            make_champ("Aatrox", damage_type="AD", role_tags=["TANK"], waveclear=3, teamfight=3, meta_tier={"TOP": "D"}),
+            make_champ("LeeSin", damage_type="AD", role_tags=["BRUISER"], waveclear=3, teamfight=3, meta_tier={"JG": "D"}),
+            make_champ("Viktor", damage_type="AP", role_tags=["MAGE"], waveclear=3, teamfight=3, meta_tier={"MID": "D"}),
+            make_champ("Jinx", damage_type="AD", role_tags=["MARKSMAN"], waveclear=3, teamfight=3, meta_tier={"ADC": "D"}),
+            make_champ("Thresh", damage_type="AP", role_tags=["SUPPORT"], waveclear=3, teamfight=3, meta_tier={"SUP": "D"}),
+        ]
+        assignments = make_5_assignments()
+        map_s = {c.champion_name: c for c in champs_s}
+        map_d = {c.champion_name: c for c in champs_d}
+
+        score_s = comp_optimizer.calculate_score(assignments, champs_s, map_s)
+        score_d = comp_optimizer.calculate_score(assignments, champs_d, map_d)
+
+        # S=100, D=20, diff=80. Weight=0.10, so 8 points difference
+        assert score_s > score_d
+        assert (score_s - score_d) == pytest.approx(8.0, abs=2)
+
+
+class TestChampionRolesGuide:
+    def test_champion_roles_guide_generated(self, comp_optimizer: CompOptimizerService) -> None:
+        """Champion roles guide should be generated for each assignment."""
+        # Use champion names matching make_5_assignments: Aatrox, LeeSin, Viktor, Jinx, Thresh
+        champs = [
+            make_champ("Aatrox", damage_type="AD", role_tags=["TANK"], engage=5, teamfight=5, waveclear=4,
+                        champion_name_ko="아트록스", play_tips="Q 3단 스윗스팟."),
+            make_champ("LeeSin", damage_type="AD", role_tags=["BRUISER"], engage=4, teamfight=3, waveclear=3,
+                        champion_name_ko="리 신", play_tips="인섹 콤보가 핵심."),
+            make_champ("Viktor", damage_type="AP", role_tags=["MAGE"], engage=3, teamfight=4, waveclear=5,
+                        champion_name_ko="빅토르", play_tips="헥스코어 진화."),
+            make_champ("Jinx", damage_type="AD", role_tags=["MARKSMAN"], engage=1, teamfight=4, waveclear=3,
+                        champion_name_ko="징크스", play_tips="로켓/미니건 전환."),
+            make_champ("Thresh", damage_type="AP", role_tags=["SUPPORT", "TANK"], engage=4, peel=4, teamfight=3, waveclear=1,
+                        champion_name_ko="쓰레쉬", play_tips="Q 적중 판단."),
+        ]
+        # engage = 5+4+3+1+4 = 17 >= 15 → 이니시 comp
+        assignments = make_5_assignments()
+        champion_attrs_map = {c.champion_name: c for c in champs}
+        analysis = comp_optimizer.analyze(assignments, champs, champion_attrs_map)
+
+        # Should contain 챔피언별 역할 section
+        assert "챔피언별 역할" in analysis.strategy_guide
+        # Should contain Korean champion names
+        assert "아트록스" in analysis.strategy_guide
+        assert "리 신" in analysis.strategy_guide
+        assert "징크스" in analysis.strategy_guide
+        # Should contain play tips
+        assert "팁:" in analysis.strategy_guide
+
+    def test_champion_roles_tank_in_engage_comp(self, comp_optimizer: CompOptimizerService) -> None:
+        """TANK in engage comp should get engage role description."""
+        comp_types = ["이니시"]
+        attrs = make_champ("Ornn", role_tags=["TANK"])
+        assignment = make_assignment(lane="TOP", champion_name="Ornn")
+        role = comp_optimizer._get_champion_comp_role(assignment, attrs, comp_types)
+        assert "이니시" in role
+
+    def test_champion_roles_marksman_in_protect_comp(self, comp_optimizer: CompOptimizerService) -> None:
+        """MARKSMAN in protect comp should be told to stay safe."""
+        comp_types = ["프로텍트"]
+        attrs = make_champ("Jinx", role_tags=["MARKSMAN"])
+        assignment = make_assignment(lane="ADC", champion_name="Jinx")
+        role = comp_optimizer._get_champion_comp_role(assignment, attrs, comp_types)
+        assert "딜러" in role or "딜링" in role
+
+    def test_champion_roles_assassin_in_pick_comp(self, comp_optimizer: CompOptimizerService) -> None:
+        """ASSASSIN in pick comp should be told to catch isolated targets."""
+        comp_types = ["픽"]
+        attrs = make_champ("Zed", role_tags=["ASSASSIN"])
+        assignment = make_assignment(lane="MID", champion_name="Zed")
+        role = comp_optimizer._get_champion_comp_role(assignment, attrs, comp_types)
+        assert "캐치" in role or "고립" in role
+
+    def test_champion_roles_bruiser_in_split_comp(self, comp_optimizer: CompOptimizerService) -> None:
+        """BRUISER with high splitpush in split comp should get split role."""
+        comp_types = ["스플릿"]
+        attrs = make_champ("Fiora", role_tags=["BRUISER"], splitpush=5)
+        assignment = make_assignment(lane="TOP", champion_name="Fiora")
+        role = comp_optimizer._get_champion_comp_role(assignment, attrs, comp_types)
+        assert "스플릿" in role
+
+    def test_champion_roles_mage_in_poke_comp(self, comp_optimizer: CompOptimizerService) -> None:
+        """MAGE with high poke in poke comp should get poke role."""
+        comp_types = ["포킹"]
+        attrs = make_champ("Xerath", role_tags=["MAGE"], poke=5)
+        assignment = make_assignment(lane="MID", champion_name="Xerath")
+        role = comp_optimizer._get_champion_comp_role(assignment, attrs, comp_types)
+        assert "포킹" in role

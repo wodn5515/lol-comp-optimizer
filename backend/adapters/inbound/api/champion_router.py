@@ -37,6 +37,8 @@ async def get_all_champions() -> list[dict]:
             "teamfight": c.teamfight,
             "engage": c.engage,
             "peel": c.peel,
+            "play_tips": c.play_tips,
+            "meta_tier": c.meta_tier,
             "source": c.source,
         }
         for c in champions
@@ -64,5 +66,7 @@ async def get_champion(champion_id: int) -> dict:
         "teamfight": champion.teamfight,
         "engage": champion.engage,
         "peel": champion.peel,
+        "play_tips": champion.play_tips,
+        "meta_tier": champion.meta_tier,
         "source": champion.source,
     }

@@ -69,6 +69,8 @@ async def seed_champions_if_empty() -> None:
                 poke=attrs_dict.get("poke", 3),
                 pick=attrs_dict.get("pick", 3),
                 burst=attrs_dict.get("burst", 3),
+                play_tips=attrs_dict.get("play_tips", ""),
+                meta_tier=attrs_dict.get("meta_tier", {}),
                 source="MANUAL",
             )
         )

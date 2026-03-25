@@ -16,7 +16,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "아트록스"
+    "champion_name_ko": "아트록스",
+    "play_tips": "Q 3단 스윗스팟을 맞추는 것이 핵심. 고쓰 변신 후 적극적으로 교전하세요. 1~2레벨 라인전 강력.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Ahri": {
     "champion_id": 103,
@@ -36,7 +40,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "아리"
+    "champion_name_ko": "아리",
+    "play_tips": "E 매혹 적중 후 W-Q 풀콤보. 궁으로 안전하게 진입/이탈. 6렙 이후 로밍 적극적으로.",
+    "meta_tier": {
+      "MID": "S"
+    }
   },
   "Akali": {
     "champion_id": 84,
@@ -56,7 +64,12 @@
       "MID",
       "TOP"
     ],
-    "champion_name_ko": "아칼리"
+    "champion_name_ko": "아칼리",
+    "play_tips": "패시브 원 사이에 기본공격 교차. 궁 1타 진입 후 딜 넣고 궁 2타로 마무리. 에너지 관리 중요.",
+    "meta_tier": {
+      "MID": "A",
+      "TOP": "B"
+    }
   },
   "Akshan": {
     "champion_id": 166,
@@ -77,7 +90,12 @@
       "MID",
       "TOP"
     ],
-    "champion_name_ko": "아크샨"
+    "champion_name_ko": "아크샨",
+    "play_tips": "E 스윙으로 딜링하며 이동. 적 킬 후 부활 패시브 활용. 로밍과 은신 감지 적극 활용.",
+    "meta_tier": {
+      "MID": "B",
+      "TOP": "C"
+    }
   },
   "Alistar": {
     "champion_id": 12,
@@ -97,7 +115,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "알리스타"
+    "champion_name_ko": "알리스타",
+    "play_tips": "W-Q 콤보(헤드벗-펄버라이즈)로 확정 CC. 궁으로 딜 감소 후 이니시. 플래시 Q-W 역콤보도 강력.",
+    "meta_tier": {
+      "SUP": "B"
+    }
   },
   "Ambessa": {
     "champion_id": 799,
@@ -116,7 +138,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "암베사"
+    "champion_name_ko": "암베사",
+    "play_tips": "스킬 연계 시 대쉬로 위치 조정. 궁으로 적을 벽에 밀어붙이면 추가 딜. 초중반 교전 강력.",
+    "meta_tier": {
+      "TOP": "A"
+    }
   },
   "Amumu": {
     "champion_id": 32,
@@ -136,7 +162,12 @@
       "JG",
       "SUP"
     ],
-    "champion_name_ko": "아무무"
+    "champion_name_ko": "아무무",
+    "play_tips": "Q 적중 후 궁으로 다수 CC. 팀파이트에서 2명 이상 궁 적중이 핵심. 초반 정글링은 약하니 주의.",
+    "meta_tier": {
+      "JG": "B",
+      "SUP": "B"
+    }
   },
   "Anivia": {
     "champion_id": 34,
@@ -155,7 +186,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "애니비아"
+    "champion_name_ko": "애니비아",
+    "play_tips": "Q 스턴 후 E로 2배 딜. 궁으로 지형 통제. 패시브(부활)가 있을 때 공격적으로 플레이.",
+    "meta_tier": {
+      "MID": "A"
+    }
   },
   "Annie": {
     "champion_id": 1,
@@ -175,7 +210,12 @@
       "MID",
       "SUP"
     ],
-    "champion_name_ko": "애니"
+    "champion_name_ko": "애니",
+    "play_tips": "스턴 4스택 쌓고 플래시-궁(티버즈)으로 광역 CC. 6렙 올킬 압력 강력. 스턴 관리가 핵심.",
+    "meta_tier": {
+      "MID": "B",
+      "SUP": "C"
+    }
   },
   "Aphelios": {
     "champion_id": 523,
@@ -194,7 +234,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "아펠리오스"
+    "champion_name_ko": "아펠리오스",
+    "play_tips": "무기 순서 관리가 핵심. 세버럼+크레센덤 근접 딜, 칼리버+인퍼넘 광역 궁. 2코어 이후 화력 폭발.",
+    "meta_tier": {
+      "ADC": "C"
+    }
   },
   "Ashe": {
     "champion_id": 22,
@@ -214,7 +258,12 @@
       "ADC",
       "SUP"
     ],
-    "champion_name_ko": "애쉬"
+    "champion_name_ko": "애쉬",
+    "play_tips": "W로 지속 견제, 궁(수정 화살)으로 원거리 이니시. 호크샷(E)으로 시야 확보. 슬로우로 카이팅.",
+    "meta_tier": {
+      "ADC": "A",
+      "SUP": "C"
+    }
   },
   "AurelionSol": {
     "champion_id": 136,
@@ -233,7 +282,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "아우렐리온 솔"
+    "champion_name_ko": "아우렐리온 솔",
+    "play_tips": "Q 스택 쌓아 범위와 딜 증가. 안전 거리에서 Q 포킹 후 궁으로 마무리. 스택 관리가 핵심.",
+    "meta_tier": {
+      "MID": "S"
+    }
   },
   "Aurora": {
     "champion_id": 893,
@@ -254,7 +307,12 @@
       "MID",
       "TOP"
     ],
-    "champion_name_ko": "오로라"
+    "champion_name_ko": "오로라",
+    "play_tips": "패시브 3스택 터뜨리기. 궁으로 적을 가두고 팀파이트. E로 벽 넘어 기동성 확보.",
+    "meta_tier": {
+      "MID": "B",
+      "TOP": "B"
+    }
   },
   "Azir": {
     "champion_id": 268,
@@ -274,7 +332,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "아지르"
+    "champion_name_ko": "아지르",
+    "play_tips": "병사 배치 후 안전 거리에서 딜링. 궁(황제의 분할)으로 적 백라인 분리. 조작 난이도 높지만 후반 강력.",
+    "meta_tier": {
+      "MID": "A"
+    }
   },
   "Bard": {
     "champion_id": 432,
@@ -293,7 +355,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "바드"
+    "champion_name_ko": "바드",
+    "play_tips": "Q 벽 스턴과 차임 수집 병행. 궁으로 적 오브젝트/타워 정지. 로밍 적극적으로 차임 수집하며 갱킹.",
+    "meta_tier": {
+      "SUP": "S"
+    }
   },
   "BelVeth": {
     "champion_id": 200,
@@ -313,7 +379,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "벨베스"
+    "champion_name_ko": "벨베스",
+    "play_tips": "오브젝트(드래곤/전령) 처치 후 진화. 진화 상태에서 압도적 스탯. 평타 리셋과 E 무적 활용.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Blitzcrank": {
     "champion_id": 53,
@@ -333,7 +403,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "블리츠크랭크"
+    "champion_name_ko": "블리츠크랭크",
+    "play_tips": "Q 그랩 한 방이 게임을 바꿈. 덤불에서 기습 그랩. E 넉업과 궁 침묵으로 후속 CC.",
+    "meta_tier": {
+      "SUP": "B"
+    }
   },
   "Brand": {
     "champion_id": 63,
@@ -353,7 +427,12 @@
       "SUP",
       "MID"
     ],
-    "champion_name_ko": "브랜드"
+    "champion_name_ko": "브랜드",
+    "play_tips": "3스킬 연속 적중으로 패시브 폭발. 팀파이트에서 궁 튕기기 극대화. 소환사 협곡 좁은 통로에서 강력.",
+    "meta_tier": {
+      "SUP": "A",
+      "MID": "B"
+    }
   },
   "Braum": {
     "champion_id": 201,
@@ -373,7 +452,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "브라움"
+    "champion_name_ko": "브라움",
+    "play_tips": "패시브 4타로 스턴. E 방패로 아군 보호. 궁으로 광역 넉업 이니시. 원딜 바로 옆에서 필링.",
+    "meta_tier": {
+      "SUP": "A"
+    }
   },
   "Briar": {
     "champion_id": 233,
@@ -393,7 +476,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "브라이어"
+    "champion_name_ko": "브라이어",
+    "play_tips": "W 활성화 시 자동 공격+체력 흡수. 궁으로 장거리 이니시. 궁 적중 후 광폭화로 올인.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Caitlyn": {
     "champion_id": 51,
@@ -412,7 +499,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "케이틀린"
+    "champion_name_ko": "케이틀린",
+    "play_tips": "긴 사거리로 라인전 주도. W 덫으로 지형 통제, E-Q 콤보로 견제. 헤드샷 활용이 핵심.",
+    "meta_tier": {
+      "ADC": "A"
+    }
   },
   "Camille": {
     "champion_id": 164,
@@ -432,7 +523,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "카밀"
+    "champion_name_ko": "카밀",
+    "play_tips": "E 벽타기로 기습 진입. Q 2단(참 피해)이 핵심 딜. 궁으로 타겟 격리 후 1v1. 사이드 스플릿 강력.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Cassiopeia": {
     "champion_id": 69,
@@ -451,7 +546,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "카시오페아"
+    "champion_name_ko": "카시오페아",
+    "play_tips": "Q/W 독 적중 후 E 연사로 DPS. 궁 뒤돌아보면 석화(스턴). 지속 딜 극강이지만 신발 불가.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "ChoGath": {
     "champion_id": 31,
@@ -471,7 +570,12 @@
       "TOP",
       "MID"
     ],
-    "champion_name_ko": "초가스"
+    "champion_name_ko": "초가스",
+    "play_tips": "Q 넉업 후 W 침묵 연계. 궁으로 적/오브젝트 처형(체력 비례). 스택 쌓아 탱킹. 후반 거대화.",
+    "meta_tier": {
+      "TOP": "B",
+      "MID": "C"
+    }
   },
   "Corki": {
     "champion_id": 42,
@@ -490,7 +594,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "코르키"
+    "champion_name_ko": "코르키",
+    "play_tips": "패키지(특별 배달) 타이밍에 로밍/팀파이트. 궁(미사일) 포킹 후 W 진입. AD+마법 하이브리드 딜.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "Darius": {
     "champion_id": 122,
@@ -509,7 +617,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "다리우스"
+    "champion_name_ko": "다리우스",
+    "play_tips": "출혈 5스택 쌓으면 궁(단두대) 초기화. Q 외곽으로 체력 회복. 1~2레벨 올인 강력. 고스트 활용.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Diana": {
     "champion_id": 131,
@@ -530,7 +642,12 @@
       "JG",
       "MID"
     ],
-    "champion_name_ko": "다이애나"
+    "champion_name_ko": "다이애나",
+    "play_tips": "Q 적중 후 E 대쉬(초기화). 궁으로 다수 끌어당기며 광역 딜. 정글 클리어 빠르고 팀파이트 강력.",
+    "meta_tier": {
+      "JG": "B",
+      "MID": "S"
+    }
   },
   "DrMundo": {
     "champion_id": 36,
@@ -551,7 +668,12 @@
       "TOP",
       "JG"
     ],
-    "champion_name_ko": "문도 박사"
+    "champion_name_ko": "문도 박사",
+    "play_tips": "Q 지속 견제로 체력 소모. 궁으로 체력 대량 회복. 패시브로 CC 면역. 탱킹하며 앞줄 유지.",
+    "meta_tier": {
+      "TOP": "B",
+      "JG": "B"
+    }
   },
   "Draven": {
     "champion_id": 119,
@@ -570,7 +692,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "드레이븐"
+    "champion_name_ko": "드레이븐",
+    "play_tips": "도끼 캐치하며 딜링. 패시브 골드로 스노우볼. 초반 2렙 올인 강력. 도끼 2개 유지가 핵심.",
+    "meta_tier": {
+      "ADC": "B"
+    }
   },
   "Ekko": {
     "champion_id": 245,
@@ -590,7 +716,12 @@
       "MID",
       "JG"
     ],
-    "champion_name_ko": "에코"
+    "champion_name_ko": "에코",
+    "play_tips": "W 안에서 싸우면 실드+스턴. 궁(시간 역행)으로 무적+딜+회복. 패시브 3타로 이속 증가+추가 딜.",
+    "meta_tier": {
+      "MID": "B",
+      "JG": "A"
+    }
   },
   "Elise": {
     "champion_id": 60,
@@ -610,7 +741,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "엘리스"
+    "champion_name_ko": "엘리스",
+    "play_tips": "인간 폼 E(고치) 스턴 후 풀콤보. 거미 폼 Q가 체력 비례 딜. 초반 갱킹 극강. 타워 다이브 가능.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Evelynn": {
     "champion_id": 28,
@@ -629,7 +764,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "이블린"
+    "champion_name_ko": "이블린",
+    "play_tips": "6렙 패시브 은신으로 기습. W 매혹 완성 후 올인. 궁으로 체력 낮은 적 처형+이탈. 초반은 약함.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Ezreal": {
     "champion_id": 81,
@@ -648,7 +787,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "이즈리얼"
+    "champion_name_ko": "이즈리얼",
+    "play_tips": "Q 포킹으로 안전하게 딜. E 점멸로 위험 회피. 스킬 적중률이 곧 딜. 정수 약탈자 스택 관리.",
+    "meta_tier": {
+      "ADC": "B"
+    }
   },
   "Fiddlesticks": {
     "champion_id": 9,
@@ -667,7 +810,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "피들스틱"
+    "champion_name_ko": "피들스틱",
+    "play_tips": "시야 밖에서 궁(크로우스톰)으로 기습 진입이 핵심. W 흡혈로 정글링, E 공포로 CC. 시야 싸움 중요.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Fiora": {
     "champion_id": 114,
@@ -687,7 +834,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "피오라"
+    "champion_name_ko": "피오라",
+    "play_tips": "급소 찌르기로 딜+이속 증가. W(반격)으로 CC 무효화+스턴. 궁 4방향 급소 달성 시 광역 회복. 스플릿 최강.",
+    "meta_tier": {
+      "TOP": "A"
+    }
   },
   "Fizz": {
     "champion_id": 105,
@@ -706,7 +857,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "피즈"
+    "champion_name_ko": "피즈",
+    "play_tips": "E(장난꾸러기) 무적으로 적 핵심 스킬 회피 후 딜. 궁(상어) 적중이 올킬 핵심. 6렙 이후 올인.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "Galio": {
     "champion_id": 3,
@@ -727,7 +882,12 @@
       "MID",
       "SUP"
     ],
-    "champion_name_ko": "갈리오"
+    "champion_name_ko": "갈리오",
+    "play_tips": "패시브 마법 방어 활용. W 충전 도발로 CC, E 돌진 넉업. 궁으로 아군에게 순간이동+광역 CC.",
+    "meta_tier": {
+      "MID": "A",
+      "SUP": "B"
+    }
   },
   "Gangplank": {
     "champion_id": 41,
@@ -747,7 +907,12 @@
       "TOP",
       "MID"
     ],
-    "champion_name_ko": "갱플랭크"
+    "champion_name_ko": "갱플랭크",
+    "play_tips": "통 연쇄 폭발로 광역 딜. 패시브(불) 리셋하며 교역. 궁으로 글로벌 어시스트. 후반 3코어 이후 캐리.",
+    "meta_tier": {
+      "TOP": "B",
+      "MID": "C"
+    }
   },
   "Garen": {
     "champion_id": 86,
@@ -767,7 +932,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "가렌"
+    "champion_name_ko": "가렌",
+    "play_tips": "Q 침묵 후 E 회전 딜. 궁(데마시아의 정의) 체력 낮은 적 처형. 패시브 회복으로 라인 유지. 쉬운 조작.",
+    "meta_tier": {
+      "TOP": "S"
+    }
   },
   "Gnar": {
     "champion_id": 150,
@@ -787,7 +956,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "나르"
+    "champion_name_ko": "나르",
+    "play_tips": "미니 나르로 견제, 분노 차면 메가 나르로 변신. 메가 나르 궁(벽 충돌)이 팀파이트 핵심. 변신 타이밍 관리.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Gragas": {
     "champion_id": 79,
@@ -809,7 +982,13 @@
       "JG",
       "MID"
     ],
-    "champion_name_ko": "그라가스"
+    "champion_name_ko": "그라가스",
+    "play_tips": "E-플래시 바디슬램으로 기습 CC. 궁(폭발 통)으로 적 포지셔닝 붕괴. 다양한 포지션 유연성.",
+    "meta_tier": {
+      "TOP": "C",
+      "JG": "A",
+      "MID": "C"
+    }
   },
   "Graves": {
     "champion_id": 104,
@@ -828,7 +1007,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "그레이브즈"
+    "champion_name_ko": "그레이브즈",
+    "play_tips": "장탄 관리하며 딜링. E 대쉬로 방어력 스택. 벽 넘어 Q 반사 2히트. 정글 클리어 빠르고 맞딜 강력.",
+    "meta_tier": {
+      "JG": "S"
+    }
   },
   "Gwen": {
     "champion_id": 887,
@@ -847,7 +1030,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "그웬"
+    "champion_name_ko": "그웬",
+    "play_tips": "W(신성한 안개) 안에서 원거리 공격 면역. Q 풀스택으로 높은 딜. 패시브 체력 비례 딜. 사이드 1v1 강력.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Hecarim": {
     "champion_id": 120,
@@ -867,7 +1054,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "헤카림"
+    "champion_name_ko": "헤카림",
+    "play_tips": "E 돌진 이속 비례 딜+넉백. 궁으로 광역 공포. 초중반 갱킹 강력. 고스트+E로 미친 이속.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Heimerdinger": {
     "champion_id": 74,
@@ -888,7 +1079,13 @@
       "TOP",
       "SUP"
     ],
-    "champion_name_ko": "하이머딩거"
+    "champion_name_ko": "하이머딩거",
+    "play_tips": "포탑 3개 설치 후 진지전. 강화 포탑(궁+Q)으로 1v2 가능. 갱 올 때 궁+E 스턴으로 역킬.",
+    "meta_tier": {
+      "MID": "C",
+      "TOP": "C",
+      "SUP": "C"
+    }
   },
   "Hwei": {
     "champion_id": 910,
@@ -908,7 +1105,12 @@
       "MID",
       "SUP"
     ],
-    "champion_name_ko": "흐웨이"
+    "champion_name_ko": "흐웨이",
+    "play_tips": "QQ 포킹, QW 광역 딜, EE 공포 CC. 상황에 따라 10가지 스킬 조합 활용. 궁으로 도주 차단.",
+    "meta_tier": {
+      "MID": "A",
+      "SUP": "B"
+    }
   },
   "Illaoi": {
     "champion_id": 420,
@@ -927,7 +1129,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "일라오이"
+    "champion_name_ko": "일라오이",
+    "play_tips": "E로 영혼 끌어내 촉수 공격. 궁(도약)으로 다수 상대 시 촉수 폭딜. 적이 많을수록 강력. 갱 올 때 역킬.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Irelia": {
     "champion_id": 39,
@@ -948,7 +1154,12 @@
       "TOP",
       "MID"
     ],
-    "champion_name_ko": "이렐리아"
+    "champion_name_ko": "이렐리아",
+    "play_tips": "패시브 4스택 쌓고 교전. Q로 미니언 리셋하며 접근. 궁으로 진입 후 Q 리셋 연쇄. 초중반 강력.",
+    "meta_tier": {
+      "TOP": "S",
+      "MID": "B"
+    }
   },
   "Ivern": {
     "champion_id": 427,
@@ -967,7 +1178,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "아이번"
+    "champion_name_ko": "아이번",
+    "play_tips": "정글 몬스터를 싸우지 않고 해방. Q 적중 시 아군도 대쉬 가능. 데이지(궁)로 탱킹. 서포트형 정글러.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Janna": {
     "champion_id": 40,
@@ -987,7 +1202,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "잔나"
+    "champion_name_ko": "잔나",
+    "play_tips": "Q 토네이도로 적 돌진 차단. W 슬로우, E 보호막 타이밍. 궁으로 적 밀어내며 아군 힐. 디스인게이지 최강.",
+    "meta_tier": {
+      "SUP": "B"
+    }
   },
   "JarvanIV": {
     "champion_id": 59,
@@ -1007,7 +1226,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "자르반 4세"
+    "champion_name_ko": "자르반 4세",
+    "play_tips": "E-Q 콤보로 넉업 이니시. 궁(카타클리즘)으로 적 가두기. 초반 갱킹 강력. 플래그 시야 확보 활용.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Jax": {
     "champion_id": 24,
@@ -1027,7 +1250,12 @@
       "TOP",
       "JG"
     ],
-    "champion_name_ko": "잭스"
+    "champion_name_ko": "잭스",
+    "play_tips": "E 회피+스턴이 교전 핵심. Q로 접근, W 리셋 딜링. 궁 방어막으로 탱킹. 후반 1v1/스플릿 최강급.",
+    "meta_tier": {
+      "TOP": "B",
+      "JG": "A"
+    }
   },
   "Jayce": {
     "champion_id": 126,
@@ -1048,7 +1276,12 @@
       "TOP",
       "MID"
     ],
-    "champion_name_ko": "제이스"
+    "champion_name_ko": "제이스",
+    "play_tips": "원거리 폼 Q-E(가속 포탄)로 포킹. 근접 폼 W로 맞딜. 폼 체인지 콤보 연습 필수. 초중반 라인 강압.",
+    "meta_tier": {
+      "TOP": "B",
+      "MID": "B"
+    }
   },
   "Jhin": {
     "champion_id": 202,
@@ -1067,7 +1300,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "진"
+    "champion_name_ko": "진",
+    "play_tips": "4발째 강화탄으로 큰 딜. W 원거리 스네어, 궁(커튼콜) 원거리 처형. E 덫으로 시야/지형 통제.",
+    "meta_tier": {
+      "ADC": "A"
+    }
   },
   "Jinx": {
     "champion_id": 222,
@@ -1086,7 +1323,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "징크스"
+    "champion_name_ko": "징크스",
+    "play_tips": "로켓/미니건 전환 딜링. 킬 나면 패시브로 이속 폭발, 연쇄 킬 가능. 3코어 이후 팀파이트 캐리.",
+    "meta_tier": {
+      "ADC": "S"
+    }
   },
   "KSante": {
     "champion_id": 897,
@@ -1106,7 +1347,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "크산테"
+    "champion_name_ko": "크산테",
+    "play_tips": "궁으로 적을 벽 넘어 격리 후 딜 모드 전환. 3Q 넉업으로 CC. 탱크와 딜러 모드 전환 활용.",
+    "meta_tier": {
+      "TOP": "A"
+    }
   },
   "Kaisa": {
     "champion_id": 145,
@@ -1125,7 +1370,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "카이사"
+    "champion_name_ko": "카이사",
+    "play_tips": "패시브 5스택으로 추가 딜. Q 고립 타겟에 풀딜. 스킬 진화(Q/W/E)에 따라 플레이 변화. 궁으로 진입.",
+    "meta_tier": {
+      "ADC": "B"
+    }
   },
   "Kalista": {
     "champion_id": 429,
@@ -1144,7 +1393,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "칼리스타"
+    "champion_name_ko": "칼리스타",
+    "play_tips": "평타-이동 반복(호핑)이 핵심. E 창 뽑기로 큰 딜+오브젝트 스틸. 궁으로 서포터 구출/이니시.",
+    "meta_tier": {
+      "ADC": "B"
+    }
   },
   "Karma": {
     "champion_id": 43,
@@ -1166,7 +1419,12 @@
       "SUP",
       "MID"
     ],
-    "champion_name_ko": "카르마"
+    "champion_name_ko": "카르마",
+    "play_tips": "강화 Q(만트라)로 포킹, 강화 W로 회복, 강화 E로 팀 이속 증가. 초반 라인전 강력. 유틸 서포터.",
+    "meta_tier": {
+      "SUP": "S",
+      "MID": "C"
+    }
   },
   "Karthus": {
     "champion_id": 30,
@@ -1186,7 +1444,12 @@
       "JG",
       "MID"
     ],
-    "champion_name_ko": "카서스"
+    "champion_name_ko": "카서스",
+    "play_tips": "Q 단일 타겟 적중 시 2배 딜. 패시브(사후 시전) 동안 자유롭게 딜. 궁(진혼곡) 글로벌 딜. 정글 파밍 빠름.",
+    "meta_tier": {
+      "JG": "A",
+      "MID": "B"
+    }
   },
   "Kassadin": {
     "champion_id": 38,
@@ -1206,7 +1469,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "카사딘"
+    "champion_name_ko": "카사딘",
+    "play_tips": "6렙 전까지 약하니 버티기. 16렙 궁 3스택 시 역대급 화력. 궁으로 순간이동 반복, 마나 관리 중요.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "Katarina": {
     "champion_id": 55,
@@ -1225,7 +1492,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "카타리나"
+    "champion_name_ko": "카타리나",
+    "play_tips": "단검 위치로 순간이동(E). 킬/어시 시 스킬 초기화. 궁 채널링 중 움직일 수 없으니 CC 주의. 로밍 핵심.",
+    "meta_tier": {
+      "MID": "S"
+    }
   },
   "Kayle": {
     "champion_id": 10,
@@ -1245,7 +1516,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "케일"
+    "champion_name_ko": "케일",
+    "play_tips": "6/11/16렙마다 진화. 초반 극약하니 파밍에 집중. 16렙 이후 원거리+광역 딜 최강. 궁 무적으로 핵심 아군 보호.",
+    "meta_tier": {
+      "TOP": "S"
+    }
   },
   "Kayn": {
     "champion_id": 141,
@@ -1265,7 +1540,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "케인"
+    "champion_name_ko": "케인",
+    "play_tips": "변신 전 갱킹으로 오브 수집. 적 원거리 상대 시 그림자(어쌔신), 근접 시 다르킨(브루저). E 벽 통과 기습.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Kennen": {
     "champion_id": 85,
@@ -1284,7 +1563,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "케넨"
+    "champion_name_ko": "케넨",
+    "play_tips": "궁+E로 돌진하며 광역 스턴. 팀파이트 이니시 강력. 플래시 궁으로 기습. 탑 원거리 견제 라인전.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Khazix": {
     "champion_id": 121,
@@ -1303,7 +1586,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "카직스"
+    "champion_name_ko": "카직스",
+    "play_tips": "고립된 적에게 Q 풀딜. R 은신으로 접근/이탈. 진화 순서: Q(딜)>E(리셋)>R or W. 정글 캐치 특화.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Kindred": {
     "champion_id": 203,
@@ -1322,7 +1609,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "킨드레드"
+    "champion_name_ko": "킨드레드",
+    "play_tips": "패시브 사냥감 마크 쌓아 사거리 증가. 궁(양의 휴식)으로 아군 사망 방지. 정글 카운터 정글+갱킹 병행.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Kled": {
     "champion_id": 240,
@@ -1341,7 +1632,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "클레드"
+    "champion_name_ko": "클레드",
+    "play_tips": "스칼에서 내리면 용기 게이지 채워 재탑승. 궁으로 장거리 이니시. 1v1 강력, 스칼 재탑승 시 역전.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "KogMaw": {
     "champion_id": 96,
@@ -1360,7 +1655,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "코그모"
+    "champion_name_ko": "코그모",
+    "play_tips": "W 활성화 시 사거리 극대화+체력 비례 딜. 3코어 이후 DPS 최강. 팀 보호 없이는 무력. 포지셔닝이 생명.",
+    "meta_tier": {
+      "ADC": "C"
+    }
   },
   "LeBlanc": {
     "champion_id": 7,
@@ -1380,7 +1679,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "르블랑"
+    "champion_name_ko": "르블랑",
+    "play_tips": "W 돌진-Q-E 풀콤보 후 W 복귀. 분신(패시브) 활용한 기만. 로밍 강력. 한타보다 픽/캐치 특화.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "LeeSin": {
     "champion_id": 64,
@@ -1400,7 +1703,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "리 신"
+    "champion_name_ko": "리 신",
+    "play_tips": "Q 적중 → 와드 점프 → R 인섹 콤보가 핵심. 초반 정글 장악 후 갱킹으로 스노우볼. 후반은 유틸성.",
+    "meta_tier": {
+      "JG": "S"
+    }
   },
   "Leona": {
     "champion_id": 89,
@@ -1420,7 +1727,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "레오나"
+    "champion_name_ko": "레오나",
+    "play_tips": "E 돌진 후 Q 스턴, 궁 광역 스턴으로 이니시. CC 체인이 강점. 올인 서포터, 싸움 걸면 풀올인.",
+    "meta_tier": {
+      "SUP": "A"
+    }
   },
   "Lillia": {
     "champion_id": 876,
@@ -1441,7 +1752,12 @@
       "JG",
       "TOP"
     ],
-    "champion_name_ko": "릴리아"
+    "champion_name_ko": "릴리아",
+    "play_tips": "패시브 이속으로 달리며 Q 딜링. 궁으로 패시브 걸린 적 전원 수면. 팀파이트 진입 후 궁 타이밍 중요.",
+    "meta_tier": {
+      "JG": "A",
+      "TOP": "C"
+    }
   },
   "Lissandra": {
     "champion_id": 127,
@@ -1460,7 +1776,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "리산드라"
+    "champion_name_ko": "리산드라",
+    "play_tips": "E 순간이동으로 기습 진입. 궁 자신에게 사용 시 무적+광역 CC. 이니시+자기 보호 겸비. CC 체인 강력.",
+    "meta_tier": {
+      "MID": "A"
+    }
   },
   "Lucian": {
     "champion_id": 236,
@@ -1480,7 +1800,12 @@
       "ADC",
       "MID"
     ],
-    "champion_name_ko": "루시안"
+    "champion_name_ko": "루시안",
+    "play_tips": "패시브(2연사) 스킬 사이에 끼워넣기. E 대쉬 후 패시브 딜링. 초반 2렙 올인 강력. 나미와 시너지.",
+    "meta_tier": {
+      "ADC": "B",
+      "MID": "B"
+    }
   },
   "Lulu": {
     "champion_id": 117,
@@ -1500,7 +1825,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "룰루"
+    "champion_name_ko": "룰루",
+    "play_tips": "W로 아군 버프 또는 적 변이. E 보호막+궁으로 원딜 보호. 궁(거대화)으로 넉업+체력 증가. 프로텍트 핵심.",
+    "meta_tier": {
+      "SUP": "A"
+    }
   },
   "Lux": {
     "champion_id": 99,
@@ -1521,7 +1850,12 @@
       "SUP",
       "MID"
     ],
-    "champion_name_ko": "럭스"
+    "champion_name_ko": "럭스",
+    "play_tips": "Q 속박 후 E-궁 풀콤보. 긴 사거리로 안전 포킹. 궁 짧은 쿨타임 활용. E로 시야 확보.",
+    "meta_tier": {
+      "SUP": "A",
+      "MID": "B"
+    }
   },
   "Malphite": {
     "champion_id": 54,
@@ -1541,7 +1875,12 @@
       "TOP",
       "SUP"
     ],
-    "champion_name_ko": "말파이트"
+    "champion_name_ko": "말파이트",
+    "play_tips": "궁(멈출 수 없는 힘)이 게임체인저. 3명 이상 적중이 목표. 플래시+궁 기습. 평소에는 탱킹.",
+    "meta_tier": {
+      "TOP": "B",
+      "SUP": "C"
+    }
   },
   "Malzahar": {
     "champion_id": 90,
@@ -1560,7 +1899,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "말자하"
+    "champion_name_ko": "말자하",
+    "play_tips": "궁(공허의 감옥)으로 핵심 타겟 억제. E 전염으로 미니언/정글 빠른 클리어. 패시브 보호막 활용.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "Maokai": {
     "champion_id": 57,
@@ -1582,7 +1925,13 @@
       "TOP",
       "JG"
     ],
-    "champion_name_ko": "마오카이"
+    "champion_name_ko": "마오카이",
+    "play_tips": "묘목(E)으로 덤불 시야 확보. W 돌진+Q 넉백 CC. 궁 광역 속박. 탱킹하며 팀파이트 지속.",
+    "meta_tier": {
+      "SUP": "B",
+      "TOP": "C",
+      "JG": "C"
+    }
   },
   "MasterYi": {
     "champion_id": 11,
@@ -1601,7 +1950,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "마스터 이"
+    "champion_name_ko": "마스터 이",
+    "play_tips": "Q 무적+대쉬, W 명상으로 딜/CC 회피. 궁 이속+킬 시 초기화. 후반 온힛 빌드 캐리. CC에 취약.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Mel": {
     "champion_id": 942,
@@ -1620,7 +1973,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "멜"
+    "champion_name_ko": "멜",
+    "play_tips": "Q로 견제, W 보호막으로 교전. 궁 광역 딜로 팀파이트. 스킬샷 적중률이 딜의 핵심.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "Milio": {
     "champion_id": 902,
@@ -1639,7 +1996,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "밀리오"
+    "champion_name_ko": "밀리오",
+    "play_tips": "Q로 넉백, W 사거리 증가+이속 버프. E 보호막, 궁으로 아군 전원 CC 해제+힐. 인챈터 서포터.",
+    "meta_tier": {
+      "SUP": "A"
+    }
   },
   "MissFortune": {
     "champion_id": 21,
@@ -1658,7 +2019,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "미스 포츈"
+    "champion_name_ko": "미스 포츈",
+    "play_tips": "궁(총알 세례) 광역 딜이 핵심. 팀파이트 위치 선정 중요. Q 튕김으로 라인전 견제. 사랑의 총알 2타 적중.",
+    "meta_tier": {
+      "ADC": "C"
+    }
   },
   "Mordekaiser": {
     "champion_id": 82,
@@ -1678,7 +2043,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "모데카이저"
+    "champion_name_ko": "모데카이저",
+    "play_tips": "궁(죽음의 영역)으로 적 1명 격리 1v1. 패시브 지속 딜+Q 강타. E 끌어당기기 후 올인. 사이드 1v1 강력.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Morgana": {
     "champion_id": 25,
@@ -1699,7 +2068,12 @@
       "SUP",
       "MID"
     ],
-    "champion_name_ko": "모르가나"
+    "champion_name_ko": "모르가나",
+    "play_tips": "Q 속박(3초)이 게임 최장 CC. E(블랙실드)로 아군 CC 면역. 궁+존야로 광역 스턴. 속박 적중이 핵심.",
+    "meta_tier": {
+      "SUP": "B",
+      "MID": "C"
+    }
   },
   "Naafiri": {
     "champion_id": 950,
@@ -1718,7 +2092,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "나피리"
+    "champion_name_ko": "나피리",
+    "play_tips": "개 소환 후 Q 돌진. W 벽 넘어 추격. 궁으로 시야+이속+개 소환 강화. 초중반 로밍 어쌔신.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "Nami": {
     "champion_id": 267,
@@ -1738,7 +2116,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "나미"
+    "champion_name_ko": "나미",
+    "play_tips": "W 바운스로 딜+힐 동시. Q 기포 넉업 CC. E 아군 강화. 궁 광역 넉업 이니시/디스인게이지.",
+    "meta_tier": {
+      "SUP": "S"
+    }
   },
   "Nasus": {
     "champion_id": 75,
@@ -1758,7 +2140,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "나서스"
+    "champion_name_ko": "나서스",
+    "play_tips": "Q 막타로 스택 쌓기가 전부. 400스택 이후 강력. W 슬로우로 원딜 무력화. 궁으로 탱킹+스택 딜. 후반 스플릿.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Nautilus": {
     "champion_id": 111,
@@ -1778,7 +2164,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "노틸러스"
+    "champion_name_ko": "노틸러스",
+    "play_tips": "Q 갈고리+패시브 속박+궁 넉업으로 CC 체인. 싸움 걸면 올인. 이니시 강력하지만 도주 수단 부족.",
+    "meta_tier": {
+      "SUP": "B"
+    }
   },
   "Neeko": {
     "champion_id": 518,
@@ -1798,7 +2188,12 @@
       "MID",
       "SUP"
     ],
-    "champion_name_ko": "니코"
+    "champion_name_ko": "니코",
+    "play_tips": "패시브로 아군 변신 기만. W 분신 활용. 궁(꽃 피우기) 광역 스턴. 플래시+궁 기습 이니시 강력.",
+    "meta_tier": {
+      "MID": "B",
+      "SUP": "C"
+    }
   },
   "Nidalee": {
     "champion_id": 76,
@@ -1818,7 +2213,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "니달리"
+    "champion_name_ko": "니달리",
+    "play_tips": "인간 폼 Q(창) 포킹 후 쿠거 폼 올인. 함정(W)으로 시야. 초반 정글 장악 강력. 후반은 약해짐.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Nilah": {
     "champion_id": 895,
@@ -1838,7 +2237,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "닐라"
+    "champion_name_ko": "닐라",
+    "play_tips": "W 안개로 기본공격 회피. 패시브로 경험치 추가 획득. 궁 광역 딜+흡혈. 근접 원딜이라 진입 타이밍 중요.",
+    "meta_tier": {
+      "ADC": "B"
+    }
   },
   "Nocturne": {
     "champion_id": 56,
@@ -1857,7 +2260,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "녹턴"
+    "champion_name_ko": "녹턴",
+    "play_tips": "궁(어둠의 강림)으로 시야 차단+장거리 돌진. 주력 스킬. W 스펠실드로 CC 차단. 적 원딜/미드 암살.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Nunu": {
     "champion_id": 20,
@@ -1876,7 +2283,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "누누와 윌럼프"
+    "champion_name_ko": "누누와 윌럼프",
+    "play_tips": "W 눈덩이로 갱킹 이니시. Q 스마이트+오브젝트 컨트롤. 궁 채널링 풀히트 시 폭딜. 오브젝트 중심 플레이.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Olaf": {
     "champion_id": 2,
@@ -1896,7 +2307,12 @@
       "TOP",
       "JG"
     ],
-    "champion_name_ko": "올라프"
+    "champion_name_ko": "올라프",
+    "play_tips": "궁 사용 시 CC 면역. 체력 낮을수록 공속 증가. Q 반복 던지기로 슬로우+딜. 초반 1v1 최강급.",
+    "meta_tier": {
+      "TOP": "S",
+      "JG": "B"
+    }
   },
   "Orianna": {
     "champion_id": 61,
@@ -1915,7 +2331,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "오리아나"
+    "champion_name_ko": "오리아나",
+    "play_tips": "공(Q) 위치 관리가 핵심. 궁(충격파) 다수 적중으로 팀파이트 결정. W 이속 조절. 안정적 포킹+팀파이트.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "Ornn": {
     "champion_id": 516,
@@ -1934,7 +2354,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "오른"
+    "champion_name_ko": "오른",
+    "play_tips": "패시브로 라인에서 아이템 제작+아군 아이템 강화. 궁 2단 넉업으로 이니시. 후반 아이템 강화가 핵심.",
+    "meta_tier": {
+      "TOP": "A"
+    }
   },
   "Pantheon": {
     "champion_id": 80,
@@ -1957,7 +2381,14 @@
       "JG",
       "SUP"
     ],
-    "champion_name_ko": "판테온"
+    "champion_name_ko": "판테온",
+    "play_tips": "강화 W로 스턴 후 강화 Q 찌르기. E 무적으로 타워 다이브. 궁(그랜드 스타폴)으로 글로벌 로밍.",
+    "meta_tier": {
+      "TOP": "B",
+      "MID": "B",
+      "JG": "C",
+      "SUP": "C"
+    }
   },
   "Poppy": {
     "champion_id": 78,
@@ -1979,7 +2410,13 @@
       "JG",
       "SUP"
     ],
-    "champion_name_ko": "뽀삐"
+    "champion_name_ko": "뽀삐",
+    "play_tips": "W로 적 돌진 차단(반다이브). E 벽꿍 스턴. 궁 풀차지로 적 날리기. 적 대쉬 캐릭터 카운터.",
+    "meta_tier": {
+      "TOP": "B",
+      "JG": "B",
+      "SUP": "C"
+    }
   },
   "Pyke": {
     "champion_id": 555,
@@ -1999,7 +2436,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "파이크"
+    "champion_name_ko": "파이크",
+    "play_tips": "Q 당기기 후 E 스턴 연계. 궁(수면 아래로) 처형기+골드 공유. W 은신으로 로밍. 어쌔신 서포터.",
+    "meta_tier": {
+      "SUP": "B"
+    }
   },
   "Qiyana": {
     "champion_id": 246,
@@ -2019,7 +2460,12 @@
       "MID",
       "JG"
     ],
-    "champion_name_ko": "키아나"
+    "champion_name_ko": "키아나",
+    "play_tips": "원소(풀/물/바위) 바꿔가며 CC+딜. 궁 벽/강 충돌 시 광역 스턴. 좁은 정글 지형에서 팀파이트 극강.",
+    "meta_tier": {
+      "MID": "B",
+      "JG": "C"
+    }
   },
   "Quinn": {
     "champion_id": 133,
@@ -2039,7 +2485,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "퀸"
+    "champion_name_ko": "퀸",
+    "play_tips": "패시브 취약 마크 활용. E 넉백으로 근접 차단. 궁(독수리)으로 빠른 로밍/스플릿. 탑 원거리 라인전 강압.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Rakan": {
     "champion_id": 497,
@@ -2059,7 +2509,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "라칸"
+    "champion_name_ko": "라칸",
+    "play_tips": "W 넉업+궁 매혹으로 광역 이니시. E로 아군에게 대쉬+보호막. 자야와 시너지. 기동성 높은 이니시에이터.",
+    "meta_tier": {
+      "SUP": "A"
+    }
   },
   "Rammus": {
     "champion_id": 33,
@@ -2078,7 +2532,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "람머스"
+    "champion_name_ko": "람머스",
+    "play_tips": "Q 구르기로 이니시+갱킹. W 가시 반사로 AD 캐릭터 카운터. E 도발로 적 고정. AD 조합 상대로 강력.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "RekSai": {
     "champion_id": 421,
@@ -2097,7 +2555,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "렉사이"
+    "champion_name_ko": "렉사이",
+    "play_tips": "굴 파서 터널 네트워크 구축. Q 진동으로 적 위치 감지. 궁으로 마크된 적에게 돌진. 초반 갱킹 강력.",
+    "meta_tier": {
+      "JG": "S"
+    }
   },
   "Rell": {
     "champion_id": 526,
@@ -2117,7 +2579,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "렐"
+    "champion_name_ko": "렐",
+    "play_tips": "W 변신으로 이니시/도주. E 끌어당기기+스턴. 궁 광역 끌어당기기. CC 체인 강력한 탱커 서포터.",
+    "meta_tier": {
+      "SUP": "B"
+    }
   },
   "Renata": {
     "champion_id": 888,
@@ -2136,7 +2602,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "레나타 글라스크"
+    "champion_name_ko": "레나타 글라스크",
+    "play_tips": "W 아군 부활 버프. Q 넉백으로 필링. 궁(적개심)으로 적 동족상잔. 궁 범위와 타이밍이 핵심.",
+    "meta_tier": {
+      "SUP": "B"
+    }
   },
   "Renekton": {
     "champion_id": 58,
@@ -2155,7 +2625,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "레넥톤"
+    "champion_name_ko": "레넥톤",
+    "play_tips": "분노 50이상에서 강화 스킬. W 스턴 후 Q 회복+딜. E 2단 대쉬로 진입/이탈. 초반 라인전 최강급.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Rengar": {
     "champion_id": 107,
@@ -2175,7 +2649,12 @@
       "JG",
       "TOP"
     ],
-    "champion_name_ko": "렝가"
+    "champion_name_ko": "렝가",
+    "play_tips": "덤불에서 도약으로 기습. 궁 은신+치명타로 원샷. 풀스택 포효로 강화 스킬 선택. 덤불 활용이 핵심.",
+    "meta_tier": {
+      "JG": "B",
+      "TOP": "C"
+    }
   },
   "Riven": {
     "champion_id": 92,
@@ -2195,7 +2674,12 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "리븐"
+    "champion_name_ko": "리븐",
+    "play_tips": "Q 3단+평타 끼워넣기(애니메이션 캔슬). E 방어막으로 교환. 궁 강화+궁 2타 처형. 콤보 숙련도가 전부.",
+    "meta_tier": {
+      "TOP": "A",
+      "MID": "A"
+    }
   },
   "Rumble": {
     "champion_id": 68,
@@ -2216,7 +2700,12 @@
       "TOP",
       "MID"
     ],
-    "champion_name_ko": "럼블"
+    "champion_name_ko": "럼블",
+    "play_tips": "과열 관리하며 Q 화염방사기 딜. 궁(이퀄라이저) 광역 딜이 팀파이트 핵심. 오브젝트 앞 좁은 길목에서 극강.",
+    "meta_tier": {
+      "TOP": "B",
+      "MID": "C"
+    }
   },
   "Ryze": {
     "champion_id": 13,
@@ -2236,7 +2725,12 @@
       "MID",
       "TOP"
     ],
-    "champion_name_ko": "라이즈"
+    "champion_name_ko": "라이즈",
+    "play_tips": "E-Q 연계(확산 Q)가 메인 딜. 궁으로 팀 순간이동. 마나 스케일링. 안정적 딜링+후반 강력.",
+    "meta_tier": {
+      "MID": "B",
+      "TOP": "C"
+    }
   },
   "Samira": {
     "champion_id": 360,
@@ -2256,7 +2750,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "사미라"
+    "champion_name_ko": "사미라",
+    "play_tips": "스타일 등급 S 달성 후 궁(인페르노). CC 맞은 적에게 패시브 추가 넉업. 올인 순간 판단이 핵심.",
+    "meta_tier": {
+      "ADC": "A"
+    }
   },
   "Sejuani": {
     "champion_id": 113,
@@ -2275,7 +2773,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "세주아니"
+    "champion_name_ko": "세주아니",
+    "play_tips": "패시브 빙결로 스턴. 궁 장거리 스턴 이니시. Q 돌진으로 접근. 팀파이트 탱킹+CC. 아군 근접과 시너지.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Senna": {
     "champion_id": 235,
@@ -2296,7 +2798,12 @@
       "SUP",
       "ADC"
     ],
-    "champion_name_ko": "세나"
+    "champion_name_ko": "세나",
+    "play_tips": "패시브 안개 스택으로 사거리+딜 무한 성장. Q로 딜+힐 동시. 궁 글로벌 딜+보호막. 후반 갈수록 강력.",
+    "meta_tier": {
+      "SUP": "B",
+      "ADC": "C"
+    }
   },
   "Seraphine": {
     "champion_id": 147,
@@ -2317,7 +2824,12 @@
       "SUP",
       "MID"
     ],
-    "champion_name_ko": "세라핀"
+    "champion_name_ko": "세라핀",
+    "play_tips": "3번째 스킬 강화(에코). 궁 적 관통+매혹 CC. W 힐+보호막. 팀파이트 광역 CC+힐 서포터.",
+    "meta_tier": {
+      "SUP": "A",
+      "MID": "C"
+    }
   },
   "Sett": {
     "champion_id": 875,
@@ -2338,7 +2850,12 @@
       "TOP",
       "SUP"
     ],
-    "champion_name_ko": "세트"
+    "champion_name_ko": "세트",
+    "play_tips": "W 그릿(피해 흡수) 풀차지 시 참피해 주먹. E 잡아당기기+스턴. 궁으로 적 탱커를 적 팀에 던지기.",
+    "meta_tier": {
+      "TOP": "B",
+      "SUP": "B"
+    }
   },
   "Shaco": {
     "champion_id": 35,
@@ -2357,7 +2874,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "샤코"
+    "champion_name_ko": "샤코",
+    "play_tips": "Q 은신으로 기습. 상자(W) 설치로 정글 통제. 궁 분신으로 기만. AD 어쌔신 또는 AP 트랩 빌드.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Shen": {
     "champion_id": 98,
@@ -2377,7 +2898,12 @@
       "TOP",
       "SUP"
     ],
-    "champion_name_ko": "쉔"
+    "champion_name_ko": "쉔",
+    "play_tips": "궁(스탠드 유나이티드)으로 글로벌 아군 보호. W 근처 아군 기본공격 회피. E 도발 CC. 스플릿+궁 합류.",
+    "meta_tier": {
+      "TOP": "S",
+      "SUP": "C"
+    }
   },
   "Shyvana": {
     "champion_id": 102,
@@ -2396,7 +2922,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "쉬바나"
+    "champion_name_ko": "쉬바나",
+    "play_tips": "용 변신(궁) 후 E 파이어볼이 핵심 딜. 드래곤 처치 시 스택. AP 빌드 시 E 원샷. 6렙 전 약함.",
+    "meta_tier": {
+      "JG": "B"
+    }
   },
   "Singed": {
     "champion_id": 27,
@@ -2416,7 +2946,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "신지드"
+    "champion_name_ko": "신지드",
+    "play_tips": "Q 독 트레일 깔며 달리기. 적이 쫓아오면 이김. W 접착제로 슬로우. E 뒤로 던지기. 프록시 파밍 전략.",
+    "meta_tier": {
+      "TOP": "A"
+    }
   },
   "Sion": {
     "champion_id": 14,
@@ -2435,7 +2969,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "사이온"
+    "champion_name_ko": "사이온",
+    "play_tips": "Q 풀차지 넉업이 핵심 CC. 궁 돌진으로 이니시/로밍. 패시브(사후 광전사)로 타워 밀기. HP 무한 스케일링.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Sivir": {
     "champion_id": 15,
@@ -2454,7 +2992,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "시비르"
+    "champion_name_ko": "시비르",
+    "play_tips": "W+Q로 광역 딜링. E 스펠실드로 핵심 CC 차단. 궁으로 팀 이속 증가. 후반 웨이브클리어+팀파이트.",
+    "meta_tier": {
+      "ADC": "C"
+    }
   },
   "Skarner": {
     "champion_id": 72,
@@ -2474,7 +3016,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "스카너"
+    "champion_name_ko": "스카너",
+    "play_tips": "궁으로 적 핵심 타겟 납치. E 스턴 후 Q 반복 딜. 적 원딜/미드를 아군 쪽으로 끌고 오기.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Smolder": {
     "champion_id": 901,
@@ -2495,7 +3041,12 @@
       "ADC",
       "MID"
     ],
-    "champion_name_ko": "스몰더"
+    "champion_name_ko": "스몰더",
+    "play_tips": "Q 스택 225개 이후 광역+처형 추가. 후반 극강 하이퍼캐리. 초반은 약하니 파밍 우선. W 광역 포킹.",
+    "meta_tier": {
+      "ADC": "A",
+      "MID": "B"
+    }
   },
   "Sona": {
     "champion_id": 37,
@@ -2515,7 +3066,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "소나"
+    "champion_name_ko": "소나",
+    "play_tips": "오라(Q딜/W힐/E이속) 전환하며 팀 버프. 패시브 강화 평타 3종류 활용. 궁 광역 스턴. 후반 유틸 극강.",
+    "meta_tier": {
+      "SUP": "S"
+    }
   },
   "Soraka": {
     "champion_id": 16,
@@ -2535,7 +3090,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "소라카"
+    "champion_name_ko": "소라카",
+    "play_tips": "W 힐로 아군 유지력 최강. Q 적중 시 자신 회복. 궁 글로벌 힐. E 침묵 장판으로 적 채널링 차단.",
+    "meta_tier": {
+      "SUP": "B"
+    }
   },
   "Swain": {
     "champion_id": 50,
@@ -2557,7 +3116,13 @@
       "MID",
       "ADC"
     ],
-    "champion_name_ko": "스웨인"
+    "champion_name_ko": "스웨인",
+    "play_tips": "패시브로 CC 맞은 적 끌어당기기. 궁 변신으로 흡혈+광역 딜. 팀파이트 장기전에서 강력. E-패시브 콤보.",
+    "meta_tier": {
+      "SUP": "B",
+      "MID": "C",
+      "ADC": "C"
+    }
   },
   "Sylas": {
     "champion_id": 517,
@@ -2577,7 +3142,12 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "사일러스"
+    "champion_name_ko": "사일러스",
+    "play_tips": "적 궁극기를 훔쳐서 사용(궁). 좋은 궁극기가 있는 상대에게 강력. W 힐로 1v1. 패시브 평타 리셋 연계.",
+    "meta_tier": {
+      "MID": "S",
+      "JG": "S"
+    }
   },
   "Syndra": {
     "champion_id": 134,
@@ -2596,7 +3166,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "신드라"
+    "champion_name_ko": "신드라",
+    "play_tips": "Q 구체 소환 후 E로 밀어 스턴. 궁(풀구체) 단일 타겟 원샷. W로 구체/미니언 던지기. 6렙 올킬.",
+    "meta_tier": {
+      "MID": "A"
+    }
   },
   "TahmKench": {
     "champion_id": 223,
@@ -2617,7 +3191,12 @@
       "TOP",
       "SUP"
     ],
-    "champion_name_ko": "탐 켄치"
+    "champion_name_ko": "탐 켄치",
+    "play_tips": "Q 스턴(3스택 후). W 아군 삼키기로 구출 또는 적 삼키기. 궁으로 팀 순간이동. 탱킹+필링.",
+    "meta_tier": {
+      "TOP": "B",
+      "SUP": "B"
+    }
   },
   "Taliyah": {
     "champion_id": 163,
@@ -2637,7 +3216,12 @@
       "MID",
       "JG"
     ],
-    "champion_name_ko": "탈리야"
+    "champion_name_ko": "탈리야",
+    "play_tips": "Q 바위 연사로 딜링. W 넉업+E 지뢰밭 콤보. 궁 벽으로 맵 분할. 정글러/미드 둘 다 가능.",
+    "meta_tier": {
+      "MID": "B",
+      "JG": "B"
+    }
   },
   "Talon": {
     "champion_id": 91,
@@ -2657,7 +3241,12 @@
       "MID",
       "JG"
     ],
-    "champion_name_ko": "탈론"
+    "champion_name_ko": "탈론",
+    "play_tips": "E 벽 넘기로 빠른 로밍. W-Q-패시브(출혈 3스택) 콤보. 궁 은신+확산 칼날로 폭딜. 초중반 로밍 어쌔신.",
+    "meta_tier": {
+      "MID": "B",
+      "JG": "B"
+    }
   },
   "Taric": {
     "champion_id": 44,
@@ -2678,7 +3267,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "타릭"
+    "champion_name_ko": "타릭",
+    "play_tips": "궁(우주의 광휘) 2.5초 후 무적. 타이밍이 핵심. W 연결된 아군과 스킬 공유. 패시브 평타로 쿨감.",
+    "meta_tier": {
+      "SUP": "C"
+    }
   },
   "Teemo": {
     "champion_id": 17,
@@ -2698,7 +3291,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "티모"
+    "champion_name_ko": "티모",
+    "play_tips": "버섯(R)으로 맵 통제+시야. Q 실명으로 AA 의존 챔피언 카운터. 패시브 은신 기습. 성가신 라인전.",
+    "meta_tier": {
+      "TOP": "C"
+    }
   },
   "Thresh": {
     "champion_id": 412,
@@ -2718,7 +3315,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "쓰레쉬"
+    "champion_name_ko": "쓰레쉬",
+    "play_tips": "Q 적중 → 진입 여부 판단. 등불(W)로 아군 구출. E로 적 돌진 차단. 만능 서포터, 모든 상황 대응.",
+    "meta_tier": {
+      "SUP": "S"
+    }
   },
   "Tristana": {
     "champion_id": 18,
@@ -2738,7 +3339,12 @@
       "ADC",
       "MID"
     ],
-    "champion_name_ko": "트리스타나"
+    "champion_name_ko": "트리스타나",
+    "play_tips": "W 점프 초기화(킬/어시, E 폭발). E 폭탄 4스택 딜. 궁 넉백으로 자기 보호. 타워 철거 빠름.",
+    "meta_tier": {
+      "ADC": "B",
+      "MID": "C"
+    }
   },
   "Trundle": {
     "champion_id": 48,
@@ -2759,7 +3365,12 @@
       "TOP",
       "JG"
     ],
-    "champion_name_ko": "트런들"
+    "champion_name_ko": "트런들",
+    "play_tips": "궁으로 적 탱커 스탯 흡수. 기둥(E)으로 지형 통제. 맞딜 1v1 강력. 적 탱커 상대로 카운터.",
+    "meta_tier": {
+      "TOP": "B",
+      "JG": "B"
+    }
   },
   "Tryndamere": {
     "champion_id": 23,
@@ -2779,7 +3390,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "트린다미어"
+    "champion_name_ko": "트린다미어",
+    "play_tips": "분노 풀스택 시 치명타 확률 극대화. 궁 5초 불사. 스플릿 특화, 1v1 최강급. E 대쉬로 기동성.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "TwistedFate": {
     "champion_id": 4,
@@ -2798,7 +3413,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "트위스티드 페이트"
+    "champion_name_ko": "트위스티드 페이트",
+    "play_tips": "W 카드 선택(금:스턴/빨:광역/파:마나). 궁(데스티니)으로 글로벌 로밍. 금카+궁으로 사이드 갱킹.",
+    "meta_tier": {
+      "MID": "A"
+    }
   },
   "Twitch": {
     "champion_id": 29,
@@ -2818,7 +3437,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "트위치"
+    "champion_name_ko": "트위치",
+    "play_tips": "Q 은신으로 기습. 궁 관통 평타로 팀파이트 광역 딜. W 독+E 발동으로 딜. 포지셔닝이 생명.",
+    "meta_tier": {
+      "ADC": "A"
+    }
   },
   "Udyr": {
     "champion_id": 77,
@@ -2839,7 +3462,12 @@
       "JG",
       "TOP"
     ],
-    "champion_name_ko": "우디르"
+    "champion_name_ko": "우디르",
+    "play_tips": "Q/R 스탠스 전환하며 딜/탱킹. R(봉황) 광역 딜+방어막. Q(호랑이) 단일 딜. 빠른 정글 클리어+오브젝트.",
+    "meta_tier": {
+      "JG": "B",
+      "TOP": "C"
+    }
   },
   "Urgot": {
     "champion_id": 6,
@@ -2859,7 +3487,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "우르곳"
+    "champion_name_ko": "우르곳",
+    "play_tips": "패시브 다리 6방향 딜. E 돌진+스턴 후 W 기관총. 궁 체력 25% 이하 처형. 맞딜 1v1 강력.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Varus": {
     "champion_id": 110,
@@ -2878,7 +3510,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "바루스"
+    "champion_name_ko": "바루스",
+    "play_tips": "W 스택+Q 풀차지로 포킹(능침 빌드). 궁 속박 확산. 온힛 빌드 시 DPS. 기본공격 사이 Q 포킹.",
+    "meta_tier": {
+      "ADC": "B"
+    }
   },
   "Vayne": {
     "champion_id": 67,
@@ -2899,7 +3535,12 @@
       "ADC",
       "TOP"
     ],
-    "champion_name_ko": "베인"
+    "champion_name_ko": "베인",
+    "play_tips": "W 은탄(3타 참피해)이 핵심 딜. E 벽꿍 스턴. 궁 은신+강화로 교전. 탱커 킬러. 짧은 사거리 주의.",
+    "meta_tier": {
+      "ADC": "B",
+      "TOP": "B"
+    }
   },
   "Veigar": {
     "champion_id": 45,
@@ -2918,7 +3559,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "베이가"
+    "champion_name_ko": "베이가",
+    "play_tips": "Q 막타+스킬 적중으로 AP 무한 스택. E 울타리로 적 가두기. 궁 AP 비례 원샷. 후반 AP 원킬.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "VelKoz": {
     "champion_id": 161,
@@ -2938,7 +3583,12 @@
       "MID",
       "SUP"
     ],
-    "champion_name_ko": "벨코즈"
+    "champion_name_ko": "벨코즈",
+    "play_tips": "Q 분할 궤적으로 포킹. 패시브 3스택 참피해. 궁(생명 분해) 채널링 광역 딜. 포지셔닝 중요.",
+    "meta_tier": {
+      "MID": "C",
+      "SUP": "B"
+    }
   },
   "Velkoz": {
     "champion_id": 161,
@@ -2958,7 +3608,12 @@
       "SUP",
       "MID"
     ],
-    "champion_name_ko": "벨코즈"
+    "champion_name_ko": "벨코즈",
+    "play_tips": "Q 분할 궤적으로 포킹. 패시브 3스택 참피해. 궁(생명 분해) 채널링 광역 딜. 포지셔닝 중요.",
+    "meta_tier": {
+      "SUP": "B",
+      "MID": "C"
+    }
   },
   "Vex": {
     "champion_id": 711,
@@ -2977,7 +3632,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "벡스"
+    "champion_name_ko": "벡스",
+    "play_tips": "패시브 공포(대쉬 차단)로 돌진 캐릭터 카운터. 궁 적중 후 돌진+풀콤보. 안티 기동성 메이지.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "Vi": {
     "champion_id": 254,
@@ -2996,7 +3655,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "바이"
+    "champion_name_ko": "바이",
+    "play_tips": "Q 차지 돌진+넉업. 궁 지정 대상 돌진(회피 불가). 궁으로 적 원딜/미드 확정 접근. 초중반 갱킹 강력.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Viego": {
     "champion_id": 234,
@@ -3016,7 +3679,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "비에고"
+    "champion_name_ko": "비에고",
+    "play_tips": "적 처치 후 빙의(패시브)로 스킬 사용+회복. 궁 리셋으로 연쇄 킬. 팀파이트에서 빙의 타이밍이 핵심.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Viktor": {
     "champion_id": 112,
@@ -3035,7 +3702,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "빅토르"
+    "champion_name_ko": "빅토르",
+    "play_tips": "헥스코어 진화(E→Q→W 순). E 레이저로 웨이브클리어+포킹. 궁 광역 지속 딜. 진화 후 중후반 강력.",
+    "meta_tier": {
+      "MID": "A"
+    }
   },
   "Vladimir": {
     "champion_id": 8,
@@ -3055,7 +3726,12 @@
       "MID",
       "TOP"
     ],
-    "champion_name_ko": "블라디미르"
+    "champion_name_ko": "블라디미르",
+    "play_tips": "Q 흡혈로 라인 유지. 강화 Q(피빛 돌풍) 큰 딜+회복. 궁+E+Q 풀콤보로 팀파이트. W(피웅덩이) 무적.",
+    "meta_tier": {
+      "MID": "A",
+      "TOP": "B"
+    }
   },
   "Volibear": {
     "champion_id": 106,
@@ -3076,7 +3752,12 @@
       "TOP",
       "JG"
     ],
-    "champion_name_ko": "볼리베어"
+    "champion_name_ko": "볼리베어",
+    "play_tips": "궁 타워 무력화+돌진. E 번개로 보호막. Q 돌진+스턴. 타워 다이브 전문. 초반 교전 강력.",
+    "meta_tier": {
+      "TOP": "B",
+      "JG": "B"
+    }
   },
   "Warwick": {
     "champion_id": 19,
@@ -3097,7 +3778,12 @@
       "JG",
       "TOP"
     ],
-    "champion_name_ko": "워윅"
+    "champion_name_ko": "워윅",
+    "play_tips": "W 피 냄새로 저체력 적 추적. Q 달라붙기(길게 눌러). 궁 장거리 돌진+억제. E 공포+딜감. 초보 추천.",
+    "meta_tier": {
+      "JG": "B",
+      "TOP": "C"
+    }
   },
   "Wukong": {
     "champion_id": 62,
@@ -3117,7 +3803,12 @@
       "TOP",
       "JG"
     ],
-    "champion_name_ko": "오공"
+    "champion_name_ko": "오공",
+    "play_tips": "W 분신으로 기만. 궁 2회전 광역 넉업. E 돌진 후 궁 진입. 팀파이트 이니시 강력. 초반 올인도 좋음.",
+    "meta_tier": {
+      "TOP": "B",
+      "JG": "B"
+    }
   },
   "Xayah": {
     "champion_id": 498,
@@ -3136,7 +3827,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "자야"
+    "champion_name_ko": "자야",
+    "play_tips": "깃털 배치 후 E로 회수(스네어). 궁 무적으로 핵심 스킬 회피. 깃털 방향 관리가 딜의 핵심.",
+    "meta_tier": {
+      "ADC": "B"
+    }
   },
   "Xerath": {
     "champion_id": 101,
@@ -3156,7 +3851,12 @@
       "SUP",
       "MID"
     ],
-    "champion_name_ko": "제라스"
+    "champion_name_ko": "제라스",
+    "play_tips": "Q 풀차지 장거리 포킹. W 슬로우 장판. E 스턴. 궁 글로벌 포격. 극한의 사거리 포킹 메이지.",
+    "meta_tier": {
+      "SUP": "B",
+      "MID": "S"
+    }
   },
   "XinZhao": {
     "champion_id": 5,
@@ -3175,7 +3875,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "신 짜오"
+    "champion_name_ko": "신 짜오",
+    "play_tips": "Q 3타 넉업. W 2단 찌르기. E 돌진+슬로우. 궁으로 주변 적 밀어내기(1v1 유도). 초반 결투 강력.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Yasuo": {
     "champion_id": 157,
@@ -3197,7 +3901,13 @@
       "TOP",
       "ADC"
     ],
-    "champion_name_ko": "야스오"
+    "champion_name_ko": "야스오",
+    "play_tips": "패시브 실드+치명타 2배. E 미니언 통해 대쉬 접근. 궁 넉업된 적에게 사용. 0/10 이후 캐리 가능(농담).",
+    "meta_tier": {
+      "MID": "A",
+      "TOP": "C",
+      "ADC": "C"
+    }
   },
   "Yone": {
     "champion_id": 777,
@@ -3218,7 +3928,12 @@
       "MID",
       "TOP"
     ],
-    "champion_name_ko": "요네"
+    "champion_name_ko": "요네",
+    "play_tips": "E 본체 남기고 돌진+딜 후 복귀. 3Q 넉업. 궁 장거리 이니시. AD+AP 하이브리드 딜. E 복귀 타이밍 중요.",
+    "meta_tier": {
+      "MID": "A",
+      "TOP": "A"
+    }
   },
   "Yorick": {
     "champion_id": 83,
@@ -3237,7 +3952,11 @@
     "primary_lanes": [
       "TOP"
     ],
-    "champion_name_ko": "요릭"
+    "champion_name_ko": "요릭",
+    "play_tips": "무덤 소환 후 E로 돌진 명령. 궁(처녀) 소환으로 스플릿 압박. W 벽으로 적 가두기. 스플릿 특화 챔피언.",
+    "meta_tier": {
+      "TOP": "B"
+    }
   },
   "Yuumi": {
     "champion_id": 350,
@@ -3257,7 +3976,11 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "유미"
+    "champion_name_ko": "유미",
+    "play_tips": "W로 아군에게 부착(무적). E 힐+이속. Q 유도 미사일. 궁 광역 속박. 강한 아군에게 붙어서 버프.",
+    "meta_tier": {
+      "SUP": "C"
+    }
   },
   "Zac": {
     "champion_id": 154,
@@ -3276,7 +3999,11 @@
     "primary_lanes": [
       "JG"
     ],
-    "champion_name_ko": "자크"
+    "champion_name_ko": "자크",
+    "play_tips": "E 장거리 점프로 이니시. 궁 적 끌어당기기. 패시브로 부활. 시야 밖에서 E 기습이 핵심. 팀파이트 이니시 강력.",
+    "meta_tier": {
+      "JG": "A"
+    }
   },
   "Zed": {
     "champion_id": 238,
@@ -3295,7 +4022,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "제드"
+    "champion_name_ko": "제드",
+    "play_tips": "W-E-Q 콤보로 견제. 궁으로 대상 암살(죽음의 표식). 궁 복귀 타이밍 판단. 로밍+원딜 암살 특화.",
+    "meta_tier": {
+      "MID": "B"
+    }
   },
   "Zeri": {
     "champion_id": 221,
@@ -3314,7 +4045,11 @@
     "primary_lanes": [
       "ADC"
     ],
-    "champion_name_ko": "제리"
+    "champion_name_ko": "제리",
+    "play_tips": "Q 기본공격이 스킬샷. E 벽 넘기로 기동성. 궁 적중 수 비례 이속+딜 강화. 팀파이트 지속 딜링.",
+    "meta_tier": {
+      "ADC": "B"
+    }
   },
   "Ziggs": {
     "champion_id": 115,
@@ -3334,7 +4069,12 @@
       "ADC",
       "MID"
     ],
-    "champion_name_ko": "직스"
+    "champion_name_ko": "직스",
+    "play_tips": "Q 바운스 포킹. W 타워 철거(체력 25%이하 즉시 파괴). 궁 글로벌 광역 딜. 시즈(타워 밀기) 특화.",
+    "meta_tier": {
+      "ADC": "C",
+      "MID": "B"
+    }
   },
   "Zilean": {
     "champion_id": 26,
@@ -3355,7 +4095,12 @@
       "SUP",
       "MID"
     ],
-    "champion_name_ko": "질리언"
+    "champion_name_ko": "질리언",
+    "play_tips": "Q 시한폭탄 2개 겹치면 스턴. 궁(시간 역행)으로 아군 부활. E 이속 증가/감소. 유틸성 극강.",
+    "meta_tier": {
+      "SUP": "A",
+      "MID": "C"
+    }
   },
   "Zoe": {
     "champion_id": 142,
@@ -3374,7 +4119,11 @@
     "primary_lanes": [
       "MID"
     ],
-    "champion_name_ko": "조이"
+    "champion_name_ko": "조이",
+    "play_tips": "E 잠들기 적중 후 Q 장거리 원샷. 미니언 드랍 소환사 주문 활용. W 이동 속도로 이탈. 포킹 원샷 메이지.",
+    "meta_tier": {
+      "MID": "A"
+    }
   },
   "Zyra": {
     "champion_id": 143,
@@ -3394,6 +4143,10 @@
     "primary_lanes": [
       "SUP"
     ],
-    "champion_name_ko": "자이라"
+    "champion_name_ko": "자이라",
+    "play_tips": "씨앗 배치 후 Q/E로 식물 소환. 궁 넉업으로 팀파이트. 덤불에 씨앗으로 시야. 식물 활용한 견제/딜.",
+    "meta_tier": {
+      "SUP": "A"
+    }
   }
 }

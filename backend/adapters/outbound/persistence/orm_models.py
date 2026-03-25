@@ -23,6 +23,8 @@ class ChampionAttributeORM(SQLModel, table=True):
     poke: int = Field(default=3)
     pick: int = Field(default=3)
     burst: int = Field(default=3)
+    play_tips: str = Field(default="")
+    meta_tier_json: str = Field(default='{}')  # JSON string of dict[str, str]
     source: str = Field(default="MANUAL")
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
@@ -41,3 +43,11 @@ class ChampionAttributeORM(SQLModel, table=True):
     @primary_lanes.setter
     def primary_lanes(self, value: list[str]) -> None:
         self.primary_lanes_json = json.dumps(value)
+
+    @property
+    def meta_tier(self) -> dict[str, str]:
+        return json.loads(self.meta_tier_json)
+
+    @meta_tier.setter
+    def meta_tier(self, value: dict[str, str]) -> None:
+        self.meta_tier_json = json.dumps(value)

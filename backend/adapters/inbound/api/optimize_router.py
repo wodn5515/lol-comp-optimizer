@@ -139,26 +139,37 @@ def _serialize_player(player: Player) -> dict:
     }
 
 
-def _serialize_recommendations(compositions: list) -> list[dict]:
+def _serialize_recommendations(
+    compositions: list,
+    champion_attrs_map: dict[str, "ChampionAttributes"] | None = None,
+) -> list[dict]:
     """Serialize Composition objects into the API response format."""
     recommendations = []
     for comp in compositions:
+        assignments_data = []
+        for a in comp.assignments:
+            assignment_dict = {
+                "player": f"{a.player_game_name}#{a.player_tag_line}",
+                "lane": a.lane,
+                "champion": a.champion_name,
+                "champion_name_ko": a.champion_name_ko,
+                "champion_id": a.champion_id,
+                "personal_win_rate": round(a.personal_win_rate, 3),
+                "personal_kda": a.personal_kda,
+            }
+            # Add champion play tips if champion_attrs_map is available
+            if champion_attrs_map:
+                attrs = champion_attrs_map.get(a.champion_name)
+                if attrs:
+                    assignment_dict["champion_play_tips"] = attrs.play_tips
+                    assignment_dict["champion_meta_tier"] = attrs.meta_tier
+            assignments_data.append(assignment_dict)
+
         recommendations.append(
             {
                 "rank": comp.rank,
                 "total_score": comp.total_score,
-                "assignments": [
-                    {
-                        "player": f"{a.player_game_name}#{a.player_tag_line}",
-                        "lane": a.lane,
-                        "champion": a.champion_name,
-                        "champion_name_ko": a.champion_name_ko,
-                        "champion_id": a.champion_id,
-                        "personal_win_rate": round(a.personal_win_rate, 3),
-                        "personal_kda": a.personal_kda,
-                    }
-                    for a in comp.assignments
-                ],
+                "assignments": assignments_data,
                 "team_analysis": {
                     "ad_ratio": comp.team_analysis.ad_ratio,
                     "ap_ratio": comp.team_analysis.ap_ratio,
@@ -426,8 +437,8 @@ async def _fetch_players_from_riot(
     return players
 
 
-async def _run_optimization(players: list[Player]) -> list:
-    """Run lane + comp optimization on Player objects. Returns Composition list."""
+async def _run_optimization(players: list[Player]) -> tuple[list, dict[str, ChampionAttributes]]:
+    """Run lane + comp optimization on Player objects. Returns (Composition list, champion_attrs_map)."""
     if riot_api is None or ddragon is None:
         raise HTTPException(status_code=500, detail="Services not initialized")
 
@@ -475,7 +486,7 @@ async def _run_optimization(players: list[Player]) -> list:
         top_n=5,
     )
 
-    return compositions
+    return compositions, champion_attrs_map
 
 
 def _player_data_to_domain(player_data: PlayerData) -> Player:
@@ -660,7 +671,7 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
         top_n=5,
     )
 
-    return {"recommendations": _serialize_recommendations(compositions)}
+    return {"recommendations": _serialize_recommendations(compositions, champion_attrs_map)}
 
 
 @router.post("/optimize")
@@ -673,9 +684,9 @@ async def optimize(request: OptimizeRequest) -> dict:
     players = await _fetch_players_from_riot(
         request.players, request.api_key, request.match_count
     )
-    compositions = await _run_optimization(players)
+    compositions, champion_attrs_map = await _run_optimization(players)
 
     return {
         "players": [_serialize_player(p) for p in players],
-        "recommendations": _serialize_recommendations(compositions),
+        "recommendations": _serialize_recommendations(compositions, champion_attrs_map),
     }

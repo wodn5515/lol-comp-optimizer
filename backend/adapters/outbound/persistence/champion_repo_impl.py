@@ -26,6 +26,8 @@ def _orm_to_domain(orm: ChampionAttributeORM) -> ChampionAttributes:
         pick=orm.pick,
         burst=orm.burst,
         primary_lanes=json.loads(orm.primary_lanes_json),
+        play_tips=orm.play_tips,
+        meta_tier=json.loads(orm.meta_tier_json),
         source=orm.source,
     )
 
@@ -46,6 +48,8 @@ def _domain_to_orm(attrs: ChampionAttributes) -> ChampionAttributeORM:
         poke=attrs.poke,
         pick=attrs.pick,
         burst=attrs.burst,
+        play_tips=attrs.play_tips,
+        meta_tier_json=json.dumps(attrs.meta_tier),
         source=attrs.source,
         updated_at=datetime.now(timezone.utc),
     )
@@ -107,6 +111,8 @@ class ChampionRepositoryImpl(ChampionRepository):
                 existing.poke = attrs.poke
                 existing.pick = attrs.pick
                 existing.burst = attrs.burst
+                existing.play_tips = attrs.play_tips
+                existing.meta_tier_json = json.dumps(attrs.meta_tier)
                 existing.source = attrs.source
                 existing.updated_at = datetime.now(timezone.utc)
                 session.add(existing)
@@ -131,6 +137,7 @@ class ChampionRepositoryImpl(ChampionRepository):
                     existing.champion_name_ko = attrs.champion_name_ko
                     existing.damage_type = attrs.damage_type
                     existing.role_tags_json = json.dumps(attrs.role_tags)
+                    existing.primary_lanes_json = json.dumps(attrs.primary_lanes)
                     existing.waveclear = attrs.waveclear
                     existing.splitpush = attrs.splitpush
                     existing.teamfight = attrs.teamfight
@@ -139,6 +146,8 @@ class ChampionRepositoryImpl(ChampionRepository):
                     existing.poke = attrs.poke
                     existing.pick = attrs.pick
                     existing.burst = attrs.burst
+                    existing.play_tips = attrs.play_tips
+                    existing.meta_tier_json = json.dumps(attrs.meta_tier)
                     existing.source = attrs.source
                     existing.updated_at = datetime.now(timezone.utc)
                     session.add(existing)

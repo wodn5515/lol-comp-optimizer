@@ -10,12 +10,16 @@ from domain.models.composition import (
 
 
 # Score weights (out of 100 total)
-WEIGHT_PERSONAL_MASTERY: float = 0.30
-WEIGHT_AD_AP_BALANCE: float = 0.20
+WEIGHT_PERSONAL_MASTERY: float = 0.25
+WEIGHT_META_TIER: float = 0.10
+WEIGHT_AD_AP_BALANCE: float = 0.15
 WEIGHT_FRONTLINE: float = 0.15
 WEIGHT_DEAL_COMPOSITION: float = 0.15
 WEIGHT_WAVECLEAR: float = 0.10
 WEIGHT_SPLITPUSH: float = 0.10
+
+# Meta tier score mapping
+META_TIER_SCORES: dict[str, int] = {"S": 100, "A": 80, "B": 60, "C": 40, "D": 20}
 
 # Penalties
 PENALTY_FULL_AD: int = -30
@@ -114,8 +118,9 @@ class CompOptimizerService:
     """Champion composition optimization service.
 
     Scores compositions based on:
-    - Personal mastery (30%)
-    - AD/AP balance (20%)
+    - Personal mastery (25%)
+    - Meta tier (10%)
+    - AD/AP balance (15%)
     - Frontline presence (15%)
     - Deal composition / teamfight (15%)
     - Waveclear (10%)
@@ -249,6 +254,138 @@ class CompOptimizerService:
             return 0.0
         total = sum(a.splitpush for a in champion_attrs_list)
         return min(total / MAX_SPLITPUSH, 1.0) * 100.0
+
+    def _meta_tier_score(
+        self,
+        assignments: list[Assignment],
+        champion_attrs_map: dict[str, ChampionAttributes],
+    ) -> float:
+        """Average meta tier score for each champion in their assigned lane.
+
+        Uses META_TIER_SCORES mapping: S=100, A=80, B=60, C=40, D=20.
+        Defaults to B (60) if meta_tier data is missing.
+        """
+        if not assignments:
+            return 0.0
+        total = 0.0
+        for a in assignments:
+            attrs = champion_attrs_map.get(a.champion_name)
+            if attrs and attrs.meta_tier:
+                tier = attrs.meta_tier.get(a.lane, "B")
+                total += META_TIER_SCORES.get(tier, 60)
+            else:
+                total += 60  # default B tier
+        return total / len(assignments)
+
+    def _get_champion_comp_role(
+        self,
+        assignment: Assignment,
+        attrs: ChampionAttributes | None,
+        comp_types: list[str],
+    ) -> str:
+        """Determine a champion's role description based on their tags and the comp type."""
+        if attrs is None:
+            return "팀 내 역할을 수행하세요."
+
+        role_tags = set(attrs.role_tags)
+        comp_set = set(comp_types)
+
+        # TANK in engage/teamfight comp
+        if "TANK" in role_tags:
+            if "이니시" in comp_set:
+                return "이니시 담당. 궁으로 싸움을 걸고 팀이 따라오면 승리."
+            if "한타" in comp_set:
+                return "프론트라인. 앞에서 적 스킬 흡수하고 원딜과 너무 떨어지지 마세요."
+            if "프로텍트" in comp_set:
+                return "원딜 보호 담당. 적 다이버/어쌔신 차단이 최우선."
+            if "디스인게이지" in comp_set:
+                return "디스인게이지 담당. 적의 돌진을 CC로 끊고 아군을 보호하세요."
+            return "프론트라인. 적 CC와 딜을 흡수하며 아군이 안전하게 딜할 공간을 만드세요."
+
+        # MARKSMAN
+        if "MARKSMAN" in role_tags:
+            if "프로텍트" in comp_set:
+                return "메인 딜러. 프론트 뒤에서 안전하게 딜링. 절대 앞으로 나가지 마세요."
+            if "한타" in comp_set:
+                return "후방 딜러. 탱커 뒤에서 안전하게 딜링. 포지셔닝이 생명입니다."
+            if "포킹" in comp_set:
+                return "지속 딜러. 안전 거리에서 딜링하며 적이 접근하면 후퇴하세요."
+            return "팀의 핵심 딜러. 생존하면서 지속적으로 딜을 넣는 것이 최우선입니다."
+
+        # ASSASSIN
+        if "ASSASSIN" in role_tags:
+            if "픽" in comp_set:
+                return "캐치 후 폭딜 담당. 시야 확보된 곳에서 고립된 적을 노리세요."
+            if "다이브" in comp_set:
+                return "백라인 다이브 담당. 적 원딜/미드를 빠르게 삭제하세요."
+            if "폭딜" in comp_set:
+                return "암살 담당. 적 핵심 타겟을 2초 안에 처치하세요. 교전이 길어지면 불리합니다."
+            if "스커미시" in comp_set:
+                return "초반 스커미시 주도. 정글 침입과 소규모 교전에서 킬을 따내세요."
+            return "적 핵심 딜러 암살 담당. 싸움 시작 후 적 후방으로 우회 진입하세요."
+
+        # BRUISER
+        if "BRUISER" in role_tags:
+            if "스플릿" in comp_set and attrs.splitpush >= 4:
+                return "스플릿 담당. 사이드 밀다가 텔레포트로 합류."
+            if "이니시" in comp_set:
+                return "서브 이니시+딜. 탱커 뒤에서 따라 들어가 적 후방을 위협하세요."
+            if "한타" in comp_set:
+                return "프론트라인. 앞에서 적 스킬 흡수하고 원딜과 너무 떨어지지 마세요."
+            if "스커미시" in comp_set:
+                return "소규모 교전 주도. 1v1, 2v2에서 이기고 골드 차이를 벌리세요."
+            return "서브 탱커/딜러. 상황에 따라 프론트 또는 플랭크로 전환하세요."
+
+        # MAGE
+        if "MAGE" in role_tags:
+            if "포킹" in comp_set and attrs.poke >= 3:
+                return "포킹 담당. 스킬 빗나가면 안 됩니다. 마나 관리 중요."
+            if "궁합" in comp_set:
+                return "광역 궁극기 담당. 이니시 타이밍에 맞춰 궁을 사용하세요."
+            if "한타" in comp_set:
+                return "광역 딜러. 안전 거리에서 스킬로 광역 딜링. 포지셔닝 유지."
+            if "이니시" in comp_set:
+                return "팔로업 딜러. 탱커 이니시 후 광역 스킬로 후속 딜을 넣으세요."
+            return "마법 딜러. 스킬 적중률을 높이고 팀파이트에서 광역 딜을 넣으세요."
+
+        # SUPPORT / ENCHANTER
+        if "SUPPORT" in role_tags or "ENCHANTER" in role_tags:
+            if "프로텍트" in comp_set:
+                return "원딜 보호 담당. 보호막/힐/CC로 원딜이 안전하게 딜할 수 있게 하세요."
+            if "디스인게이지" in comp_set:
+                return "디스인게이지 담당. 적의 돌진을 차단하고 아군을 보호하세요."
+            if attrs.peel >= 3:
+                return "원딜 보호 담당. 적 다이버/어쌔신 차단이 최우선."
+            return "아군 지원 담당. 시야 확보와 CC로 팀을 도우세요."
+
+        return "팀 내 역할을 수행하세요."
+
+    def _build_champion_roles_guide(
+        self,
+        assignments: list[Assignment],
+        champion_attrs_map: dict[str, ChampionAttributes],
+        comp_types: list[str],
+    ) -> str:
+        """Generate per-champion role descriptions within the team context."""
+        if not assignments:
+            return ""
+
+        lane_ko_map = {"TOP": "탑", "JG": "정글", "MID": "미드", "ADC": "원딜", "SUP": "서폿"}
+        lines: list[str] = ["\n[챔피언별 역할]"]
+
+        for a in assignments:
+            attrs = champion_attrs_map.get(a.champion_name)
+            lane_ko = lane_ko_map.get(a.lane, a.lane)
+            name_ko = attrs.champion_name_ko if attrs and attrs.champion_name_ko else a.champion_name
+            tips = attrs.play_tips if attrs and attrs.play_tips else ""
+
+            role_desc = self._get_champion_comp_role(a, attrs, comp_types)
+
+            lines.append(f"\u2022 {name_ko} ({lane_ko}): {role_desc}")
+            if tips:
+                lines.append(f"  팁: {tips}")
+
+        return "\n".join(lines)
 
     def _detect_comp_types(
         self, champion_attrs_list: list[ChampionAttributes]
@@ -414,12 +551,14 @@ class CompOptimizerService:
         self,
         assignments: list[Assignment],
         champion_attrs_list: list[ChampionAttributes],
+        champion_attrs_map: dict[str, ChampionAttributes] | None = None,
     ) -> float:
         """Calculate total composition score (0-100 minus penalties).
 
         Weights:
-        - Personal mastery: 30%
-        - AD/AP balance: 20%
+        - Personal mastery: 25%
+        - Meta tier: 10%
+        - AD/AP balance: 15%
         - Frontline: 15%
         - Deal composition: 15%
         - Waveclear: 10%
@@ -431,6 +570,11 @@ class CompOptimizerService:
         if len(assignments) < 4:
             return personal
 
+        # Build a map from the list if not provided
+        if champion_attrs_map is None:
+            champion_attrs_map = {a.champion_name: a for a in champion_attrs_list}
+
+        meta = self._meta_tier_score(assignments, champion_attrs_map)
         ad_ap = self._ad_ap_balance_score(champion_attrs_list)
         frontline = self._frontline_score(champion_attrs_list)
         deal = self._deal_composition_score(champion_attrs_list)
@@ -439,6 +583,7 @@ class CompOptimizerService:
 
         base_score = (
             personal * WEIGHT_PERSONAL_MASTERY
+            + meta * WEIGHT_META_TIER
             + ad_ap * WEIGHT_AD_AP_BALANCE
             + frontline * WEIGHT_FRONTLINE
             + deal * WEIGHT_DEAL_COMPOSITION
@@ -493,6 +638,7 @@ class CompOptimizerService:
         self,
         assignments: list[Assignment],
         champion_attrs_list: list[ChampionAttributes],
+        champion_attrs_map: dict[str, ChampionAttributes] | None = None,
     ) -> TeamAnalysis:
         """Analyze a team composition and return detailed analysis."""
         if not champion_attrs_list:
@@ -610,12 +756,26 @@ class CompOptimizerService:
             weaknesses.append("포킹 능력 부족")
 
         # Build comp type string and strategy guide
+        # Build champion attrs map if not provided
+        if champion_attrs_map is None:
+            champion_attrs_map = {a.champion_name: a for a in champion_attrs_list}
+
         if comp_types:
             comp_type = " + ".join(t + " 조합" for t in comp_types)
             strategy_guide = self._build_strategy_guide(comp_types)
+            # Append champion-specific roles guide
+            champion_roles = self._build_champion_roles_guide(
+                assignments, champion_attrs_map, comp_types
+            )
+            if champion_roles:
+                strategy_guide = strategy_guide + "\n" + champion_roles if strategy_guide else champion_roles
         else:
             comp_type = "균형 조합"
-            strategy_guide = ""
+            # Still build champion roles guide even for balanced comps
+            champion_roles = self._build_champion_roles_guide(
+                assignments, champion_attrs_map, comp_types
+            )
+            strategy_guide = champion_roles if champion_roles else ""
 
         return TeamAnalysis(
             ad_ratio=round(ad_ratio, 2),
@@ -752,7 +912,7 @@ class CompOptimizerService:
                 if len(set(champ_names)) < len(champ_names):
                     continue  # Skip compositions with duplicate champions
 
-                score = self.calculate_score(assignments, attrs_list)
+                score = self.calculate_score(assignments, attrs_list, champion_attrs_map)
 
                 # Off-lane penalty: 챔피언이 primary_lanes 밖에서 플레이 시 감점
                 off_lane_count = self._count_off_lane_champions(
@@ -769,7 +929,7 @@ class CompOptimizerService:
                     score += lane_quality
 
                 score = max(score, 0.0)
-                analysis = self.analyze(assignments, attrs_list)
+                analysis = self.analyze(assignments, attrs_list, champion_attrs_map)
 
                 all_compositions.append(
                     Composition(
