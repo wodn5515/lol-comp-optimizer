@@ -25,7 +25,7 @@ export function PlayerInputForm() {
     usePlayerFormStore();
   const { analyzePlayers: analyzePlayersAction, isLoading } = useAnalyzeStore();
   const { setPlayers } = usePlayerStore();
-  const { setAnalyzedPlayers } = useBanPickStore();
+  const { setAnalyzedPlayers, reset: resetBanPick } = useBanPickStore();
 
   const handleRiotIdChange = (id, value) => {
     updatePlayerInput(id, value);
@@ -80,6 +80,7 @@ export function PlayerInputForm() {
       });
 
       if (result) {
+        resetBanPick();
         setPlayers(result.players || []);
         setAnalyzedPlayers(result.players || []);
         navigate('/banpick');
