@@ -580,45 +580,7 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
         a.champion_name: a for a in all_attrs
     }
 
-    # 풀이 부족한 플레이어에게 메타 챔피언 보충
-    MIN_POOL_SIZE = 3
-    for player in players:
-        if len(player.top_champions) >= MIN_POOL_SIZE:
-            continue
-        existing_names = {c.champion_name for c in player.top_champions} | excluded_champions
-        # 메타 티어가 높은 챔피언을 라인별로 추가
-        meta_candidates: list[tuple[str, ChampionAttributes]] = []
-        for name, attrs in champion_attrs_map.items():
-            if name in existing_names:
-                continue
-            if not attrs.meta_tier:
-                continue
-            meta_candidates.append((name, attrs))
-        # S > A > B 순으로 정렬
-        tier_order = {"S": 0, "A": 1, "B": 2, "C": 3, "D": 4}
-        meta_candidates.sort(
-            key=lambda x: min(tier_order.get(t, 5) for t in x[1].meta_tier.values()) if x[1].meta_tier else 5
-        )
-        for name, attrs in meta_candidates:
-            if len(player.top_champions) >= MIN_POOL_SIZE:
-                break
-            player.top_champions.append(
-                ChampionStats(
-                    champion_id=attrs.champion_id,
-                    champion_name=name,
-                    champion_name_ko=attrs.champion_name_ko,
-                    games=0,
-                    wins=0,
-                    win_rate=0.5,
-                    kda=0.0,
-                    mastery_points=0,
-                )
-            )
-        if len(player.top_champions) < MIN_POOL_SIZE:
-            logger.warning(
-                "  플레이어 %s#%s 풀 부족 (%d개, 메타 보충 후)",
-                player.game_name, player.tag_line, len(player.top_champions),
-            )
+    # 메타 챔피언 보충은 locked_picks/positions 처리 후에 수행 (아래)
 
     # Handle locked picks: force the locked champion for that player
     locked_player_keys: set[str] = set()
@@ -695,6 +657,55 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
             "  챔프 잠금 라인 제약: %s → %s (허용: %s)",
             player_key, champion_name, lane_constraints[player_key]
         )
+
+    # 메타 챔피언 보충: 각 플레이어의 풀이 부족하면 라인별 메타 챔프 추가
+    MIN_POOL_SIZE = 5
+    tier_order = {"S": 0, "A": 1, "B": 2, "C": 3, "D": 4}
+    all_locked_champs = set(request.locked_picks.values())
+    for player in players:
+        player_key = f"{player.game_name}#{player.tag_line}"
+        # 잠금 픽된 플레이어는 이미 풀이 1개로 고정됨 → 보충 불필요
+        if player_key in request.locked_picks:
+            continue
+        if len(player.top_champions) >= MIN_POOL_SIZE:
+            continue
+        existing_names = {c.champion_name for c in player.top_champions} | excluded_champions | all_locked_champs
+        # 포지션 고정이 있으면 해당 라인 메타 챔프만, 없으면 모든 라인
+        target_lanes = None
+        if player_key in request.locked_positions:
+            target_lanes = {request.locked_positions[player_key]}
+        # 메타 티어 순으로 보충
+        meta_candidates: list[tuple[str, ChampionAttributes, int]] = []
+        for name, attrs in champion_attrs_map.items():
+            if name in existing_names:
+                continue
+            if not attrs.meta_tier:
+                continue
+            # 타겟 라인이 있으면 해당 라인 메타만
+            if target_lanes:
+                matching_tiers = [tier_order.get(attrs.meta_tier.get(l, ""), 5) for l in target_lanes if l in attrs.meta_tier]
+                if not matching_tiers:
+                    continue
+                best_tier = min(matching_tiers)
+            else:
+                best_tier = min(tier_order.get(t, 5) for t in attrs.meta_tier.values())
+            meta_candidates.append((name, attrs, best_tier))
+        meta_candidates.sort(key=lambda x: x[2])
+        added = 0
+        for name, attrs, _ in meta_candidates:
+            if len(player.top_champions) >= MIN_POOL_SIZE:
+                break
+            player.top_champions.append(
+                ChampionStats(
+                    champion_id=attrs.champion_id,
+                    champion_name=name,
+                    champion_name_ko=attrs.champion_name_ko,
+                    games=0, wins=0, win_rate=0.5, kda=0.0, mastery_points=0,
+                )
+            )
+            added += 1
+        if added > 0:
+            logger.info("  %s 메타 챔피언 %d개 보충 (풀: %d개)", player_key, added, len(player.top_champions))
 
     # Log player lane stats for debugging
     for player in players:
