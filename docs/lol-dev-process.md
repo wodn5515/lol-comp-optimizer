@@ -94,13 +94,13 @@
 [x] Session persistence — zustand + sessionStorage (30분 만료)
 ```
 
-### Phase 5b: P1 개선 (알고리즘 + UX)
+### Phase 5b: P1 개선 (알고리즘 + UX) ✅
 
 ```
-[ ] 단계적 프론트라인 점수 — 기존 -25 페널티 삭제, 등급제 교체
-[ ] 점수 분해 / "Why This Comp" — ScoreBreakdown 모델 + UI
-[ ] 다양성 필터 강화 — min_diff=max(1,n-2) + archetype 다양성
-[ ] 클립보드 복사 — 로비 채팅용 텍스트 복사
+[x] 단계적 프론트라인 점수 — 기존 -25 페널티 삭제, 등급제 교체
+[x] 점수 분해 / "Why This Comp" — ScoreBreakdown 모델 + UI
+[x] 다양성 필터 강화 — min_diff=max(1,n-2) + archetype 다양성
+[x] 클립보드 복사 — 로비 채팅용 텍스트 복사
 ```
 
 ### Phase 5c: P2 개선 (추가 기능)
