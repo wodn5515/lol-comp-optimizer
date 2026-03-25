@@ -1015,8 +1015,17 @@ class CompOptimizerService:
                     )
                 )
 
+        import logging
+        _logger = logging.getLogger(__name__)
+        _logger.info("총 %d개 조합 생성됨", len(all_compositions))
+
         # Sort by total_score descending
         all_compositions.sort(key=lambda c: c.total_score, reverse=True)
+
+        # 상위 10개 조합 로깅 (디버그용)
+        for i, comp in enumerate(all_compositions[:10]):
+            champs = ", ".join(f"{a.display_name}({a.lane})" for a in comp.assignments)
+            _logger.info("  생성 조합 #%d: 점수=%.1f | %s", i+1, comp.total_score, champs)
 
         # Diversity filter: 각 추천은 이전 추천과 최소 1개 챔피언이 달라야 함
         result: list[Composition] = []
