@@ -659,9 +659,12 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
         )
 
     # 메타 챔피언 보충: 각 플레이어의 풀이 부족하면 라인별 메타 챔프 추가
+    # 핵심: 플레이어 주 라인에 맞는 챔피언만 + 다른 플레이어에게 이미 보충된 챔피언 제외
     MIN_POOL_SIZE = 5
     tier_order = {"S": 0, "A": 1, "B": 2, "C": 3, "D": 4}
     all_locked_champs = set(request.locked_picks.values())
+    meta_already_assigned: set[str] = set()  # 다른 플레이어에게 보충된 챔피언 추적
+
     for player in players:
         player_key = f"{player.game_name}#{player.tag_line}"
         # 잠금 픽된 플레이어는 이미 풀이 1개로 고정됨 → 보충 불필요
@@ -669,19 +672,30 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
             continue
         if len(player.top_champions) >= MIN_POOL_SIZE:
             continue
-        existing_names = {c.champion_name for c in player.top_champions} | excluded_champions | all_locked_champs
-        # 포지션 고정이 있으면 해당 라인 메타 챔프만, 없으면 모든 라인
-        target_lanes = None
+        existing_names = {c.champion_name for c in player.top_champions} | excluded_champions | all_locked_champs | meta_already_assigned
+
+        # 플레이어의 주 라인 추론: 포지션 고정 > lane_stats > 챔피언 풀
+        target_lanes: set[str] | None = None
         if player_key in request.locked_positions:
             target_lanes = {request.locked_positions[player_key]}
-        # 메타 티어 순으로 보충
+        elif player.lane_stats:
+            # 가장 많이 플레이한 라인
+            best_lane = max(player.lane_stats.items(), key=lambda x: x[1].games)
+            target_lanes = {best_lane[0]}
+        else:
+            # 챔피언 풀에서 라인 추론
+            inferred = lane_optimizer_service._infer_lane_preference(player, champion_attrs_map) if lane_optimizer_service else {}
+            if inferred:
+                best_lane = max(inferred.items(), key=lambda x: x[1])
+                target_lanes = {best_lane[0]}
+
+        # 메타 티어 순으로 보충 (타겟 라인 챔피언만)
         meta_candidates: list[tuple[str, ChampionAttributes, int]] = []
         for name, attrs in champion_attrs_map.items():
             if name in existing_names:
                 continue
             if not attrs.meta_tier:
                 continue
-            # 타겟 라인이 있으면 해당 라인 메타만
             if target_lanes:
                 matching_tiers = [tier_order.get(attrs.meta_tier.get(l, ""), 5) for l in target_lanes if l in attrs.meta_tier]
                 if not matching_tiers:
@@ -703,9 +717,11 @@ async def optimize_comp(request: OptimizeCompRequest) -> dict:
                     games=0, wins=0, win_rate=0.5, kda=0.0, mastery_points=0,
                 )
             )
+            meta_already_assigned.add(name)
             added += 1
         if added > 0:
-            logger.info("  %s 메타 챔피언 %d개 보충 (풀: %d개)", player_key, added, len(player.top_champions))
+            lane_str = ", ".join(target_lanes) if target_lanes else "전체"
+            logger.info("  %s 메타 챔피언 %d개 보충 (라인: %s, 풀: %d개)", player_key, added, lane_str, len(player.top_champions))
 
     # Log player lane stats for debugging
     for player in players:
