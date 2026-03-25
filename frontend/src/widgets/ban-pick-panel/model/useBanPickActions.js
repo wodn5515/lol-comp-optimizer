@@ -4,7 +4,7 @@ import { optimizeComp } from '../../../features/analyze-comp/api/analyzeComp';
 
 /**
  * 밴/픽/포지션 변경 시 자동으로 최적화 API를 호출하는 훅
- * 500ms 디바운스 적용
+ * 500ms 디바운스 적용, 최초 로드 시에는 즉시 호출
  */
 export function useBanPickActions() {
   const analyzedPlayers = useBanPickStore((s) => s.analyzedPlayers);
@@ -17,6 +17,7 @@ export function useBanPickActions() {
 
   const timerRef = useRef(null);
   const abortRef = useRef(null);
+  const isFirstRun = useRef(true);
 
   const fetchOptimization = useCallback(async () => {
     if (!analyzedPlayers || analyzedPlayers.length === 0) return;
@@ -54,6 +55,13 @@ export function useBanPickActions() {
   useEffect(() => {
     if (!analyzedPlayers || analyzedPlayers.length === 0) return;
 
+    // 최초 로드 시 즉시 호출, 이후에는 500ms 디바운스
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      fetchOptimization();
+      return;
+    }
+
     if (timerRef.current) {
       clearTimeout(timerRef.current);
     }
@@ -67,16 +75,7 @@ export function useBanPickActions() {
         clearTimeout(timerRef.current);
       }
     };
-  }, [bannedChampions, enemyPicks, lockedPicks, lockedPositions, fetchOptimization]);
-
-  // Initial fetch when players are first set
-  const hasInitialFetch = useRef(false);
-  useEffect(() => {
-    if (analyzedPlayers.length > 0 && !hasInitialFetch.current) {
-      hasInitialFetch.current = true;
-      fetchOptimization();
-    }
-  }, [analyzedPlayers, fetchOptimization]);
+  }, [analyzedPlayers, bannedChampions, enemyPicks, lockedPicks, lockedPositions, fetchOptimization]);
 
   return { fetchOptimization };
 }
