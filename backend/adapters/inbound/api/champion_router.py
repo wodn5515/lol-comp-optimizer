@@ -29,6 +29,7 @@ async def get_all_champions() -> list[dict]:
         {
             "champion_id": c.champion_id,
             "champion_name": c.champion_name,
+            "champion_name_ko": c.champion_name_ko,
             "damage_type": c.damage_type,
             "role_tags": c.role_tags,
             "waveclear": c.waveclear,
@@ -55,6 +56,7 @@ async def get_champion(champion_id: int) -> dict:
     return {
         "champion_id": champion.champion_id,
         "champion_name": champion.champion_name,
+        "champion_name_ko": champion.champion_name_ko,
         "damage_type": champion.damage_type,
         "role_tags": champion.role_tags,
         "waveclear": champion.waveclear,

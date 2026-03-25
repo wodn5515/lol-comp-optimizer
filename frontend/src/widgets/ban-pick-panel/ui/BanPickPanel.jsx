@@ -13,26 +13,39 @@ function ChampionSearchInput({ onSelect, placeholder, excludeList = [] }) {
 
   const analyzedPlayers = useBanPickStore((s) => s.analyzedPlayers);
 
+  // Build champion list with Korean names
   const allChampions = useMemo(() => {
-    const champSet = new Set();
+    const champMap = new Map(); // champion_name -> champion_name_ko
     if (analyzedPlayers) {
       analyzedPlayers.forEach((player) => {
         if (player.top_champions) {
           player.top_champions.forEach((c) => {
-            champSet.add(c.champion_name);
+            if (!champMap.has(c.champion_name)) {
+              champMap.set(c.champion_name, c.champion_name_ko || '');
+            }
           });
         }
       });
     }
-    return Array.from(champSet).sort();
+    // Sort by Korean name (가나다순), fallback to English name
+    return Array.from(champMap.entries())
+      .sort((a, b) => {
+        const nameA = a[1] || a[0];
+        const nameB = b[1] || b[0];
+        return nameA.localeCompare(nameB, 'ko');
+      })
+      .map(([name, nameKo]) => ({ champion_name: name, champion_name_ko: nameKo }));
   }, [analyzedPlayers]);
 
   const filtered = useMemo(() => {
-    if (!query.trim()) return allChampions.filter((c) => !excludeList.includes(c));
+    const available = allChampions.filter((c) => !excludeList.includes(c.champion_name));
+    if (!query.trim()) return available;
     const q = query.toLowerCase();
-    return allChampions
-      .filter((c) => !excludeList.includes(c))
-      .filter((c) => c.toLowerCase().includes(q));
+    return available.filter(
+      (c) =>
+        c.champion_name.toLowerCase().includes(q) ||
+        (c.champion_name_ko && c.champion_name_ko.toLowerCase().includes(q))
+    );
   }, [query, allChampions, excludeList]);
 
   useEffect(() => {
@@ -82,13 +95,13 @@ function ChampionSearchInput({ onSelect, placeholder, excludeList = [] }) {
         >
           {filtered.map((champ) => (
             <button
-              key={champ}
+              key={champ.champion_name}
               type="button"
-              onClick={() => handleSelect(champ)}
+              onClick={() => handleSelect(champ.champion_name)}
               className="w-full flex items-center gap-2 px-3 py-2 text-sm text-gray-200 hover:bg-gray-800 transition-colors text-left"
             >
-              <ChampionIcon championName={champ} size={20} showTooltip={false} />
-              <span>{champ}</span>
+              <ChampionIcon championName={champ.champion_name} size={20} showTooltip={false} />
+              <span>{champ.champion_name_ko || champ.champion_name}</span>
             </button>
           ))}
         </div>
@@ -102,12 +115,33 @@ function ChampionSearchInput({ onSelect, placeholder, excludeList = [] }) {
   );
 }
 
+/** Build a champion_name -> champion_name_ko lookup from analyzedPlayers. */
+function useChampionKoMap() {
+  const analyzedPlayers = useBanPickStore((s) => s.analyzedPlayers);
+  return useMemo(() => {
+    const map = {};
+    if (analyzedPlayers) {
+      analyzedPlayers.forEach((player) => {
+        if (player.top_champions) {
+          player.top_champions.forEach((c) => {
+            if (c.champion_name_ko && !map[c.champion_name]) {
+              map[c.champion_name] = c.champion_name_ko;
+            }
+          });
+        }
+      });
+    }
+    return map;
+  }, [analyzedPlayers]);
+}
+
 function BanSection() {
   const bannedChampions = useBanPickStore((s) => s.bannedChampions);
   const addBan = useBanPickStore((s) => s.addBan);
   const removeBan = useBanPickStore((s) => s.removeBan);
   const enemyPicks = useBanPickStore((s) => s.enemyPicks);
   const lockedPicks = useBanPickStore((s) => s.lockedPicks);
+  const koMap = useChampionKoMap();
 
   const excludeList = [
     ...bannedChampions,
@@ -162,7 +196,7 @@ function BanSection() {
                     type="button"
                     onClick={() => removeBan(champ)}
                     className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-600 text-white flex items-center justify-center text-[10px] hover:bg-red-500 transition-colors z-10"
-                    title={`${champ} 밴 해제`}
+                    title={`${koMap[champ] || champ} 밴 해제`}
                   >
                     x
                   </button>
@@ -192,6 +226,7 @@ function EnemyPickSection() {
   const removeEnemyPick = useBanPickStore((s) => s.removeEnemyPick);
   const bannedChampions = useBanPickStore((s) => s.bannedChampions);
   const lockedPicks = useBanPickStore((s) => s.lockedPicks);
+  const koMap = useChampionKoMap();
 
   const excludeList = [
     ...bannedChampions,
@@ -232,13 +267,13 @@ function EnemyPickSection() {
                     showTooltip={false}
                   />
                   <span className="text-[9px] text-gray-400 truncate max-w-full px-1">
-                    {champ}
+                    {koMap[champ] || champ}
                   </span>
                   <button
                     type="button"
                     onClick={() => removeEnemyPick(champ)}
                     className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-red-600 text-white flex items-center justify-center text-[10px] hover:bg-red-500 transition-colors z-10"
-                    title={`${champ} 제거`}
+                    title={`${koMap[champ] || champ} 제거`}
                   >
                     x
                   </button>
@@ -269,6 +304,7 @@ function AllyLockSection() {
   const unlockPick = useBanPickStore((s) => s.unlockPick);
   const bannedChampions = useBanPickStore((s) => s.bannedChampions);
   const enemyPicks = useBanPickStore((s) => s.enemyPicks);
+  const koMap = useChampionKoMap();
 
   const unavailable = [
     ...bannedChampions,
@@ -291,8 +327,7 @@ function AllyLockSection() {
           const lockedChamp = lockedPicks[playerKey];
 
           const playerChampions = (player.top_champions || [])
-            .map((c) => c.champion_name)
-            .filter((c) => !unavailable.includes(c) || c === lockedChamp);
+            .filter((c) => !unavailable.includes(c.champion_name) || c.champion_name === lockedChamp);
 
           return (
             <div
@@ -321,7 +356,7 @@ function AllyLockSection() {
                       showTooltip={false}
                     />
                     <span className="text-xs text-amber-300 font-medium">
-                      {lockedChamp}
+                      {koMap[lockedChamp] || lockedChamp}
                     </span>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -368,8 +403,8 @@ function AllyLockSection() {
                 >
                   <option value="">챔피언 선택...</option>
                   {playerChampions.map((champ) => (
-                    <option key={champ} value={champ}>
-                      {champ}
+                    <option key={champ.champion_name} value={champ.champion_name}>
+                      {champ.champion_name_ko || champ.champion_name}
                     </option>
                   ))}
                 </select>

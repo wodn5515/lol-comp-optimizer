@@ -11,6 +11,7 @@ class ChampionAttributeORM(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     champion_id: int = Field(index=True, unique=True)
     champion_name: str = Field(index=True)
+    champion_name_ko: str = Field(default="")
     damage_type: str = Field(default="AD")
     role_tags_json: str = Field(default='[]')  # JSON string of list[str]
     primary_lanes_json: str = Field(default='[]')  # JSON string of list[str]

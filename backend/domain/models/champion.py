@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 class ChampionAttributes:
     champion_id: int = 0
     champion_name: str = ""
+    champion_name_ko: str = ""
     damage_type: str = "AD"  # "AD" | "AP" | "HYBRID"
     role_tags: list[str] = field(default_factory=list)
     waveclear: int = 3

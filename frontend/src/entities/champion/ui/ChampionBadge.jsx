@@ -4,6 +4,7 @@ import { cn } from '../../../shared/lib/cn';
 
 export function ChampionBadge({
   championName,
+  championNameKo,
   championId,
   winRate,
   kda,
@@ -29,13 +30,14 @@ export function ChampionBadge({
     >
       <ChampionIcon
         championName={championName}
+        championNameKo={championNameKo}
         championId={championId}
         size={s.icon}
         showTooltip={false}
       />
       <div className={cn('flex flex-col', s.text)}>
         <span className="text-gray-200 font-semibold leading-tight">
-          {championName}
+          {championNameKo || championName}
         </span>
         <div className="flex items-center gap-1.5 text-gray-400">
           {winRate != null && (

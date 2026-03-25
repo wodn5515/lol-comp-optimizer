@@ -69,6 +69,7 @@ export function PlayerCard({ player, compact = false }) {
                 >
                   <ChampionIcon
                     championName={champ.champion_name}
+                    championNameKo={champ.champion_name_ko}
                     size={24}
                   />
                   <div className="text-xs">

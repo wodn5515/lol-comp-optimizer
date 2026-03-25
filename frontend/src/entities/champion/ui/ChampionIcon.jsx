@@ -4,6 +4,7 @@ import { cn } from '../../../shared/lib/cn';
 
 export function ChampionIcon({
   championName,
+  championNameKo,
   championId,
   size = 32,
   className,
@@ -33,7 +34,7 @@ export function ChampionIcon({
       />
       {showName && showTooltip && championName && (
         <div className="absolute -top-8 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 border border-gray-700 rounded text-[10px] text-gray-200 whitespace-nowrap z-50">
-          {championName}
+          {championNameKo || championName}
         </div>
       )}
     </div>

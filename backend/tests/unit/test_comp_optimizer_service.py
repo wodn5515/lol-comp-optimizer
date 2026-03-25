@@ -112,27 +112,47 @@ class TestPenalties:
         assert "full_ap" in penalties
         assert penalties["full_ap"] == -30
 
-    def test_no_frontline_penalty(self, comp_optimizer: CompOptimizerService) -> None:
-        """Spec: No frontline (0 TANK/BRUISER) -> -25 points."""
-        no_frontline_champs = [
-            make_champ("Zed", damage_type="AD", role_tags=["ASSASSIN"]),
-            make_champ("Nidalee", damage_type="AP", role_tags=["MAGE"]),
-            make_champ("LeBlanc", damage_type="AP", role_tags=["ASSASSIN"]),
-            make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"]),
-            make_champ("Lux", damage_type="AP", role_tags=["MAGE"]),
+    def test_no_frontline_penalty_for_engage_comp(self, comp_optimizer: CompOptimizerService) -> None:
+        """Spec: No frontline penalty (-25) applies for comps that NEED frontline (이니시, 한타, 프로텍트).
+        Engage comp (engage>=15) without frontline should get -25 penalty."""
+        # Engage comp without frontline: engage >= 15, no TANK/BRUISER
+        no_frontline_engage = [
+            make_champ("Zed", damage_type="AD", role_tags=["ASSASSIN"], engage=5, poke=1, pick=1, burst=1),
+            make_champ("Nidalee", damage_type="AP", role_tags=["MAGE"], engage=4, poke=1, pick=1, burst=1),
+            make_champ("LeBlanc", damage_type="AP", role_tags=["ASSASSIN"], engage=3, poke=1, pick=1, burst=1),
+            make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"], engage=2, poke=1, pick=1, burst=1),
+            make_champ("Lux", damage_type="AP", role_tags=["MAGE"], engage=3, poke=1, pick=1, burst=1),
         ]
-        assignments = make_5_assignments()
-        score_no_front = comp_optimizer.calculate_score(assignments, no_frontline_champs)
+        # engage = 5+4+3+2+3 = 17 >= 15 → 이니시 comp → needs frontline
+        penalties = comp_optimizer._calculate_penalties(no_frontline_engage)
+        assert "no_frontline" in penalties
+        assert penalties["no_frontline"] == -25
 
-        with_frontline_champs = [
-            make_champ("Ornn", damage_type="AP", role_tags=["TANK"]),
-            make_champ("Nidalee", damage_type="AP", role_tags=["MAGE"]),
-            make_champ("LeBlanc", damage_type="AP", role_tags=["ASSASSIN"]),
-            make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"]),
-            make_champ("Lux", damage_type="AP", role_tags=["MAGE"]),
+    def test_no_frontline_penalty_skipped_for_poke_comp(self, comp_optimizer: CompOptimizerService) -> None:
+        """Spec: No frontline penalty does NOT apply for comps that don't need it (포킹, 픽, 폭딜, 다이브)."""
+        # Poke comp without frontline: poke >= 14, no TANK/BRUISER
+        poke_no_frontline = [
+            make_champ("Jayce", damage_type="AD", role_tags=["MARKSMAN"], poke=4, engage=1, pick=1, burst=1),
+            make_champ("Xerath", damage_type="AP", role_tags=["MAGE"], poke=5, engage=1, pick=1, burst=1),
+            make_champ("Zoe", damage_type="AP", role_tags=["MAGE"], poke=4, engage=1, pick=1, burst=1),
+            make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"], poke=3, engage=1, pick=1, burst=1),
+            make_champ("Lux", damage_type="AP", role_tags=["MAGE"], poke=3, engage=1, pick=1, burst=1),
         ]
-        score_with_front = comp_optimizer.calculate_score(assignments, with_frontline_champs)
-        assert score_with_front > score_no_front + 15
+        # poke = 4+5+4+3+3 = 19 >= 14 → 포킹 comp → no frontline penalty
+        penalties = comp_optimizer._calculate_penalties(poke_no_frontline)
+        assert "no_frontline" not in penalties
+
+    def test_no_frontline_penalty_skipped_for_balanced_comp(self, comp_optimizer: CompOptimizerService) -> None:
+        """Spec: Balanced comp (no detected type) should NOT get frontline penalty."""
+        balanced_no_frontline = [
+            make_champ("Zed", damage_type="AD", role_tags=["ASSASSIN"], engage=2, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=2),
+            make_champ("Nidalee", damage_type="AP", role_tags=["MAGE"], engage=2, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=2),
+            make_champ("LeBlanc", damage_type="AP", role_tags=["ASSASSIN"], engage=2, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=2),
+            make_champ("Ezreal", damage_type="AD", role_tags=["MARKSMAN"], engage=1, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=1),
+            make_champ("Lux", damage_type="AP", role_tags=["MAGE"], engage=2, poke=2, pick=2, burst=2, teamfight=3, splitpush=2, peel=2),
+        ]
+        penalties = comp_optimizer._calculate_penalties(balanced_no_frontline)
+        assert "no_frontline" not in penalties
 
     def test_waveclear_low_penalty(self, comp_optimizer: CompOptimizerService) -> None:
         """Spec: Waveclear total < 10 -> -10 points."""

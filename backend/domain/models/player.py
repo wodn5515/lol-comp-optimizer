@@ -12,6 +12,7 @@ class LaneStats:
 class ChampionStats:
     champion_id: int = 0
     champion_name: str = ""
+    champion_name_ko: str = ""
     games: int = 0
     wins: int = 0
     win_rate: float = 0.0

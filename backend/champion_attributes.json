@@ -15,7 +15,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "아트록스"
   },
   "Ahri": {
     "champion_id": 103,
@@ -34,7 +35,8 @@
     "burst": 4,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "아리"
   },
   "Akali": {
     "champion_id": 84,
@@ -53,7 +55,8 @@
     "primary_lanes": [
       "MID",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "아칼리"
   },
   "Akshan": {
     "champion_id": 166,
@@ -73,7 +76,8 @@
     "primary_lanes": [
       "MID",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "아크샨"
   },
   "Alistar": {
     "champion_id": 12,
@@ -92,7 +96,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "알리스타"
   },
   "Ambessa": {
     "champion_id": 799,
@@ -110,7 +115,8 @@
     "burst": 4,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "암베사"
   },
   "Amumu": {
     "champion_id": 32,
@@ -129,7 +135,8 @@
     "primary_lanes": [
       "JG",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "아무무"
   },
   "Anivia": {
     "champion_id": 34,
@@ -147,7 +154,8 @@
     "burst": 3,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "애니비아"
   },
   "Annie": {
     "champion_id": 1,
@@ -166,7 +174,8 @@
     "primary_lanes": [
       "MID",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "애니"
   },
   "Aphelios": {
     "champion_id": 523,
@@ -184,7 +193,8 @@
     "burst": 3,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "아펠리오스"
   },
   "Ashe": {
     "champion_id": 22,
@@ -203,7 +213,8 @@
     "primary_lanes": [
       "ADC",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "애쉬"
   },
   "AurelionSol": {
     "champion_id": 136,
@@ -221,7 +232,8 @@
     "burst": 3,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "아우렐리온 솔"
   },
   "Aurora": {
     "champion_id": 893,
@@ -241,7 +253,8 @@
     "primary_lanes": [
       "MID",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "오로라"
   },
   "Azir": {
     "champion_id": 268,
@@ -260,7 +273,8 @@
     "burst": 3,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "아지르"
   },
   "Bard": {
     "champion_id": 432,
@@ -278,7 +292,8 @@
     "burst": 2,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "바드"
   },
   "BelVeth": {
     "champion_id": 200,
@@ -297,7 +312,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "벨베스"
   },
   "Blitzcrank": {
     "champion_id": 53,
@@ -316,7 +332,8 @@
     "burst": 2,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "블리츠크랭크"
   },
   "Brand": {
     "champion_id": 63,
@@ -335,7 +352,8 @@
     "primary_lanes": [
       "SUP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "브랜드"
   },
   "Braum": {
     "champion_id": 201,
@@ -354,7 +372,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "브라움"
   },
   "Briar": {
     "champion_id": 233,
@@ -373,7 +392,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "브라이어"
   },
   "Caitlyn": {
     "champion_id": 51,
@@ -391,7 +411,8 @@
     "burst": 3,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "케이틀린"
   },
   "Camille": {
     "champion_id": 164,
@@ -410,7 +431,8 @@
     "burst": 4,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "카밀"
   },
   "Cassiopeia": {
     "champion_id": 69,
@@ -428,7 +450,8 @@
     "burst": 3,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "카시오페아"
   },
   "ChoGath": {
     "champion_id": 31,
@@ -447,7 +470,8 @@
     "primary_lanes": [
       "TOP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "초가스"
   },
   "Corki": {
     "champion_id": 42,
@@ -465,7 +489,8 @@
     "burst": 4,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "코르키"
   },
   "Darius": {
     "champion_id": 122,
@@ -483,7 +508,8 @@
     "burst": 4,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "다리우스"
   },
   "Diana": {
     "champion_id": 131,
@@ -503,7 +529,8 @@
     "primary_lanes": [
       "JG",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "다이애나"
   },
   "DrMundo": {
     "champion_id": 36,
@@ -523,7 +550,8 @@
     "primary_lanes": [
       "TOP",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "문도 박사"
   },
   "Draven": {
     "champion_id": 119,
@@ -541,7 +569,8 @@
     "burst": 4,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "드레이븐"
   },
   "Ekko": {
     "champion_id": 245,
@@ -560,7 +589,8 @@
     "primary_lanes": [
       "MID",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "에코"
   },
   "Elise": {
     "champion_id": 60,
@@ -579,7 +609,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "엘리스"
   },
   "Evelynn": {
     "champion_id": 28,
@@ -597,7 +628,8 @@
     "burst": 5,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "이블린"
   },
   "Ezreal": {
     "champion_id": 81,
@@ -615,7 +647,8 @@
     "burst": 3,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "이즈리얼"
   },
   "Fiddlesticks": {
     "champion_id": 9,
@@ -633,7 +666,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "피들스틱"
   },
   "Fiora": {
     "champion_id": 114,
@@ -652,7 +686,8 @@
     "burst": 4,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "피오라"
   },
   "Fizz": {
     "champion_id": 105,
@@ -670,7 +705,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "피즈"
   },
   "Galio": {
     "champion_id": 3,
@@ -690,7 +726,8 @@
     "primary_lanes": [
       "MID",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "갈리오"
   },
   "Gangplank": {
     "champion_id": 41,
@@ -709,7 +746,8 @@
     "primary_lanes": [
       "TOP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "갱플랭크"
   },
   "Garen": {
     "champion_id": 86,
@@ -728,7 +766,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "가렌"
   },
   "Gnar": {
     "champion_id": 150,
@@ -747,7 +786,8 @@
     "burst": 2,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "나르"
   },
   "Gragas": {
     "champion_id": 79,
@@ -768,7 +808,8 @@
       "TOP",
       "JG",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "그라가스"
   },
   "Graves": {
     "champion_id": 104,
@@ -786,7 +827,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "그레이브즈"
   },
   "Gwen": {
     "champion_id": 887,
@@ -804,7 +846,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "그웬"
   },
   "Hecarim": {
     "champion_id": 120,
@@ -823,7 +866,8 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "헤카림"
   },
   "Heimerdinger": {
     "champion_id": 74,
@@ -843,7 +887,8 @@
       "MID",
       "TOP",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "하이머딩거"
   },
   "Hwei": {
     "champion_id": 910,
@@ -862,7 +907,8 @@
     "primary_lanes": [
       "MID",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "흐웨이"
   },
   "Illaoi": {
     "champion_id": 420,
@@ -880,7 +926,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "일라오이"
   },
   "Irelia": {
     "champion_id": 39,
@@ -900,7 +947,8 @@
     "primary_lanes": [
       "TOP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "이렐리아"
   },
   "Ivern": {
     "champion_id": 427,
@@ -918,7 +966,8 @@
     "burst": 1,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "아이번"
   },
   "Janna": {
     "champion_id": 40,
@@ -937,7 +986,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "잔나"
   },
   "JarvanIV": {
     "champion_id": 59,
@@ -956,7 +1006,8 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "자르반 4세"
   },
   "Jax": {
     "champion_id": 24,
@@ -975,7 +1026,8 @@
     "primary_lanes": [
       "TOP",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "잭스"
   },
   "Jayce": {
     "champion_id": 126,
@@ -995,7 +1047,8 @@
     "primary_lanes": [
       "TOP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "제이스"
   },
   "Jhin": {
     "champion_id": 202,
@@ -1013,7 +1066,8 @@
     "burst": 3,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "진"
   },
   "Jinx": {
     "champion_id": 222,
@@ -1031,7 +1085,8 @@
     "burst": 2,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "징크스"
   },
   "KSante": {
     "champion_id": 897,
@@ -1050,7 +1105,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "크산테"
   },
   "Kaisa": {
     "champion_id": 145,
@@ -1068,7 +1124,8 @@
     "burst": 4,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "카이사"
   },
   "Kalista": {
     "champion_id": 429,
@@ -1086,7 +1143,8 @@
     "burst": 2,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "칼리스타"
   },
   "Karma": {
     "champion_id": 43,
@@ -1107,7 +1165,8 @@
     "primary_lanes": [
       "SUP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "카르마"
   },
   "Karthus": {
     "champion_id": 30,
@@ -1126,7 +1185,8 @@
     "primary_lanes": [
       "JG",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "카서스"
   },
   "Kassadin": {
     "champion_id": 38,
@@ -1145,7 +1205,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "카사딘"
   },
   "Katarina": {
     "champion_id": 55,
@@ -1163,7 +1224,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "카타리나"
   },
   "Kayle": {
     "champion_id": 10,
@@ -1182,7 +1244,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "케일"
   },
   "Kayn": {
     "champion_id": 141,
@@ -1201,7 +1264,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "케인"
   },
   "Kennen": {
     "champion_id": 85,
@@ -1219,7 +1283,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "케넨"
   },
   "Khazix": {
     "champion_id": 121,
@@ -1237,7 +1302,8 @@
     "burst": 5,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "카직스"
   },
   "Kindred": {
     "champion_id": 203,
@@ -1255,7 +1321,8 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "킨드레드"
   },
   "Kled": {
     "champion_id": 240,
@@ -1273,7 +1340,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "클레드"
   },
   "KogMaw": {
     "champion_id": 96,
@@ -1291,7 +1359,8 @@
     "burst": 2,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "코그모"
   },
   "LeBlanc": {
     "champion_id": 7,
@@ -1310,7 +1379,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "르블랑"
   },
   "LeeSin": {
     "champion_id": 64,
@@ -1329,7 +1399,8 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "리 신"
   },
   "Leona": {
     "champion_id": 89,
@@ -1348,7 +1419,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "레오나"
   },
   "Lillia": {
     "champion_id": 876,
@@ -1368,7 +1440,8 @@
     "primary_lanes": [
       "JG",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "릴리아"
   },
   "Lissandra": {
     "champion_id": 127,
@@ -1386,7 +1459,8 @@
     "burst": 4,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "리산드라"
   },
   "Lucian": {
     "champion_id": 236,
@@ -1405,7 +1479,8 @@
     "primary_lanes": [
       "ADC",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "루시안"
   },
   "Lulu": {
     "champion_id": 117,
@@ -1424,7 +1499,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "룰루"
   },
   "Lux": {
     "champion_id": 99,
@@ -1444,7 +1520,8 @@
     "primary_lanes": [
       "SUP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "럭스"
   },
   "Malphite": {
     "champion_id": 54,
@@ -1463,7 +1540,8 @@
     "primary_lanes": [
       "TOP",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "말파이트"
   },
   "Malzahar": {
     "champion_id": 90,
@@ -1481,7 +1559,8 @@
     "burst": 3,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "말자하"
   },
   "Maokai": {
     "champion_id": 57,
@@ -1502,7 +1581,8 @@
       "SUP",
       "TOP",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "마오카이"
   },
   "MasterYi": {
     "champion_id": 11,
@@ -1520,7 +1600,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "마스터 이"
   },
   "Mel": {
     "champion_id": 942,
@@ -1538,7 +1619,8 @@
     "burst": 3,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "멜"
   },
   "Milio": {
     "champion_id": 902,
@@ -1556,7 +1638,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "밀리오"
   },
   "MissFortune": {
     "champion_id": 21,
@@ -1574,7 +1657,8 @@
     "burst": 3,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "미스 포츈"
   },
   "Mordekaiser": {
     "champion_id": 82,
@@ -1593,7 +1677,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "모데카이저"
   },
   "Morgana": {
     "champion_id": 25,
@@ -1613,7 +1698,8 @@
     "primary_lanes": [
       "SUP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "모르가나"
   },
   "Naafiri": {
     "champion_id": 950,
@@ -1631,7 +1717,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "나피리"
   },
   "Nami": {
     "champion_id": 267,
@@ -1650,7 +1737,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "나미"
   },
   "Nasus": {
     "champion_id": 75,
@@ -1669,7 +1757,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "나서스"
   },
   "Nautilus": {
     "champion_id": 111,
@@ -1688,7 +1777,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "노틸러스"
   },
   "Neeko": {
     "champion_id": 518,
@@ -1707,7 +1797,8 @@
     "primary_lanes": [
       "MID",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "니코"
   },
   "Nidalee": {
     "champion_id": 76,
@@ -1726,7 +1817,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "니달리"
   },
   "Nilah": {
     "champion_id": 895,
@@ -1745,7 +1837,8 @@
     "burst": 4,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "닐라"
   },
   "Nocturne": {
     "champion_id": 56,
@@ -1763,7 +1856,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "녹턴"
   },
   "Nunu": {
     "champion_id": 20,
@@ -1781,7 +1875,8 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "누누와 윌럼프"
   },
   "Olaf": {
     "champion_id": 2,
@@ -1800,7 +1895,8 @@
     "primary_lanes": [
       "TOP",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "올라프"
   },
   "Orianna": {
     "champion_id": 61,
@@ -1818,7 +1914,8 @@
     "burst": 4,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "오리아나"
   },
   "Ornn": {
     "champion_id": 516,
@@ -1836,7 +1933,8 @@
     "burst": 2,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "오른"
   },
   "Pantheon": {
     "champion_id": 80,
@@ -1858,7 +1956,8 @@
       "MID",
       "JG",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "판테온"
   },
   "Poppy": {
     "champion_id": 78,
@@ -1879,7 +1978,8 @@
       "TOP",
       "JG",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "뽀삐"
   },
   "Pyke": {
     "champion_id": 555,
@@ -1898,7 +1998,8 @@
     "burst": 4,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "파이크"
   },
   "Qiyana": {
     "champion_id": 246,
@@ -1917,7 +2018,8 @@
     "primary_lanes": [
       "MID",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "키아나"
   },
   "Quinn": {
     "champion_id": 133,
@@ -1936,7 +2038,8 @@
     "burst": 4,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "퀸"
   },
   "Rakan": {
     "champion_id": 497,
@@ -1955,7 +2058,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "라칸"
   },
   "Rammus": {
     "champion_id": 33,
@@ -1973,7 +2077,8 @@
     "burst": 1,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "람머스"
   },
   "RekSai": {
     "champion_id": 421,
@@ -1991,7 +2096,8 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "렉사이"
   },
   "Rell": {
     "champion_id": 526,
@@ -2010,7 +2116,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "렐"
   },
   "Renata": {
     "champion_id": 888,
@@ -2028,7 +2135,8 @@
     "burst": 2,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "레나타 글라스크"
   },
   "Renekton": {
     "champion_id": 58,
@@ -2046,7 +2154,8 @@
     "burst": 3,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "레넥톤"
   },
   "Rengar": {
     "champion_id": 107,
@@ -2065,7 +2174,8 @@
     "primary_lanes": [
       "JG",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "렝가"
   },
   "Riven": {
     "champion_id": 92,
@@ -2084,7 +2194,8 @@
     "burst": 4,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "리븐"
   },
   "Rumble": {
     "champion_id": 68,
@@ -2104,7 +2215,8 @@
     "primary_lanes": [
       "TOP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "럼블"
   },
   "Ryze": {
     "champion_id": 13,
@@ -2123,7 +2235,8 @@
     "primary_lanes": [
       "MID",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "라이즈"
   },
   "Samira": {
     "champion_id": 360,
@@ -2142,7 +2255,8 @@
     "burst": 4,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "사미라"
   },
   "Sejuani": {
     "champion_id": 113,
@@ -2160,7 +2274,8 @@
     "burst": 1,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "세주아니"
   },
   "Senna": {
     "champion_id": 235,
@@ -2180,7 +2295,8 @@
     "primary_lanes": [
       "SUP",
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "세나"
   },
   "Seraphine": {
     "champion_id": 147,
@@ -2200,7 +2316,8 @@
     "primary_lanes": [
       "SUP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "세라핀"
   },
   "Sett": {
     "champion_id": 875,
@@ -2220,7 +2337,8 @@
     "primary_lanes": [
       "TOP",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "세트"
   },
   "Shaco": {
     "champion_id": 35,
@@ -2238,7 +2356,8 @@
     "burst": 5,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "샤코"
   },
   "Shen": {
     "champion_id": 98,
@@ -2257,7 +2376,8 @@
     "primary_lanes": [
       "TOP",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "쉔"
   },
   "Shyvana": {
     "champion_id": 102,
@@ -2275,7 +2395,8 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "쉬바나"
   },
   "Singed": {
     "champion_id": 27,
@@ -2294,7 +2415,8 @@
     "burst": 1,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "신지드"
   },
   "Sion": {
     "champion_id": 14,
@@ -2312,7 +2434,8 @@
     "burst": 2,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "사이온"
   },
   "Sivir": {
     "champion_id": 15,
@@ -2330,7 +2453,8 @@
     "burst": 2,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "시비르"
   },
   "Skarner": {
     "champion_id": 72,
@@ -2349,7 +2473,8 @@
     "burst": 1,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "스카너"
   },
   "Smolder": {
     "champion_id": 901,
@@ -2369,7 +2494,8 @@
     "primary_lanes": [
       "ADC",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "스몰더"
   },
   "Sona": {
     "champion_id": 37,
@@ -2388,7 +2514,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "소나"
   },
   "Soraka": {
     "champion_id": 16,
@@ -2407,7 +2534,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "소라카"
   },
   "Swain": {
     "champion_id": 50,
@@ -2428,7 +2556,8 @@
       "SUP",
       "MID",
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "스웨인"
   },
   "Sylas": {
     "champion_id": 517,
@@ -2447,7 +2576,8 @@
     "burst": 4,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "사일러스"
   },
   "Syndra": {
     "champion_id": 134,
@@ -2465,7 +2595,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "신드라"
   },
   "TahmKench": {
     "champion_id": 223,
@@ -2485,7 +2616,8 @@
     "primary_lanes": [
       "TOP",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "탐 켄치"
   },
   "Taliyah": {
     "champion_id": 163,
@@ -2504,7 +2636,8 @@
     "primary_lanes": [
       "MID",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "탈리야"
   },
   "Talon": {
     "champion_id": 91,
@@ -2523,7 +2656,8 @@
     "primary_lanes": [
       "MID",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "탈론"
   },
   "Taric": {
     "champion_id": 44,
@@ -2543,7 +2677,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "타릭"
   },
   "Teemo": {
     "champion_id": 17,
@@ -2562,7 +2697,8 @@
     "burst": 2,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "티모"
   },
   "Thresh": {
     "champion_id": 412,
@@ -2581,7 +2717,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "쓰레쉬"
   },
   "Tristana": {
     "champion_id": 18,
@@ -2600,7 +2737,8 @@
     "primary_lanes": [
       "ADC",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "트리스타나"
   },
   "Trundle": {
     "champion_id": 48,
@@ -2620,7 +2758,8 @@
     "primary_lanes": [
       "TOP",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "트런들"
   },
   "Tryndamere": {
     "champion_id": 23,
@@ -2639,7 +2778,8 @@
     "burst": 4,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "트린다미어"
   },
   "TwistedFate": {
     "champion_id": 4,
@@ -2657,7 +2797,8 @@
     "burst": 3,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "트위스티드 페이트"
   },
   "Twitch": {
     "champion_id": 29,
@@ -2676,7 +2817,8 @@
     "burst": 4,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "트위치"
   },
   "Udyr": {
     "champion_id": 77,
@@ -2696,7 +2838,8 @@
     "primary_lanes": [
       "JG",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "우디르"
   },
   "Urgot": {
     "champion_id": 6,
@@ -2715,7 +2858,8 @@
     "burst": 2,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "우르곳"
   },
   "Varus": {
     "champion_id": 110,
@@ -2733,7 +2877,8 @@
     "burst": 3,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "바루스"
   },
   "Vayne": {
     "champion_id": 67,
@@ -2753,7 +2898,8 @@
     "primary_lanes": [
       "ADC",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "베인"
   },
   "Veigar": {
     "champion_id": 45,
@@ -2771,7 +2917,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "베이가"
   },
   "VelKoz": {
     "champion_id": 161,
@@ -2790,7 +2937,8 @@
     "primary_lanes": [
       "MID",
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "벨코즈"
   },
   "Velkoz": {
     "champion_id": 161,
@@ -2809,7 +2957,8 @@
     "primary_lanes": [
       "SUP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "벨코즈"
   },
   "Vex": {
     "champion_id": 711,
@@ -2827,7 +2976,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "벡스"
   },
   "Vi": {
     "champion_id": 254,
@@ -2845,7 +2995,8 @@
     "burst": 4,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "바이"
   },
   "Viego": {
     "champion_id": 234,
@@ -2864,7 +3015,8 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "비에고"
   },
   "Viktor": {
     "champion_id": 112,
@@ -2882,7 +3034,8 @@
     "burst": 4,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "빅토르"
   },
   "Vladimir": {
     "champion_id": 8,
@@ -2901,7 +3054,8 @@
     "primary_lanes": [
       "MID",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "블라디미르"
   },
   "Volibear": {
     "champion_id": 106,
@@ -2921,7 +3075,8 @@
     "primary_lanes": [
       "TOP",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "볼리베어"
   },
   "Warwick": {
     "champion_id": 19,
@@ -2941,7 +3096,8 @@
     "primary_lanes": [
       "JG",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "워윅"
   },
   "Wukong": {
     "champion_id": 62,
@@ -2960,7 +3116,8 @@
     "primary_lanes": [
       "TOP",
       "JG"
-    ]
+    ],
+    "champion_name_ko": "오공"
   },
   "Xayah": {
     "champion_id": 498,
@@ -2978,7 +3135,8 @@
     "burst": 3,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "자야"
   },
   "Xerath": {
     "champion_id": 101,
@@ -2997,7 +3155,8 @@
     "primary_lanes": [
       "SUP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "제라스"
   },
   "XinZhao": {
     "champion_id": 5,
@@ -3015,7 +3174,8 @@
     "burst": 3,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "신 짜오"
   },
   "Yasuo": {
     "champion_id": 157,
@@ -3036,7 +3196,8 @@
       "MID",
       "TOP",
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "야스오"
   },
   "Yone": {
     "champion_id": 777,
@@ -3056,7 +3217,8 @@
     "primary_lanes": [
       "MID",
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "요네"
   },
   "Yorick": {
     "champion_id": 83,
@@ -3074,7 +3236,8 @@
     "burst": 2,
     "primary_lanes": [
       "TOP"
-    ]
+    ],
+    "champion_name_ko": "요릭"
   },
   "Yuumi": {
     "champion_id": 350,
@@ -3093,7 +3256,8 @@
     "burst": 1,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "유미"
   },
   "Zac": {
     "champion_id": 154,
@@ -3111,7 +3275,8 @@
     "burst": 1,
     "primary_lanes": [
       "JG"
-    ]
+    ],
+    "champion_name_ko": "자크"
   },
   "Zed": {
     "champion_id": 238,
@@ -3129,7 +3294,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "제드"
   },
   "Zeri": {
     "champion_id": 221,
@@ -3147,7 +3313,8 @@
     "burst": 2,
     "primary_lanes": [
       "ADC"
-    ]
+    ],
+    "champion_name_ko": "제리"
   },
   "Ziggs": {
     "champion_id": 115,
@@ -3166,7 +3333,8 @@
     "primary_lanes": [
       "ADC",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "직스"
   },
   "Zilean": {
     "champion_id": 26,
@@ -3186,7 +3354,8 @@
     "primary_lanes": [
       "SUP",
       "MID"
-    ]
+    ],
+    "champion_name_ko": "질리언"
   },
   "Zoe": {
     "champion_id": 142,
@@ -3204,7 +3373,8 @@
     "burst": 5,
     "primary_lanes": [
       "MID"
-    ]
+    ],
+    "champion_name_ko": "조이"
   },
   "Zyra": {
     "champion_id": 143,
@@ -3223,6 +3393,7 @@
     "burst": 3,
     "primary_lanes": [
       "SUP"
-    ]
+    ],
+    "champion_name_ko": "자이라"
   }
 }

@@ -8,7 +8,8 @@
 /**
  * @typedef {Object} ChampionStat
  * @property {number} champion_id - 챔피언 ID
- * @property {string} champion_name - 챔피언 이름
+ * @property {string} champion_name - 챔피언 이름 (영문)
+ * @property {string} [champion_name_ko] - 챔피언 이름 (한국어)
  * @property {number} games - 게임 수
  * @property {number} wins - 승리 수
  * @property {number} win_rate - 승률 (0~1)

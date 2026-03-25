@@ -14,6 +14,7 @@ def _orm_to_domain(orm: ChampionAttributeORM) -> ChampionAttributes:
     return ChampionAttributes(
         champion_id=orm.champion_id,
         champion_name=orm.champion_name,
+        champion_name_ko=orm.champion_name_ko,
         damage_type=orm.damage_type,
         role_tags=json.loads(orm.role_tags_json),
         waveclear=orm.waveclear,
@@ -33,6 +34,7 @@ def _domain_to_orm(attrs: ChampionAttributes) -> ChampionAttributeORM:
     return ChampionAttributeORM(
         champion_id=attrs.champion_id,
         champion_name=attrs.champion_name,
+        champion_name_ko=attrs.champion_name_ko,
         damage_type=attrs.damage_type,
         role_tags_json=json.dumps(attrs.role_tags),
         primary_lanes_json=json.dumps(attrs.primary_lanes),
@@ -93,6 +95,7 @@ class ChampionRepositoryImpl(ChampionRepository):
 
             if existing:
                 existing.champion_name = attrs.champion_name
+                existing.champion_name_ko = attrs.champion_name_ko
                 existing.damage_type = attrs.damage_type
                 existing.role_tags_json = json.dumps(attrs.role_tags)
                 existing.primary_lanes_json = json.dumps(attrs.primary_lanes)
@@ -125,6 +128,7 @@ class ChampionRepositoryImpl(ChampionRepository):
 
                 if existing:
                     existing.champion_name = attrs.champion_name
+                    existing.champion_name_ko = attrs.champion_name_ko
                     existing.damage_type = attrs.damage_type
                     existing.role_tags_json = json.dumps(attrs.role_tags)
                     existing.waveclear = attrs.waveclear

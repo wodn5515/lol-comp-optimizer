@@ -57,6 +57,7 @@ async def seed_champions_if_empty() -> None:
             ChampionAttributes(
                 champion_id=attrs_dict["champion_id"],
                 champion_name=name,
+                champion_name_ko=attrs_dict.get("champion_name_ko", ""),
                 damage_type=attrs_dict["damage_type"],
                 role_tags=attrs_dict["role_tags"],
                 primary_lanes=attrs_dict.get("primary_lanes", ["TOP", "MID"]),

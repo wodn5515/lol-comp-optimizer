@@ -7,6 +7,7 @@ class Assignment:
     player_tag_line: str = ""
     lane: str = ""  # TOP, JG, MID, ADC, SUP
     champion_name: str = ""
+    champion_name_ko: str = ""
     champion_id: int = 0
     personal_win_rate: float = 0.0
     personal_kda: float = 0.0

@@ -92,6 +92,7 @@ export function TeamCompCard({ recommendation }) {
                 </span>
                 <ChampionIcon
                   championName={assignment.champion}
+                  championNameKo={assignment.champion_name_ko}
                   championId={assignment.champion_id}
                   size={40}
                 />
@@ -100,7 +101,7 @@ export function TeamCompCard({ recommendation }) {
                     {playerName}
                   </p>
                   <p className="text-[10px] text-gray-400">
-                    {assignment.champion}
+                    {assignment.champion_name_ko || assignment.champion}
                   </p>
                 </div>
                 <div className="flex items-center gap-1 text-[10px]">

@@ -32,6 +32,83 @@ MAX_TEAMFIGHT: int = 25
 # How many top champions per player to consider
 TOP_CHAMPIONS_PER_PLAYER: int = 10
 
+# Comp types that REQUIRE frontline — penalty applies if no frontline
+FRONTLINE_REQUIRED_COMP_TYPES = {"이니시", "한타", "프로텍트"}
+
+# Comp types that do NOT need frontline — no penalty regardless
+FRONTLINE_NOT_NEEDED_COMP_TYPES = {"포킹", "픽", "폭딜", "다이브"}
+
+# Synergy strategies for comp type pairs
+SYNERGY_STRATEGIES: dict[frozenset, str] = {
+    frozenset(["스플릿", "글로벌"]): "스플릿러가 사이드 압박 중 글로벌 궁으로 즉시 합류 가능. 쉔 R이나 TF R로 순간 숫자 우위를 만드세요.",
+    frozenset(["포킹", "디스인게이지"]): "포킹으로 적 체력을 깎다가 적이 진입하면 디스인게이지로 끊고 다시 포킹. 이 사이클을 반복하세요.",
+    frozenset(["이니시", "궁합"]): "이니시 타이밍에 AoE 궁극기를 연쇄하세요. 좁은 지형(드래곤 핏, 바론 핏)에서 싸우면 효과 극대화.",
+    frozenset(["이니시", "한타"]): "탱커가 이니시와 프론트라인을 겸임. 정면 5v5에서 CC 체인 후 원딜이 안전하게 딜링하세요.",
+    frozenset(["픽", "다이브"]): "시야로 적 위치를 파악하고 고립된 적에게 다이브. 녹턴 R 등으로 순간 접근 후 폭딜로 삭제하세요.",
+    frozenset(["스플릿", "픽"]): "스플릿으로 적을 분산시킨 후 이동 중인 적을 캐치. 소규모 교전에서 숫자 우위를 만드세요.",
+    frozenset(["프로텍트", "디스인게이지"]): "원딜 보호에 올인. 적의 돌진을 전부 끊고 원딜이 안전하게 딜을 넣는 것이 최우선입니다.",
+    frozenset(["다이브", "폭딜"]): "전원 백라인 직행. 다이버가 CC로 잡으면 어쌔신이 원샷. 교전을 2~3초 내에 끝내세요.",
+}
+
+# Detailed strategy for each comp type
+COMP_STRATEGIES: dict[str, dict[str, str]] = {
+    "이니시": {
+        "guide": "이니시에이터가 싸움을 걸어 한타를 유도하세요. 오브젝트(드래곤/바론) 타이밍에 적극적으로 싸움을 걸고, CC를 연쇄적으로 사용하세요.",
+        "win_condition": "오브젝트 앞에서 5v5 한타를 강제하고 CC 체인으로 핵심 타겟을 집중 공격하세요.",
+        "caution": "궁극기 쿨타임에는 싸움을 피하세요. 뒤처진 상태에서의 이니시는 자살행위입니다.",
+    },
+    "디스인게이지": {
+        "guide": "상대의 이니시를 끊고 반격하는 리액션 플레이를 하세요. 잔나 R, 그라가스 R 등으로 적의 돌진을 무력화하세요.",
+        "win_condition": "상대 이니시를 무력화한 뒤 쿨타임이 빠진 적을 역습하세요.",
+        "caution": "우리 팀이 먼저 싸움을 걸 수 없습니다. 항상 상대의 액션에 반응하세요. 시야 확보가 핵심입니다.",
+    },
+    "포킹": {
+        "guide": "오브젝트 앞에서 30~60초간 원거리 스킬로 적 체력을 깎으세요. 적이 50% 이하가 되면 진입하거나 오브젝트를 가져가세요.",
+        "win_condition": "정면 한타를 피하고 포킹으로 체력 차이를 만든 뒤 싸우세요. 시즈(타워 밀기)도 효과적입니다.",
+        "caution": "정면 한타는 절대 금지. 스킬을 빗나가면 안 됩니다. 디스인게이지 수단을 항상 남겨두세요.",
+    },
+    "픽": {
+        "guide": "시야를 장악하고 고립된 적을 잡으세요. 적 정글 입구, 오브젝트 이동 경로에 매복하세요.",
+        "win_condition": "한 명을 잡고 바로 오브젝트(드래곤/바론/타워)로 전환하세요. 5v5는 피하세요.",
+        "caution": "실패한 캐치에 깊이 쫓아가지 마세요. 적이 뭉쳐 다니면 캐치가 어려워지므로 스플릿으로 분산을 유도하세요.",
+    },
+    "스플릿": {
+        "guide": "1-3-1 또는 1-4로 사이드를 압박하세요. 스플릿푸셔가 사이드를 밀 때 나머지는 오브젝트 근처에서 시간을 끄세요.",
+        "win_condition": "적이 스플릿러에게 1명 보내면 1v1으로 이기고, 2명 보내면 나머지가 4v3으로 오브젝트를 가져가세요.",
+        "caution": "스플릿러는 시야 없이 깊이 들어가지 마세요. 나머지 4인은 절대 싸움을 걸지 말고 시간만 끄세요.",
+    },
+    "한타": {
+        "guide": "5v5 정면 한타에서 승부하세요. 탱커가 앞에서 적 스킬을 흡수하고 원딜이 뒤에서 안전하게 딜링하세요.",
+        "win_condition": "좁은 지형(드래곤 핏, 바론 핏)에서 한타를 유도하고 궁극기 쿨타임에 맞춰 싸우세요.",
+        "caution": "원딜이 앞으로 나가면 안 됩니다. 탱커가 너무 깊이 들어가서 원딜과 떨어지지 마세요.",
+    },
+    "프로텍트": {
+        "guide": "하이퍼캐리(원딜)를 중심으로 포지셔닝하세요. 서포터와 탱커는 원딜 옆에서 보호하세요.",
+        "win_condition": "원딜이 3코어 이상 완성되면 그룹하여 한타. 원딜이 살아있으면 한타에서 이깁니다.",
+        "caution": "초반에는 약하니 싸움을 피하고 파밍하세요. 원딜이 죽으면 한타는 자동 패배입니다.",
+    },
+    "다이브": {
+        "guide": "프론트라인을 무시하고 적 백라인(원딜/미드)에 직행하세요. 안개 속에서 플랭크로 접근하세요.",
+        "win_condition": "적 핵심 딜러를 2초 안에 삭제하세요. 딜러가 죽으면 나머지 탱커만으로는 이길 수 없습니다.",
+        "caution": "궁극기 없이 다이브하지 마세요. 뒤처진 상태에서는 다이브해도 못 죽입니다. 30분 전에 끝내세요.",
+    },
+    "스커미시": {
+        "guide": "초반 2v2, 3v3 싸움을 적극적으로 하세요. 정글 침입, 스커틀 싸움, 갱킹을 쉬지 않고 하세요.",
+        "win_condition": "25분 안에 게임을 끝내세요. 모든 초반 싸움에서 이겨 골드 차이를 벌리세요.",
+        "caution": "후반으로 갈수록 약해집니다. 이긴 싸움 후 반드시 오브젝트로 전환하세요. 시간 끌지 마세요.",
+    },
+    "궁합": {
+        "guide": "AoE 궁극기를 연쇄로 사용하세요. 좁은 지형에서 적이 뭉쳤을 때 한 번에 터뜨리세요.",
+        "win_condition": "3명 이상에게 풀콤보를 적중시키면 한타 즉시 승리. 드래곤 핏, 바론 핏에서 싸우세요.",
+        "caution": "궁극기가 없으면 절대 싸우지 마세요. 적이 분산하면 콤보 효율이 떨어지므로 좁은 지형을 유도하세요.",
+    },
+    "폭딜": {
+        "guide": "적의 핵심 타겟(원딜/미드)을 빠르게 제거하세요. 안개 속 매복과 플랭크가 핵심입니다.",
+        "win_condition": "교전을 2~3초 안에 끝내세요. 교전이 길어지면 불리합니다.",
+        "caution": "탱커를 때리지 마세요 (못 죽입니다). 존야/GA를 산 적에게는 쿨타임을 기다려야 합니다. 후반에 약해집니다.",
+    },
+}
+
 
 class CompOptimizerService:
     """Champion composition optimization service.
@@ -119,10 +196,8 @@ class CompOptimizerService:
 
         if total > 0:
             ad_ratio = effective_ad / total
-            ap_ratio = effective_ap / total
         else:
             ad_ratio = 0.5
-            ap_ratio = 0.5
 
         # Ideal ratio is 0.4-0.6 for each side
         # Perfect score when ratio is between 0.4 and 0.6
@@ -175,10 +250,114 @@ class CompOptimizerService:
         total = sum(a.splitpush for a in champion_attrs_list)
         return min(total / MAX_SPLITPUSH, 1.0) * 100.0
 
-    def _calculate_penalties(
+    def _detect_comp_types(
         self, champion_attrs_list: list[ChampionAttributes]
+    ) -> list[str]:
+        """Detect composition archetypes from champion attributes.
+
+        Returns a list of detected comp type names (Korean).
+        12 possible types:
+        1. 이니시: engage >= 15
+        2. 디스인게이지: peel >= 14, engage < 10
+        3. 포킹: poke >= 14
+        4. 픽: pick >= 14
+        5. 스플릿: splitpush >= 14, at least 1 champ with splitpush >= 4
+        6. 한타 (프론트투백): teamfight >= 18, TANK or BRUISER present
+        7. 프로텍트: peel >= 12, MARKSMAN present
+        8. 다이브: engage >= 12, burst >= 12, peel < 8
+        9. 스커미시: 3+ champs with ASSASSIN or BRUISER in role_tags
+        10. 궁합 (Wombo): engage >= 12, teamfight >= 15
+        11. 글로벌: skipped (no GLOBAL tag yet)
+        12. 폭딜: burst >= 16, 2+ ASSASSIN
+        """
+        if not champion_attrs_list:
+            return []
+
+        engage_total = sum(a.engage for a in champion_attrs_list)
+        peel_total = sum(a.peel for a in champion_attrs_list)
+        poke_total = sum(a.poke for a in champion_attrs_list)
+        pick_total = sum(a.pick for a in champion_attrs_list)
+        burst_total = sum(a.burst for a in champion_attrs_list)
+        splitpush_total = sum(a.splitpush for a in champion_attrs_list)
+        teamfight_total = sum(a.teamfight for a in champion_attrs_list)
+
+        has_frontline = any(
+            "TANK" in a.role_tags or "BRUISER" in a.role_tags
+            for a in champion_attrs_list
+        )
+        has_marksman = any(
+            "MARKSMAN" in a.role_tags for a in champion_attrs_list
+        )
+        assassin_count = sum(
+            1 for a in champion_attrs_list if "ASSASSIN" in a.role_tags
+        )
+        skirmish_count = sum(
+            1 for a in champion_attrs_list
+            if "ASSASSIN" in a.role_tags or "BRUISER" in a.role_tags
+        )
+
+        comp_types: list[str] = []
+
+        # 1. 이니시 조합: engage >= 15
+        if engage_total >= 15:
+            comp_types.append("이니시")
+
+        # 2. 디스인게이지 조합: peel >= 14, engage < 10
+        if peel_total >= 14 and engage_total < 10:
+            comp_types.append("디스인게이지")
+
+        # 3. 포킹/시즈 조합: poke >= 14
+        if poke_total >= 14:
+            comp_types.append("포킹")
+
+        # 4. 픽/캐치 조합: pick >= 14
+        if pick_total >= 14:
+            comp_types.append("픽")
+
+        # 5. 스플릿 조합: splitpush >= 14, at least 1 champ with splitpush >= 4
+        if splitpush_total >= 14 and any(a.splitpush >= 4 for a in champion_attrs_list):
+            comp_types.append("스플릿")
+
+        # 6. 프론트투백 한타 조합: teamfight >= 18, TANK or BRUISER present
+        if teamfight_total >= 18 and has_frontline:
+            comp_types.append("한타")
+
+        # 7. 프로텍트 조합: peel >= 12, MARKSMAN present
+        if peel_total >= 12 and has_marksman:
+            comp_types.append("프로텍트")
+
+        # 8. 다이브 조합: engage >= 12, burst >= 12, peel < 8
+        if engage_total >= 12 and burst_total >= 12 and peel_total < 8:
+            comp_types.append("다이브")
+
+        # 9. 스커미시/초반 조합: 3+ champions with ASSASSIN or BRUISER
+        if skirmish_count >= 3:
+            comp_types.append("스커미시")
+
+        # 10. 궁합(Wombo) 조합: engage >= 12, teamfight >= 15
+        if engage_total >= 12 and teamfight_total >= 15:
+            comp_types.append("궁합")
+
+        # 11. 글로벌 조합: skipped for now (no GLOBAL tag)
+
+        # 12. 폭딜/어쌔신 조합: burst >= 16, 2+ ASSASSIN
+        if burst_total >= 16 and assassin_count >= 2:
+            comp_types.append("폭딜")
+
+        return comp_types
+
+    def _calculate_penalties(
+        self,
+        champion_attrs_list: list[ChampionAttributes],
+        comp_types: list[str] | None = None,
     ) -> dict[str, int]:
-        """Calculate penalty deductions."""
+        """Calculate penalty deductions.
+
+        Frontline penalty is conditional based on comp type:
+        - Apply for: 이니시, 한타, 프로텍트
+        - Do NOT apply for: 포킹, 픽, 폭딜, 다이브
+        - Other comps: no penalty either way
+        """
         penalties: dict[str, int] = {}
 
         ad_count = sum(
@@ -200,13 +379,29 @@ class CompOptimizerService:
         if ad_count == 0 and len(champion_attrs_list) > 0:
             penalties["full_ap"] = PENALTY_FULL_AP
 
-        # No frontline: -25
+        # No frontline: -25 (conditional based on comp type)
         has_frontline = any(
             "TANK" in a.role_tags or "BRUISER" in a.role_tags
             for a in champion_attrs_list
         )
         if not has_frontline and len(champion_attrs_list) > 0:
-            penalties["no_frontline"] = PENALTY_NO_FRONTLINE
+            # Detect comp types if not provided
+            if comp_types is None:
+                comp_types = self._detect_comp_types(champion_attrs_list)
+
+            comp_type_set = set(comp_types)
+
+            # Check if any detected comp type requires frontline
+            needs_frontline = bool(comp_type_set & FRONTLINE_REQUIRED_COMP_TYPES)
+            # Check if any detected comp type explicitly doesn't need frontline
+            no_frontline_ok = bool(comp_type_set & FRONTLINE_NOT_NEEDED_COMP_TYPES)
+
+            # Apply penalty only if comp needs frontline
+            # If comp has types that need frontline, apply penalty
+            # If comp has types that don't need frontline, skip penalty
+            # If comp has no detected types (균형), no penalty
+            if needs_frontline and not no_frontline_ok:
+                penalties["no_frontline"] = PENALTY_NO_FRONTLINE
 
         # Low waveclear: -10
         total_waveclear = self._waveclear_score_value(champion_attrs_list)
@@ -251,10 +446,48 @@ class CompOptimizerService:
             + splitpush * WEIGHT_SPLITPUSH
         )
 
-        penalties = self._calculate_penalties(champion_attrs_list)
+        # Detect comp types first, then pass to penalty calculation
+        comp_types = self._detect_comp_types(champion_attrs_list)
+        penalties = self._calculate_penalties(champion_attrs_list, comp_types)
         penalty_total = sum(penalties.values())
 
         return max(base_score + penalty_total, 0.0)
+
+    def _build_strategy_guide(self, comp_types: list[str]) -> str:
+        """Build strategy guide with synergy awareness.
+
+        1. Check if detected comp types match any synergy pair
+        2. If yes, use synergy strategy as primary guide
+        3. Append individual type strategies as supplementary info
+        """
+        if not comp_types:
+            return ""
+
+        parts: list[str] = []
+        used_synergy_types: set[str] = set()
+
+        # Check for synergy pairs
+        comp_type_set = set(comp_types)
+        for synergy_pair, synergy_strategy in SYNERGY_STRATEGIES.items():
+            if synergy_pair.issubset(comp_type_set):
+                parts.append(f"[시너지 전략] {synergy_strategy}")
+                used_synergy_types.update(synergy_pair)
+
+        # Add individual type strategies
+        for ct in comp_types:
+            strategy = COMP_STRATEGIES.get(ct)
+            if strategy:
+                guide = strategy["guide"]
+                win_cond = strategy["win_condition"]
+                caution = strategy["caution"]
+                parts.append(
+                    f"[{ct} 조합]\n"
+                    f"운영법: {guide}\n"
+                    f"승리 조건: {win_cond}\n"
+                    f"주의사항: {caution}"
+                )
+
+        return "\n\n".join(parts)
 
     def analyze(
         self,
@@ -286,6 +519,11 @@ class CompOptimizerService:
         waveclear_total = sum(a.waveclear for a in champion_attrs_list)
         splitpush_total = sum(a.splitpush for a in champion_attrs_list)
         teamfight_total = sum(a.teamfight for a in champion_attrs_list)
+        engage_total = sum(a.engage for a in champion_attrs_list)
+        peel_total = sum(a.peel for a in champion_attrs_list)
+        poke_total = sum(a.poke for a in champion_attrs_list)
+        pick_total = sum(a.pick for a in champion_attrs_list)
+        burst_total = sum(a.burst for a in champion_attrs_list)
 
         # Build per-champion stat contributions
         stat_keys = ["teamfight", "engage", "poke", "pick", "burst", "waveclear", "splitpush", "peel"]
@@ -300,8 +538,35 @@ class CompOptimizerService:
             contribs.sort(key=lambda x: x["value"], reverse=True)
             stat_contributions[key] = contribs
 
-        # 2~3명일 때는 페널티 없음
-        penalties = {} if is_partial else self._calculate_penalties(champion_attrs_list)
+        # Detect comp types
+        comp_types = self._detect_comp_types(champion_attrs_list)
+
+        # 2~3명일 때는 페널티 없음, 조합 유형 판별 스킵
+        if is_partial:
+            comp_type = ""
+            strategy_guide = "인원이 부족하여 조합 유형 판별이 불가합니다. 개인 숙련도 기준으로 추천합니다."
+            return TeamAnalysis(
+                ad_ratio=round(ad_ratio, 2),
+                ap_ratio=round(ap_ratio, 2),
+                has_frontline=has_frontline,
+                waveclear_score=waveclear_total,
+                splitpush_score=splitpush_total,
+                teamfight_score=teamfight_total,
+                engage_score=engage_total,
+                peel_score=peel_total,
+                poke_score=poke_total,
+                pick_score=pick_total,
+                burst_score=burst_total,
+                comp_type=comp_type,
+                strategy_guide=strategy_guide,
+                strengths=[],
+                weaknesses=[],
+                penalties={},
+                stat_contributions=stat_contributions,
+            )
+
+        # Calculate penalties with comp types (conditional frontline penalty)
+        penalties = self._calculate_penalties(champion_attrs_list, comp_types)
 
         # Determine strengths and weaknesses
         strengths: list[str] = []
@@ -317,12 +582,6 @@ class CompOptimizerService:
             strengths.append("강력한 스플릿 옵션")
         if teamfight_total >= 18:
             strengths.append("강력한 팀파이트")
-
-        engage_total = sum(a.engage for a in champion_attrs_list)
-        peel_total = sum(a.peel for a in champion_attrs_list)
-        poke_total = sum(a.poke for a in champion_attrs_list)
-        pick_total = sum(a.pick for a in champion_attrs_list)
-        burst_total = sum(a.burst for a in champion_attrs_list)
 
         if engage_total >= 15:
             strengths.append("뛰어난 이니시에이트")
@@ -350,71 +609,13 @@ class CompOptimizerService:
         if poke_total < 6:
             weaknesses.append("포킹 능력 부족")
 
-        # Detect composition archetype(s) — 4명 이하면 조합 유형 판별 스킵
-        comp_types: list[str] = []
-        strategy_parts: list[str] = []
-
-        if is_partial:
-            comp_type = ""
-            strategy_guide = "인원이 부족하여 조합 유형 판별이 불가합니다. 개인 숙련도 기준으로 추천합니다."
-            return TeamAnalysis(
-                ad_ratio=round(ad_ratio, 2),
-                ap_ratio=round(ap_ratio, 2),
-                has_frontline=has_frontline,
-                waveclear_score=waveclear_total,
-                splitpush_score=splitpush_total,
-                teamfight_score=teamfight_total,
-                engage_score=engage_total,
-                peel_score=peel_total,
-                poke_score=poke_total,
-                pick_score=pick_total,
-                burst_score=burst_total,
-                comp_type=comp_type,
-                strategy_guide=strategy_guide,
-                strengths=strengths,
-                weaknesses=weaknesses,
-                penalties=penalties,
-                stat_contributions=stat_contributions,
-            )
-
-        strategy_map = {
-            "이니시": "이니시에이터가 싸움을 걸어 한타를 유도하세요. 오브젝트(드래곤/바론) 타이밍에 적극적으로 싸움을 걸고, 이니시 타이밍을 팀원과 맞추는 것이 핵심입니다.",
-            "포킹": "오브젝트 앞에서 스킬로 적의 체력을 깎은 뒤 진입하세요. 정면 한타는 피하고, 적이 체력 불리한 상태에서 싸우는 것이 이상적입니다.",
-            "픽": "시야를 장악하고 고립된 적을 잡으세요. 소규모 교전에서 숫자 우위를 만들고, 잡은 뒤 바로 오브젝트로 전환하세요.",
-            "스플릿": "1-3-1 또는 1-4 라인 운영으로 사이드를 압박하세요. 스플릿푸셔가 압박하는 동안 나머지는 오브젝트 근처에서 시간을 끄세요.",
-            "한타": "5:5 정면 한타에서 강합니다. 좁은 지형(드래곤 핏, 바론 핏)을 활용하고, 궁극기 쿨타임에 맞춰 싸우세요.",
-            "프로텍트": "원딜(캐리)를 중심으로 포지셔닝하세요. 서포터와 탱커가 원딜을 보호하며, 원딜이 안전하게 딜을 넣는 것이 최우선입니다.",
-            "폭딜": "핵심 타겟(원딜/미드)을 빠르게 제거하세요. 교전이 길어지면 불리하니 빠르게 킬을 따고 전투를 끝내세요.",
-        }
-
-        if engage_total >= 15:
-            comp_types.append("이니시")
-            strategy_parts.append(strategy_map["이니시"])
-        if poke_total >= 14:
-            comp_types.append("포킹")
-            strategy_parts.append(strategy_map["포킹"])
-        if pick_total >= 14:
-            comp_types.append("픽")
-            strategy_parts.append(strategy_map["픽"])
-        if splitpush_total >= 14 and any(a.splitpush >= 4 for a in champion_attrs_list):
-            comp_types.append("스플릿")
-            strategy_parts.append(strategy_map["스플릿"])
-        if teamfight_total >= 18:
-            comp_types.append("한타")
-            strategy_parts.append(strategy_map["한타"])
-        if peel_total >= 12 and any("MARKSMAN" in a.role_tags for a in champion_attrs_list):
-            comp_types.append("프로텍트")
-            strategy_parts.append(strategy_map["프로텍트"])
-        if burst_total >= 16:
-            comp_types.append("폭딜")
-            strategy_parts.append(strategy_map["폭딜"])
-
+        # Build comp type string and strategy guide
         if comp_types:
             comp_type = " + ".join(t + " 조합" for t in comp_types)
+            strategy_guide = self._build_strategy_guide(comp_types)
         else:
             comp_type = "균형 조합"
-
-        strategy_guide = "\n".join(strategy_parts) if strategy_parts else ""
+            strategy_guide = ""
 
         return TeamAnalysis(
             ad_ratio=round(ad_ratio, 2),
@@ -433,6 +634,7 @@ class CompOptimizerService:
             strengths=strengths,
             weaknesses=weaknesses,
             penalties=penalties,
+            stat_contributions=stat_contributions,
         )
 
     def _count_off_lane_champions(
@@ -531,6 +733,10 @@ class CompOptimizerService:
                             player_tag_line=base_assignment.player_tag_line,
                             lane=base_assignment.lane,
                             champion_name=champ_stats.champion_name,
+                            champion_name_ko=(
+                                champ_stats.champion_name_ko
+                                or attrs.champion_name_ko
+                            ),
                             champion_id=champ_stats.champion_id
                             or attrs.champion_id,
                             personal_win_rate=champ_stats.win_rate,

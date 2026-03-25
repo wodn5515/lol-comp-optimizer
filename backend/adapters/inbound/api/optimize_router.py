@@ -72,6 +72,7 @@ class AnalyzePlayersRequest(BaseModel):
 class ChampionStatsData(BaseModel):
     champion_id: int
     champion_name: str
+    champion_name_ko: str = ""
     games: int = 0
     wins: int = 0
     win_rate: float = 0.0
@@ -126,6 +127,7 @@ def _serialize_player(player: Player) -> dict:
             {
                 "champion_id": c.champion_id,
                 "champion_name": c.champion_name,
+                "champion_name_ko": c.champion_name_ko,
                 "games": c.games,
                 "wins": c.wins,
                 "win_rate": round(c.win_rate, 3),
@@ -150,6 +152,7 @@ def _serialize_recommendations(compositions: list) -> list[dict]:
                         "player": f"{a.player_game_name}#{a.player_tag_line}",
                         "lane": a.lane,
                         "champion": a.champion_name,
+                        "champion_name_ko": a.champion_name_ko,
                         "champion_id": a.champion_id,
                         "personal_win_rate": round(a.personal_win_rate, 3),
                         "personal_kda": a.personal_kda,
@@ -193,9 +196,17 @@ async def _fetch_players_from_riot(
     # Get Data Dragon champion data for ID -> name mapping
     dd_champions = await ddragon.get_all_champions()
     champion_id_to_name: dict[int, str] = {}
+    champion_id_to_name_ko: dict[int, str] = {}
     for key_str, info in dd_champions.items():
         cid = int(key_str)
         champion_id_to_name[cid] = info["id"]
+        champion_id_to_name_ko[cid] = info.get("name", "")
+
+    # Also build lookup from champion_attributes.json (DB) for Korean names
+    all_attrs = await champion_data_service.get_all() if champion_data_service else []
+    champion_name_to_ko: dict[str, str] = {
+        a.champion_name: a.champion_name_ko for a in all_attrs if a.champion_name_ko
+    }
 
     total_players = len(player_inputs)
 
@@ -341,9 +352,13 @@ async def _fetch_players_from_riot(
                 len(lane_stats),
             )
 
-            # Add mastery points to champion stats
+            # Add mastery points and Korean names to champion stats
             for cs in champion_stats:
                 cs.mastery_points = mastery_map.get(cs.champion_id, 0)
+                cs.champion_name_ko = (
+                    champion_name_to_ko.get(cs.champion_name, "")
+                    or champion_id_to_name_ko.get(cs.champion_id, "")
+                )
 
             # 매치 기반 챔피언이 부족하면 숙련도(모스트) 데이터로 보충
             MIN_CHAMPION_POOL = 5
@@ -358,10 +373,15 @@ async def _fetch_players_from_riot(
                         continue
                     champ_name = champion_id_to_name.get(champ_id, f"Champion_{champ_id}")
                     mastery_pts = m.get("championPoints", 0)
+                    champ_name_ko = (
+                        champion_name_to_ko.get(champ_name, "")
+                        or champion_id_to_name_ko.get(champ_id, "")
+                    )
                     champion_stats.append(
                         ChampionStats(
                             champion_id=champ_id,
                             champion_name=champ_name,
+                            champion_name_ko=champ_name_ko,
                             games=0,
                             wins=0,
                             win_rate=0.5,  # 매치 데이터 없으므로 중립 승률
@@ -474,6 +494,7 @@ def _player_data_to_domain(player_data: PlayerData) -> Player:
             ChampionStats(
                 champion_id=c.champion_id,
                 champion_name=c.champion_name,
+                champion_name_ko=c.champion_name_ko,
                 games=c.games,
                 wins=c.wins,
                 win_rate=c.win_rate,
