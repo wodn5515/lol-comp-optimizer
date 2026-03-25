@@ -1,13 +1,96 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card, CardContent } from '../../../shared/ui';
 import { cn } from '../../../shared/lib/cn';
 import { MATCH_COUNT_OPTIONS } from '../../../shared/config/constants';
+import { getRecentSummoners, addRecentSummoners } from '../../../shared/lib/recentSummoners';
 import { ApiKeyInput, useApiKeyStore } from '../../../features/setup-api-key';
 import { AddPlayerButton, usePlayerListStore } from '../../../features/add-player';
 import { AnalyzeButton, useAnalyzeStore, useBanPickStore } from '../../../features/analyze-comp';
 import { usePlayerStore } from '../../../entities/player';
 import { usePlayerFormStore } from '../model/usePlayerForm';
+
+function SummonerInput({ value, onChange, onEnter, error, index }) {
+  const [showRecent, setShowRecent] = useState(false);
+  const wrapperRef = useRef(null);
+
+  // 다른 칸에 이미 입력된 소환사 제외를 위해 부모에서 전달받지 않고
+  // playerInputs를 직접 참조
+  const playerInputs = usePlayerListStore((s) => s.playerInputs);
+  const usedSummoners = playerInputs
+    .filter((p) => p.rawInput && p.rawInput.includes('#'))
+    .map((p) => p.rawInput.trim().toLowerCase());
+
+  const recentList = getRecentSummoners().filter(
+    (s) => !usedSummoners.includes(s.toLowerCase())
+  );
+
+  // 바깥 클릭 시 드롭다운 닫기
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setShowRecent(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
+  return (
+    <div className="relative" ref={wrapperRef}>
+      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-medium z-10">
+        {index + 1}.
+      </span>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => {
+          onChange(e.target.value);
+          setShowRecent(false);
+        }}
+        onFocus={() => {
+          if (!value && recentList.length > 0) setShowRecent(true);
+        }}
+        onClick={() => {
+          if (!value && recentList.length > 0) setShowRecent(true);
+        }}
+        placeholder="소환사이름#태그 (예: Hide on bush#KR1)"
+        className={cn(
+          'w-full rounded-lg border bg-gray-900 pl-8 pr-4 py-2.5 text-sm text-gray-100',
+          'placeholder:text-gray-600',
+          'transition-colors',
+          'focus:outline-none focus:ring-2 focus:ring-inset',
+          error
+            ? 'border-red-600 focus:ring-red-500/40'
+            : 'border-gray-700 focus:ring-amber-500/40 hover:border-gray-600'
+        )}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') onEnter();
+          if (e.key === 'Escape') setShowRecent(false);
+        }}
+      />
+      {showRecent && recentList.length > 0 && (
+        <div className="absolute top-full left-0 right-0 mt-1 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50 max-h-48 overflow-y-auto">
+          <p className="px-3 py-1.5 text-[10px] text-gray-500 border-b border-gray-700">최근 검색</p>
+          {recentList.map((summoner) => (
+            <button
+              key={summoner}
+              type="button"
+              className="w-full text-left px-3 py-2 text-sm text-gray-200 hover:bg-gray-700 transition-colors cursor-pointer"
+              onMouseDown={(e) => {
+                e.preventDefault();
+                onChange(summoner);
+                setShowRecent(false);
+              }}
+            >
+              {summoner}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 export function PlayerInputForm() {
   const navigate = useNavigate();
@@ -80,6 +163,10 @@ export function PlayerInputForm() {
       });
 
       if (result) {
+        // 최근 소환사 저장
+        addRecentSummoners(
+          validPlayers.map((p) => `${p.gameName}#${p.tagLine}`)
+        );
         resetBanPick();
         setPlayers(result.players || []);
         setAnalyzedPlayers(result.players || []);
@@ -152,31 +239,13 @@ export function PlayerInputForm() {
           {playerInputs.map((input, index) => (
             <div key={input.id} className="flex gap-2 items-start">
               <div className="flex-1">
-                <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs text-gray-500 font-medium">
-                    {index + 1}.
-                  </span>
-                  <input
-                    type="text"
-                    value={input.rawInput}
-                    onChange={(e) =>
-                      handleRiotIdChange(input.id, e.target.value)
-                    }
-                    placeholder="소환사이름#태그 (예: Hide on bush#KR1)"
-                    className={cn(
-                      'w-full rounded-lg border bg-gray-900 pl-8 pr-4 py-2.5 text-sm text-gray-100',
-                      'placeholder:text-gray-600',
-                      'transition-colors',
-                      'focus:outline-none focus:ring-2 focus:ring-inset',
-                      errors[input.id]
-                        ? 'border-red-600 focus:ring-red-500/40'
-                        : 'border-gray-700 focus:ring-amber-500/40 hover:border-gray-600'
-                    )}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') handleAnalyze();
-                    }}
-                  />
-                </div>
+                <SummonerInput
+                  value={input.rawInput}
+                  onChange={(v) => handleRiotIdChange(input.id, v)}
+                  onEnter={handleAnalyze}
+                  error={errors[input.id]}
+                  index={index}
+                />
                 {errors[input.id] && (
                   <p className="text-[11px] text-red-400 mt-1">
                     {errors[input.id]}
