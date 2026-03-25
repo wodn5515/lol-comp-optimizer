@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: lol-comp-optimizer-api
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATABASE_URL
+        value: sqlite:///./lol_comp.db
+      - key: CORS_ORIGINS
+        value: https://lol-comp-optimizer.vercel.app,http://localhost:5173,http://localhost:3000
+    plan: free

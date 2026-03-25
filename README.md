@@ -54,6 +54,29 @@ npm run dev
 - 프론트엔드: http://localhost:5173
 - 백엔드 API 문서: http://localhost:8000/docs
 
+## 배포 (GitHub Pages + Render)
+
+### 백엔드 (Render - 무료)
+1. [Render](https://render.com)에서 계정 생성
+2. New Web Service → GitHub 레포 연결 (`wodn5515/lol-comp-optimizer`)
+3. Root Directory: `backend`
+4. Build Command: `pip install -r requirements.txt`
+5. Start Command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+6. Environment Variables:
+   - `DATABASE_URL`: `sqlite:///./lol_comp.db`
+   - `CORS_ORIGINS`: `https://wodn5515.github.io,http://localhost:5173`
+7. 배포 완료 후 URL 확인 (예: `https://lol-comp-optimizer-api.onrender.com`)
+
+### 프론트엔드 (GitHub Pages - 무료)
+1. GitHub 레포 Settings → Pages → Source: GitHub Actions
+2. main 브랜치에 push하면 자동 배포 (`.github/workflows/deploy-frontend.yml`)
+3. 배포 URL: `https://wodn5515.github.io/lol-comp-optimizer/`
+
+### 주의사항
+- Render 무료 티어는 15분 무활동 시 슬립 → 첫 요청 시 30~60초 대기
+- GitHub Pages는 무료, 월 100GB 대역폭
+- SQLite 디스크가 Render에서 초기화될 수 있지만 champion_attributes.json에서 자동 시드
+
 ## 사용법
 
 ### 1. API 키 발급
